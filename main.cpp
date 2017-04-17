@@ -13,8 +13,8 @@ int main(int argc, char *argv[]){
     qRegisterMetaType<positions_and_dice>();
 
     //instanciate the players here
-    //ludo_player p1, p2;
-    ludo_player_random p1, p2, p3, p4;
+    ludo_player p1, p2;
+    ludo_player_random p3, p4;
 
     game g;
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]){
     w.show();
     */
     
-    for(int i = 0; i < 10000; ++i){
+    for(int i = 0; i < 1000; ++i){
         g.start();
         a.exec();
         

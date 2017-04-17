@@ -9,19 +9,28 @@ ludo_player::ludo_player():
 }
 
 int ludo_player::make_decision(){
+    // After rolling 6
     if(dice_roll == 6){
         for(int i = 0; i < 4; ++i){
+            // Pieces which can be released out of jail
+            // If there is piece in jail -> prefer this move
             if(pos_start_of_turn[i]<0){
                 return i;
             }
         }
+
+        // Pieces in the game
+        // No Piece in jail -> play with some other one
         for(int i = 0; i < 4; ++i){
             if(pos_start_of_turn[i]>=0 && pos_start_of_turn[i] != 99){
                 return i;
             }
         }
-    } else {
+    }
+    // Other roll than 6
+    else {
         for(int i = 0; i < 4; ++i){
+            // Pieces in the game
             if(pos_start_of_turn[i]>=0 && pos_start_of_turn[i] != 99){
                 return i;
             }

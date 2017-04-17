@@ -3,25 +3,19 @@
 #include <QObject>
 #include <iostream>
 #include "positions_and_dice.h"
+#include "ludo_player.h"
 
-class ludo_player_random : public QObject {
+/* Children of class ludo_player
+ * make_decision() function is polymorphed/changed
+ * for Random Player
+ */
+class ludo_player_random : public ludo_player {
     Q_OBJECT
 private:
-    std::vector<int> pos_start_of_turn;
-    std::vector<int> pos_end_of_turn;
-    int dice_roll;
     std::random_device rd;
     std::mt19937 gen;
-
-    int make_decision();
+    int make_decision(); // polymorphed function
 public:
     ludo_player_random();
-signals:
-    void select_piece(int);
-    void turn_complete(bool);
-public slots:
-    void start_turn(positions_and_dice relative);
-    void post_game_analysis(std::vector<int> relative_pos);
 };
-
 #endif // LUDO_PLAYER_RANDOM_H

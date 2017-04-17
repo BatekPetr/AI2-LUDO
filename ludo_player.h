@@ -6,11 +6,11 @@
 
 class ludo_player : public QObject {
     Q_OBJECT
-private:
+protected:
     std::vector<int> pos_start_of_turn;
     std::vector<int> pos_end_of_turn;
     int dice_roll;
-    int make_decision();
+    virtual int make_decision();    //function is used for polymorphysim by different players
 public:
     ludo_player();
 signals:
