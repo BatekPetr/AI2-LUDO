@@ -8,7 +8,18 @@ ludo_player::ludo_player():
 {
 }
 
-int ludo_player::make_decision(){
+int ludo_player::make_decision()
+{
+    /*
+     * make_decision function general for all players
+     * if child class implements this function, polymorphed function
+     * from subclass is used instead
+     * -> make_decision() is VIRTUAL function
+     *
+     * specialized players should implement this function in their
+     * respective subclasses
+     */
+
     // After rolling 6
     if(dice_roll == 6){
         for(int i = 0; i < 4; ++i){
@@ -60,4 +71,45 @@ void ludo_player::post_game_analysis(std::vector<int> relative_pos){
         }
     }
     emit turn_complete(game_complete);
+}
+
+std::vector<int> ludo_player::get_move_candidates()
+{
+    /*
+     * function should return possible candidates
+     * for the next player move
+    */
+
+    std::vector<int> valid_moves;
+
+    for(int i = 0; i < 4; ++i){
+        if(pos_start_of_turn[i]<0){
+            // Pieces which can be released out of jail
+            if(dice_roll == 6)
+                // Take piece out of jail
+                valid_moves.push_back(i);
+        }
+        // Pieces in the playing circle and home stretch
+        else if(pos_start_of_turn[i]>=0 && pos_start_of_turn[i] != 99){
+            valid_moves.push_back(i);
+        }
+    }
+
+    return valid_moves;
+}
+
+void ludo_player::print_player_piece_positions()
+{
+    std::cout << "pos_start_of_turn: [ ";
+    int i;
+    for (i = 0; i < 3; i++)
+    {
+        std::cout << pos_start_of_turn[i] << ", ";
+    }
+    std::cout << pos_start_of_turn[i] << " ]"<< std::endl;
+}
+
+void ludo_player::print_dice_roll()
+{
+    std::cout << "dice_roll: " << dice_roll << std::endl;
 }

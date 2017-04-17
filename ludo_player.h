@@ -11,6 +11,9 @@ protected:
     std::vector<int> pos_end_of_turn;
     int dice_roll;
     virtual int make_decision();    //function is used for polymorphysim by different players
+    void print_player_piece_positions();
+    void print_dice_roll();
+    std::vector<int> get_move_candidates();
 public:
     ludo_player();
 signals:

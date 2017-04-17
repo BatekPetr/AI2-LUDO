@@ -4,6 +4,8 @@
 #include <vector>
 #include "ludo_player.h"
 #include "ludo_player_random.h"
+#include "ludo_player_fast.h"
+#include "ludo_player_aggressive.h"
 #include "positions_and_dice.h"
 
 Q_DECLARE_METATYPE( positions_and_dice )
@@ -13,7 +15,8 @@ int main(int argc, char *argv[]){
     qRegisterMetaType<positions_and_dice>();
 
     //instanciate the players here
-    ludo_player p1, p2;
+    ludo_player_aggressive p1;
+    ludo_player p2;
     ludo_player_random p3, p4;
 
     game g;
@@ -44,8 +47,8 @@ int main(int argc, char *argv[]){
 
     
     // Add a GUI <-- remove the '/' to uncomment block
-    /*
-    g.setGameDelay(1000); //if you want to see the game, set a delay
+    // ---------------------------------------------------
+    g.setGameDelay(100); //if you want to see the game, set a delay
 
     Dialog w;
     QObject::connect(&g,SIGNAL(update_graphics(std::vector<int>)),&w,SLOT(update_graphics(std::vector<int>)));
@@ -54,8 +57,11 @@ int main(int argc, char *argv[]){
     QObject::connect(&g,SIGNAL(declare_winner(int)),              &w,SLOT(get_winner()));
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));
     w.show();
-    */
-    
+
+    g.start();
+    a.exec();
+    // ---------------------------------------------------
+    /*
     for(int i = 0; i < 1000; ++i){
         g.start();
         a.exec();
@@ -70,5 +76,6 @@ int main(int argc, char *argv[]){
     for(int i = 0; i < 3; i++)
         std::cout << g.winStats[i] << ", ";
     std::cout << g.winStats[3] << " ]"<< std::endl;
+    */
     return 0;
 }

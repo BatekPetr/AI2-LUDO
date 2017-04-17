@@ -148,6 +148,29 @@ int game::next_turn(unsigned int delay = 0){
  * moves ONE piece, selected by player
  */
 void game::movePiece(int relative_piece){
+    // Check if there is a piece to move
+    // -1 means, there is not any piece with possibility to move
+    if (relative_piece == -1)
+    {
+        std::vector<int> new_relative = relativePosition();
+        switch(color){
+            case 0:
+                emit player1_end(new_relative);
+                break;
+            case 1:
+                emit player2_end(new_relative);
+                break;
+            case 2:
+                emit player3_end(new_relative);
+                break;
+            case 3:
+                emit player4_end(new_relative);
+            default:
+                break;
+        }
+        return;
+    }
+
     // Find piece index in the absolute/fixed vector
     int fixed_piece = rel_to_fixed(relative_piece);     //index of the piece in player_positions
     int modifier = color * 13;

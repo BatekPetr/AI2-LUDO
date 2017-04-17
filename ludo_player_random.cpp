@@ -7,6 +7,13 @@ ludo_player_random::ludo_player_random():ludo_player(),
 }
 
 int ludo_player_random::make_decision(){
+    /*//print debug info
+    print_player_piece_positions();
+    print_dice_roll();
+    // Wait for ENTER key between turns
+    std::cout << "Press Enter to Continue";
+    std::cin.ignore();
+    */
     std::vector<int> valid_moves;
     // Pieces which can be released out of jail
     if(dice_roll == 6){
