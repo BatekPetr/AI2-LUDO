@@ -22,7 +22,7 @@ int ludo_player_fast::make_decision()
     // sort candidate moves according to position of the pieces
     // further the piece, the higher priority
     std::map<int, int, std::greater<int>>  move_priorities; //sorts key in decreasing order
-    for(int c = 0; c < candidates.size(); ++c)
+    for(size_t c = 0; c < candidates.size(); ++c)
     {
         // candidates[c] is relative_piece in PLAYER relative position ARRAY
         // pos_start_of_turn[it->second] is RELATIVE index of the piece on the BOARD
@@ -33,11 +33,19 @@ int ludo_player_fast::make_decision()
     for (std::map<int,int, std::greater<int>>::iterator it=move_priorities.begin();\
          it!=move_priorities.end(); ++it)
     {
+        int new_relative_position = pos_start_of_turn[it->second] + dice_roll;
+
+        // We want to eliminate self kill by moving onto occupied
+        // globe possition
+        if (isGlobe(new_relative_position) &&\
+            isOccupied(new_relative_position, pos_start_of_turn) )
+        {
+            continue;
+        }
         // the furthest piece is in the goal stretch and
         // dice_roll is larger than remaining number of fields to goal
-        if ( (pos_start_of_turn[it->second] > 50) && \
-             (pos_start_of_turn[it->second] + dice_roll > 56) )
-            continue;   // move iterator for the second highest priority piece
+        else if (dice_roll_tooMuch(new_relative_position))
+            continue;
 
         // return 1st highest priority piece which SATISFIES PREVIOUS condition
         // relative_piece in PLAYER relative position ARRAY

@@ -40,18 +40,16 @@ int ludo_player::make_decision()
     }
     // Other roll than 6
     else {
-        for(int i = 0; i < 4; ++i){
+        for(int i = 0; i < 4; ++i)
+        {
             // Pieces in the game
-            if(pos_start_of_turn[i]>=0 && pos_start_of_turn[i] != 99){
-                return i;
-            }
-        }
-        for(int i = 0; i < 4; ++i){ //maybe they are all locked in
-            if(pos_start_of_turn[i]<0){
+            if(pos_start_of_turn[i]>=0 && pos_start_of_turn[i] != 99)
+            {
                 return i;
             }
         }
     }
+    // No available move, all pieces locked in
     return -1;
 }
 
@@ -96,6 +94,137 @@ std::vector<int> ludo_player::get_move_candidates()
     }
 
     return valid_moves;
+}
+
+int ludo_player::isOccupied(int index, const std::vector<int>& relative_player_positions)
+{
+    /*
+     * returns number of people of another color
+     * on the field with index in relative position
+     */
+    int number_of_people = 0;
+
+    if( (index > -1) && (index < 51) ){   // check only indexes in the main game circle
+        for(size_t i = 4; i < relative_player_positions.size(); ++i)
+        {   // start from 4 to skip players own pieces
+            if(relative_player_positions[i] == index){
+                ++number_of_people;
+            }
+
+        }
+    }
+    return number_of_people;
+}
+
+bool ludo_player::isGlobe(int index){
+    if(index < 51){  //check only the indexes on the board, not in the home streak
+        if(index % 13 == 0 || (index - 8) % 13 == 0)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ludo_player::isOwnGlobe(int index){
+    if(index < 51){  //check only the indexes on the board, not in the home streak
+        if ( index == 0 || (index - 8) % 13 == 0)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ludo_player::isOwnBlockade(int index, const std::vector<int>& relative_positions)
+{
+    if ( (index > -1) && (index < 51) ) //check only main circle
+    {
+        int number_pieces = 0;
+        for (int r = 0; r < 4; ++r)
+        {
+            if ( relative_positions[r] == index )
+                ++number_pieces;
+        }
+        if (number_pieces > 1)
+            return true;
+    }
+
+    return false;
+}
+
+bool ludo_player::dice_roll_tooMuch(int new_relative_position)
+{
+    /*
+     * the piece is in the goal stretch and
+     * dice_roll is larger than remaining number of fields to goal
+     */
+
+    if (new_relative_position > 56)
+        return true;
+    else
+        return false;
+}
+
+int ludo_player::vulnerableBy(int index, const std::vector<int>& relative_positions)
+{
+    // check only indexes in the main circle
+    if ( (index == -1) || (index > 50) )
+         return 0;
+    else if ( isOwnGlobe(index) ||\
+              isOwnBlockade(index, relative_positions))
+    {
+        return 0;
+    }
+    else
+    {
+        std::pair<int, int> knocking_range;
+        // if piece is not further than 6 fields before initial field
+        // perform wrap around for negative indexes
+        knocking_range.first = (index - 6);
+        knocking_range.second = (index - 1);
+
+        int predators = 0;
+        // Check for possible attackers on the main circle
+        for (int i = knocking_range.first;\
+             i <= knocking_range.second; ++i)
+        {
+            if (i < 0)
+            {
+                // wrap around for negative i values
+                if (isOccupied(i + 52, relative_positions) )
+                {
+                    ++predators;
+                }
+            }
+            else
+            {
+                if (isOccupied(i, relative_positions) )
+                {
+                    ++predators;
+                }
+            }
+        }
+        // if piece stands on jail release field,
+        // it is vulnerable by pieces still in jail
+        if (index % 13 == 0)
+        {
+            // check if there are pieces of particular color
+            // in its jail
+            for (int i = 4 * index/13;\
+                 i < (4 * index/13) + 4; i++)
+            {
+                if (relative_positions[i] == -1)
+                {
+                    ++predators;
+                    break;
+                }
+            }
+        }
+
+        return predators;
+    }
+
 }
 
 void ludo_player::print_player_piece_positions()

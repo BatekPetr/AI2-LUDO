@@ -1,6 +1,7 @@
 #include "game.h"
 #define DEBUG 0
 
+
 game::game():
     game_complete(false),
     turn_complete(true),
@@ -9,6 +10,7 @@ game::game():
     dice_result(1),
     rd(),
     gen(rd()),
+    turnsNo(0),
     color(3),
     player_positions({-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}),
     winStats({0,0,0,0}),
@@ -96,6 +98,8 @@ void game::move_start(int fixed_piece){
 }
 
 int game::next_turn(unsigned int delay = 0){
+
+    turnsNo++;
     //Boolean variable indicating that someone has won the game
     if(game_complete){
         return 0;
@@ -319,7 +323,11 @@ std::vector<int> game::relativePosition(){
         // Is true when the piece is in a GOAL STRETCH. In this case, compute relative <color> index of piece, using formula below. Color*5 - 1 is there because each color goal stretch has different position numbers. 
         //This condition has to be before condition for indexes larger than modifier but <= 50
         else if(relative_positions[i] > 50) {
-            relative_positions[i] = (relative_positions[i]-color*5-1);
+            //if((relative_positions[i] > 51 + (1 + color)*5))
+            if((relative_positions[i] > 51 + color*5))
+                relative_positions[i] = (relative_positions[i]-color*5-1);
+            else if ((relative_positions[i] <= 51 + (color)*5))
+                relative_positions[i] = (relative_positions[i]+(4-color)*5-1);
         } 
         else if(relative_positions[i] >= modifier) {
             relative_positions[i] = (relative_positions[i]-modifier);

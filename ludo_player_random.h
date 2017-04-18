@@ -12,9 +12,11 @@
 class ludo_player_random : public ludo_player {
     Q_OBJECT
 private:
+    int make_decision(); // polymorphed function
+protected:
     std::random_device rd;
     std::mt19937 gen;
-    int make_decision(); // polymorphed function
+    int pick_random_move(const std::vector<int>& possible_moves);
 public:
     ludo_player_random();
 };

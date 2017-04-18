@@ -10,6 +10,8 @@
 
 #include "positions_and_dice.h"
 
+
+
 /*
 enum Color{
     green = 0,
@@ -46,6 +48,7 @@ private:
         }
     }
 public:
+    int turnsNo;
     int color;
     std::vector<int> player_positions;
     std::vector<int> winStats;

@@ -6,6 +6,7 @@
 #include "ludo_player_random.h"
 #include "ludo_player_fast.h"
 #include "ludo_player_aggressive.h"
+#include "ludo_player_defensive.h"
 #include "positions_and_dice.h"
 
 Q_DECLARE_METATYPE( positions_and_dice )
@@ -15,9 +16,10 @@ int main(int argc, char *argv[]){
     qRegisterMetaType<positions_and_dice>();
 
     //instanciate the players here
-    ludo_player_aggressive p1;
+    ludo_player_defensive p1;
     ludo_player p2;
-    ludo_player_random p3, p4;
+    ludo_player_random p3;
+    ludo_player_fast p4;
 
     game g;
 

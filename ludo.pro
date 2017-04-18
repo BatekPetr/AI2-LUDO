@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     ludo_player.cpp \
     ludo_player_random.cpp \
     ludo_player_fast.cpp \
-    ludo_player_aggressive.cpp
+    ludo_player_aggressive.cpp \
+    ludo_player_defensive.cpp
 
 HEADERS  += dialog.h \
     game.h \
@@ -26,7 +27,8 @@ HEADERS  += dialog.h \
     positions_and_dice.h \
     ludo_player_random.h \
     ludo_player_fast.h \
-    ludo_player_aggressive.h
+    ludo_player_aggressive.h \
+    ludo_player_defensive.h
 
 FORMS    += dialog.ui
 
