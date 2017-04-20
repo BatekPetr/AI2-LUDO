@@ -4,6 +4,8 @@ ludo_player_random::ludo_player_random():ludo_player(),
     rd(),
     gen(rd())
 {
+    // Change player type from parent class
+    this->player_type = "Random";
 }
 
 int ludo_player_random::make_decision(){

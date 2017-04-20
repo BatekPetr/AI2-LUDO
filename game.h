@@ -1,12 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 
+#define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
+#define GAMES_NO 100000
+
 #include <vector>
 #include <random>
 #include <iostream>
 #include <QtCore>
 #include <QThread>
 
+#include <fstream>      // std::ofstream
 
 #include "positions_and_dice.h"
 

@@ -2,6 +2,7 @@
 #define LUDO_PLAYER_H
 #include <QObject>
 #include <iostream>
+#include <map>
 #include "positions_and_dice.h"
 
 class ludo_player : public QObject {
@@ -25,10 +26,23 @@ protected:
 
     int vulnerableBy(int index,\
                 const std::vector<int>& relative_positions);
-    void print_player_piece_positions();
-    void print_dice_roll();
+
+    std::vector<int> filter_out_candidates\
+                    (const std::vector<int>& candidates,\
+                     const std::vector<int>& relative_player_positions);
+
+    std::vector<int> move_piece(int relative_piece);
+    void move_start(int relative_piece,\
+                    std::vector<int>& new_relative_positions);
+    void send_them_home(int relative_index,\
+                                     std::vector<int>& new_relative_positions);
+    int isStar(int index);
     std::vector<int> get_move_candidates();
+
+    void print_player_piece_positions();
+    void print_dice_roll();    
 public:
+    std::string player_type;
     ludo_player();
 signals:
     void select_piece(int);

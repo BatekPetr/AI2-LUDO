@@ -16,7 +16,7 @@ game::game():
     winStats({0,0,0,0}),
     gamesTotal(0)
 {
-    std::cout << "Game INITIALIZED." << std::endl;
+    //std::cout << "Game INITIALIZED." << std::endl;
 }
 
 void game::reset(){
@@ -25,9 +25,11 @@ void game::reset(){
     for(auto &i : player_positions){ //without & we're changing the copy made in auto rather than the player_position
         i = -1;
     }
-    color = 3;
+    std::uniform_int_distribution<> start_player\
+                                    (0, 4-1);
+    color = start_player(gen);
     
-    std::cout << "Game RESET." << std::endl;
+    //std::cout << "Game RESET." << std::endl;
 }
 
 /*
@@ -184,13 +186,20 @@ void game::movePiece(int relative_piece){
     
     // Convert absolute/fixed position to relative one
     // -------------------------------------------------
-    if(player_positions[fixed_piece] == -1){        //if the selected piece is in the safe house, try to move it to start
+    if(player_positions[fixed_piece] == -1)
+    { //if the selected piece is in the safe house, try to move it to start
         move_start(fixed_piece);
-    } else {
+    }
+    else
+    {
         //convert to relative position
-        if(relative_pos == 99){
+        if(relative_pos == 99)
+        {
+            // selected relative piece is already at the goal
             std::cout << "I tought this would be it ";
-        } else if(relative_pos == 51){ //if people land on 51, they shouldn't be sent to goal stretch
+        }
+        /* //Probably not needed in new indexing
+        else if(relative_pos == 51){ //if people land on 51, they shouldn't be sent to goal stretch
             switch(color){
             case 0 : relative_pos = 51; break;
             case 1 : relative_pos = 38; break;
@@ -198,12 +207,17 @@ void game::movePiece(int relative_piece){
             case 3 : relative_pos = 12; break;
             }
         } 
-        // Is true when the piece is in a goal stretch. In this case, compute relative <color> index of piece, using mystery formula below. 
+        */
+
+        // Is true when the piece is in a goal stretch. In this case, compute relative <color> index of piece, using mystery formula below.
         //This condition has to be before condition indexes larger than modifier but <= 50
-        else if( relative_pos > 50) {
+        else if( relative_pos > 51)
+        {
             // Formula to get relative piece position in the goal stretch from absolute/fixed positions for different <color>s
-            relative_pos = relative_pos - color * 5 - 1;
-        } else if(relative_pos < modifier) {
+            relative_pos = relative_pos - color * 5;
+        }
+        else if(relative_pos < modifier)
+        {
             relative_pos = relative_pos + 52 - modifier;
         }
         // For positions larger than modifier but smaller than goal stretch (<= 51)
@@ -215,8 +229,21 @@ void game::movePiece(int relative_piece){
         
         
         if(DEBUG) std::cout << "color: " << color << " pos: " << relative_pos << " + " << dice_result << " = " << relative_pos + dice_result;
+
         // Update relative index by score from dice roll
-        relative_pos += dice_result;    //this is relative position of the selected token + the dice number
+        // Check for entering goal stretch
+        if ( (relative_pos < 51) && (relative_pos + dice_result) > 50 )
+        {
+            // this needs to be done when entering goal stretch
+            // goal stretch starts at 52 while main game circle
+            // ends at 50 for relative indexing
+            relative_pos += dice_result + 1;
+        }
+        else
+        {
+            //this is relative position of the selected token + the dice number
+            relative_pos += dice_result;
+        }
 
         // Check whether piece is standing on the star (after dice update) and returns no. of fields to the next star when it is
         int jump = isStar(relative_pos); //return 0 | 6 | 7
@@ -224,7 +251,7 @@ void game::movePiece(int relative_piece){
         {
             // Just in case, when piece stands on the star in front of its color goal stretch
             if(jump + relative_pos == 57){
-                relative_pos = 56;
+                relative_pos = 57;
             } 
             // Any other star just moves piece forward
             else {
@@ -235,17 +262,26 @@ void game::movePiece(int relative_piece){
         // target_pos is in absolute/fixed indexing
         
         // ########## special case checks ################################
-        // This condition happens when player tries to move a piece in it goal stretch
-        if(relative_pos > 56 && relative_pos < 72){ // go back
+        // This condition happens when player tries to move a piece in its goal stretch
+        if(relative_pos > 57 && relative_pos < 73){ // go back
             //If the player moves over the goal, it should move backwards
-            target_pos = 56-(relative_pos-56) + color * 5 + 1; 
+            // target_pos is in absolute/fixed indexes,
+            // hence adding color * 5
+            target_pos = 57-(relative_pos-57) + color * 5; // + 1;
         }
         // Move piece to GOAL 
-        else if(relative_pos == 56 || relative_pos >= 99){
+        else if(relative_pos == 57 || relative_pos >= 99)
+        {
             target_pos = 99;
-        }else if(relative_pos > 50){ // goal stretch
-            target_pos = relative_pos + color * 5 + 1; //each field in goal stretch has its own number. Starts with 52 for first color. Each goal stretch has 5 fields -> multiplication by 5
-        } else {
+        }
+        else if(relative_pos > 50) // goal stretch
+        {
+            //each field in goal stretch has its own number.
+            //Starts with 52 for first color.
+            //Each goal stretch has 5 fields -> multiplication by 5
+            target_pos = relative_pos + color * 5;
+        }
+        else {
             // Get absolute/fixed position for piece outside from goal stretch
             int new_pos = relative_pos + modifier;
             if(new_pos < 52){
@@ -254,7 +290,8 @@ void game::movePiece(int relative_piece){
                 target_pos = new_pos - 52;  //this is the global position wrap around at the green entry point
             }
         }
-        
+        // ########## END of special case checks ################################
+
         //check for game stuff
         if(isOccupied(target_pos)){
             if(isGlobe(target_pos)){
@@ -322,12 +359,12 @@ std::vector<int> game::relativePosition(){
         } 
         // Is true when the piece is in a GOAL STRETCH. In this case, compute relative <color> index of piece, using formula below. Color*5 - 1 is there because each color goal stretch has different position numbers. 
         //This condition has to be before condition for indexes larger than modifier but <= 50
-        else if(relative_positions[i] > 50) {
+        else if(relative_positions[i] > 52) {
             //if((relative_positions[i] > 51 + (1 + color)*5))
-            if((relative_positions[i] > 51 + color*5))
-                relative_positions[i] = (relative_positions[i]-color*5-1);
-            else if ((relative_positions[i] <= 51 + (color)*5))
-                relative_positions[i] = (relative_positions[i]+(4-color)*5-1);
+            if((relative_positions[i] > 52 + color*5))
+                relative_positions[i] = (relative_positions[i]-color*5);
+            else if ((relative_positions[i] <= 52 + (color)*5))
+                relative_positions[i] = (relative_positions[i]+(4-color)*5);
         } 
         else if(relative_positions[i] >= modifier) {
             relative_positions[i] = (relative_positions[i]-modifier);
@@ -342,8 +379,8 @@ void game::turnComplete(bool win){
     game_complete = win;
     turn_complete = true;
     if(game_complete){
-        std::cout << "Game Finished." << std::endl;
-        std::cout << "player: " << color << " won" << std::endl;
+        //std::cout << "Game Finished." << std::endl;
+        //std::cout << "player: " << color << " won" << std::endl;
         ++winStats[color];
         ++gamesTotal;
         emit declare_winner(color);
@@ -352,13 +389,53 @@ void game::turnComplete(bool win){
 
 void game::run() {
     if(DEBUG) std::cout << "color:     relative pos => fixed\n";
-    while(!game_complete){
-        if(turn_complete){
+#if MODE==0
+    while(!game_complete)
+    {
+        if(turn_complete)
+        {
             turn_complete = false;
             msleep(game_delay/4);
             next_turn(game_delay - game_delay/4);
         }
     }
+   std::cout << "Game complete." << std::endl;
+   std::cout << "Player " << color << " WON!" << std::endl;
+
+#else
+    std::ofstream ofs ("RunningStats.txt", std::ofstream::app);
+
+    for(int i = 1; i < GAMES_NO + 1; ++i)
+    {
+        while(!game_complete)
+        {
+            if(turn_complete)
+            {
+                turn_complete = false;
+                msleep(game_delay/4);
+                next_turn(game_delay - game_delay/4);
+            }
+
+            //std::cout << "Game complete." << std::endl;
+        }
+        if (i % 1000 == 0)
+        {
+            std::cout << "After game " << i << ": ";
+            for(int j = 0; j < 3; j++)
+                std::cout << winStats[j]/(float)i << ", ";
+            std::cout << winStats[3]/(float)i << std::endl;
+
+            ofs << "After game " << i << ": ";
+            for(int j = 0; j < 3; j++)
+                ofs << winStats[j]/(float)i << ", ";
+            ofs << winStats[3]/(float)i << std::endl;
+        }
+        reset();
+    }
+
+    ofs.close();
+#endif
+
     emit close();
     QThread::exit();
 }

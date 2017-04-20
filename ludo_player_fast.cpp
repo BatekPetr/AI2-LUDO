@@ -1,8 +1,10 @@
 #include "ludo_player_fast.h"
-#include <map>
+
 
 ludo_player_fast::ludo_player_fast():ludo_player()
 {
+    // Change player type from parent class
+    this->player_type = "Fast";
 }
 
 int ludo_player_fast::make_decision()
