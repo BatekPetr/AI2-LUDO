@@ -58,7 +58,7 @@ void ludo_player::start_turn(positions_and_dice relative){
     pos_start_of_turn = relative.pos;
     dice_roll = relative.dice;
     int decision = make_decision();
-    std::vector<int> new_relative_positions = move_piece(decision);
+    //std::vector<int> new_relative_positions = move_piece(decision);
     emit select_piece(decision);
 }
 
@@ -77,7 +77,8 @@ void ludo_player::post_game_analysis(std::vector<int> relative_pos){
  * moves ONE piece, selected by player
  * works with player RELATIVE indexes
  */
-std::vector<int> ludo_player::move_piece(int relative_piece)
+std::vector<int> ludo_player::move_piece(const std::vector<int>& state,\
+                                         int relative_piece, int action_dice_roll)
 {
     // Check if there is a piece to move
     // -1 means, there is not any piece with possibility to move
@@ -85,19 +86,19 @@ std::vector<int> ludo_player::move_piece(int relative_piece)
     {
         // Nothing can be done
         // game state after turn is the same as the one before
-        return pos_start_of_turn;
+        return state;
     }
 
     // create new game state with relative possitions
-    std::vector<int> new_relative_positions = pos_start_of_turn;
+    std::vector<int> new_relative_positions = state;
 
     // Get RELATIVE position of a particular piece
-    int relative_pos = pos_start_of_turn[relative_piece];
+    int relative_pos = state[relative_piece];
     int target_pos = 0;
 
     if(relative_pos == -1)
     { //if the selected piece is in the safe house, try to move it to start
-        move_start(relative_piece, new_relative_positions);
+        move_start(relative_piece, state, new_relative_positions);
     }
     else
     {
@@ -109,17 +110,17 @@ std::vector<int> ludo_player::move_piece(int relative_piece)
 
         // Update relative index by score from dice roll
         // Check for entering goal stretch
-        if ( (relative_pos < 51) && (relative_pos + dice_roll) > 50 )
+        if ( (relative_pos < 51) && (relative_pos + action_dice_roll) > 50 )
         {
             // this needs to be done when entering goal stretch
             // goal stretch starts at 52 while main game circle
             // ends at 50 for relative indexing
-            relative_pos += dice_roll + 1;
+            relative_pos += action_dice_roll + 1;
         }
         else
         {
             //this is relative position of the selected token + the dice number
-            relative_pos += dice_roll;
+            relative_pos += action_dice_roll;
         }
 
         // Check whether piece is standing on the star (after dice update) and returns no. of fields to the next star when it is
@@ -158,11 +159,11 @@ std::vector<int> ludo_player::move_piece(int relative_piece)
         // ########## END of special case checks ################################
 
         //check for game stuff
-        if(isOccupied(target_pos, pos_start_of_turn)){
+        if(isOccupied(target_pos, state)){
             if(isGlobe(target_pos)){
                 target_pos = -1; //send me home -> when 2 pieces are on the globe, the new/arriving one,has to leave home
             } else {
-                send_them_home(target_pos, new_relative_positions);
+                send_them_home(target_pos, state, new_relative_positions);
             }
         }
         new_relative_positions[relative_piece] = target_pos;
@@ -172,23 +173,25 @@ std::vector<int> ludo_player::move_piece(int relative_piece)
 }
 
 void ludo_player::move_start(int relative_piece,\
-                             std::vector<int>& new_relative_positions)
+                             const std::vector<int>& state,\
+                             std::vector<int>& new_state)
 {
-    if(dice_roll == 6 && pos_start_of_turn[relative_piece] < 0)
+    if(dice_roll == 6 && state[relative_piece] < 0)
     {
-        new_relative_positions[relative_piece] = 0; //move me to start
-        send_them_home(0, new_relative_positions); //send pieces home if they are on our start
+        new_state[relative_piece] = 0; //move me to start
+        send_them_home(0, state, new_state); //send pieces home if they are on our start
     }
 }
 
 void ludo_player::send_them_home(int relative_index,\
-                                 std::vector<int>& new_relative_positions)
+                                 const std::vector<int>& state,\
+                                 std::vector<int>& new_state)
 {
-    for(size_t i = 4; i < pos_start_of_turn.size(); ++i)
+    for(size_t i = 4; i < state.size(); ++i)
     {
-        if(pos_start_of_turn[i] == relative_index)
+        if(state[i] == relative_index)
         {
-            new_relative_positions[i] = -1;
+            new_state[i] = -1;
         }
     }
 }
@@ -212,7 +215,8 @@ int ludo_player::isStar(int index){
     return 0;
 }
 
-std::vector<int> ludo_player::get_move_candidates()
+std::vector<int> ludo_player::get_move_candidates(const std::vector<int>& state,\
+                                                  int dice_roll)
 {
     /*
      * function should return possible candidates
@@ -222,14 +226,14 @@ std::vector<int> ludo_player::get_move_candidates()
     std::vector<int> valid_moves;
 
     for(int i = 0; i < 4; ++i){
-        if(pos_start_of_turn[i]<0){
+        if(state[i]<0){
             // Pieces which can be released out of jail
             if(dice_roll == 6)
                 // Take piece out of jail
                 valid_moves.push_back(i);
         }
         // Pieces in the playing circle and home stretch
-        else if(pos_start_of_turn[i]>=0 && pos_start_of_turn[i] != 99){
+        else if(state[i]>=0 && state[i] != 99){
             valid_moves.push_back(i);
         }
     }

@@ -19,6 +19,11 @@ game::game():
     //std::cout << "Game INITIALIZED." << std::endl;
 }
 
+void game::setFANN(struct fann *ann_from_main)
+{
+    this->ann = ann_from_main;
+}
+
 void game::reset(){
     game_complete = false;
     turn_complete = true;
@@ -418,7 +423,8 @@ void game::run() {
 
             //std::cout << "Game complete." << std::endl;
         }
-        if (i % 1000 == 0)
+        /*
+        if (i % 1000 == 0 )
         {
             std::cout << "After game " << i << ": ";
             for(int j = 0; j < 3; j++)
@@ -429,6 +435,26 @@ void game::run() {
             for(int j = 0; j < 3; j++)
                 ofs << winStats[j]/(float)i << ", ";
             ofs << winStats[3]/(float)i << std::endl;
+
+            if (i % 10000 == 0)
+                fann_save(ann, "Qlearning_player_ANN.txt");
+
+        }
+        */
+        if (i % 10000 == 0 )
+        {
+            // zero out winning statistics
+            for(int j = 0; j < 4; j++)
+                winStats[j] = 0;
+
+            fann_save(ann, "Qlearning_player_ANN_4layers_Qcorrected.txt");
+        }
+        else if (i % 10000 == 1000)
+        {
+            std::cout << "After game " << i << ": ";
+            for(int j = 0; j < 3; j++)
+                std::cout << winStats[j]/1000.0 << ", ";
+            std::cout << winStats[3]/1000.0 << std::endl;
         }
         reset();
     }

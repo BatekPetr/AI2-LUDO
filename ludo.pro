@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     ludo_player_fast.cpp \
     ludo_player_aggressive.cpp \
     ludo_player_defensive.cpp \
-    ludo_player_expert.cpp
+    ludo_player_expert.cpp \
+    ludo_player_qlearning.cpp
 
 HEADERS  += dialog.h \
     game.h \
@@ -30,8 +31,11 @@ HEADERS  += dialog.h \
     ludo_player_fast.h \
     ludo_player_aggressive.h \
     ludo_player_defensive.h \
-    ludo_player_expert.h
+    ludo_player_expert.h \
+    ludo_player_qlearning.h
 
 FORMS    += dialog.ui
+
+LIBS += -lfann
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wunused

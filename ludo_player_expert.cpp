@@ -5,13 +5,15 @@ ludo_player_expert::ludo_player_expert():ludo_player(),
   gen(rd())
 {
     // Change player type from parent class
-    this->player_type = "AI";
+    this->player_type = "expert";
 }
 
 int ludo_player_expert::make_decision()
 {
 
-    std::vector<int> candidates = get_move_candidates();
+    std::vector<int> candidates = get_move_candidates\
+                                    (pos_start_of_turn, dice_roll);
+
     // if there is no possible move for the player
     // return -1 as relative_piece in PLAYER relative position ARRAY
     if ( candidates.empty() )
@@ -23,7 +25,7 @@ int ludo_player_expert::make_decision()
 
     for (auto &c : candidates)
     {
-        auto new_relative_positions = move_piece(c);
+        auto new_relative_positions = move_piece(pos_start_of_turn, c, dice_roll);
         double actual_reward = reward(new_relative_positions, c);
 
         move_priorities[actual_reward].push_back(c);

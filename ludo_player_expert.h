@@ -16,7 +16,8 @@ private:
     std::random_device rd;
     std::mt19937 gen;
     int make_decision(); // polymorphed function
-    double reward(std::vector<int>& new_state, int piece_moved);
+protected:
+    virtual double reward(std::vector<int>& new_state, int piece_moved);
     int pick_random_move(const std::vector<int>& possible_moves);
 public:
     ludo_player_expert();

@@ -8,12 +8,14 @@
 #include "ludo_player_aggressive.h"
 #include "ludo_player_defensive.h"
 #include "ludo_player_expert.h"
+#include "ludo_player_qlearning.h"
+
 #include "positions_and_dice.h"
 
 #include <stdio.h>
-//#include "fann.h" // FAST ANN library
+#include "fann.h" // FAST ANN library
 //#include "doublefann.h"
-#include "floatfann.h"
+//#include "floatfann.h"
 
 
 Q_DECLARE_METATYPE( positions_and_dice )
@@ -23,35 +25,45 @@ int main(int argc, char *argv[]){
     qRegisterMetaType<positions_and_dice>();
 
     //load existing ANN
-    const char* ANN_file = "";
+    std::string ANN_file = "";
     //instanciate FANN
-    const unsigned int num_input = 16;
+    const unsigned int num_input = ANN_INPUTS;
     const unsigned int num_output = 1;
-    const unsigned int num_layers = 2;
-    const unsigned int num_neurons_hidden = 20;
+    const unsigned int num_layers = 4;
+    const unsigned int num_neurons_hidden1 = 20;
+    const unsigned int num_neurons_hidden2 = 5;
+    const unsigned int num_neurons_hidden3 = 5;
 
-    struct fann *ann = fann_create_standard(num_layers, num_input, num_neurons_hidden, num_output);
+    //unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_neurons_hidden3, num_output};
+    unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_output};
 
-    if (ANN_file != "")
+    struct fann *ann;
+
+    if (ANN_file.compare(""))
     {
-        ann = fann_create_from_file("ANN_file.txt");
+        ann = fann_create_from_file(ANN_file.c_str());
     }
     else
     {
-        ann = fann_create_standard(num_layers, num_input,
-            num_neurons_hidden, num_output);
+        ann = fann_create_standard_array(num_layers, layers);
     }
 
-    fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC);
-    fann_set_activation_function_output(ann, FANN_SIGMOID_SYMMETRIC);
+    fann_randomize_weights(ann, -1, 1);
+    fann_set_learning_rate(ann, ANN_LEARNING_RATE);
+    fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC );
+    fann_set_activation_function_output(ann, FANN_LINEAR);
 
     //instanciate the players here
-    ludo_player_defensive p1;
-    ludo_player p2;
-    ludo_player p3;
-    ludo_player_expert p4;
+    ludo_player_Qlearning p1;
+    p1.setFANN(ann);
+    ludo_player_random p2;
+    ludo_player_random p3;
+    ludo_player_random p4;
 
     game g;
+    g.setFANN(ann);
+
+    p1.set_gamesTotal(&g.gamesTotal);
 
     
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));

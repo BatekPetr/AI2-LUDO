@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
-#define GAMES_NO 100000
+#define MODE 0 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
+#define GAMES_NO 5000000
 
 #include <vector>
 #include <random>
@@ -14,6 +14,7 @@
 
 #include "positions_and_dice.h"
 
+#include "fann.h"
 
 
 /*
@@ -31,6 +32,7 @@ class game : public QThread
 {
     Q_OBJECT
 private:
+    struct fann *ann;
     bool game_complete;
     bool turn_complete;
     unsigned int game_delay;
@@ -58,6 +60,7 @@ public:
     std::vector<int> winStats;
     int gamesTotal;
 
+    void setFANN(struct fann *ann);
     void rollDice(){
         std::uniform_int_distribution<> dis(1, 6);
         dice_result = dis(gen);

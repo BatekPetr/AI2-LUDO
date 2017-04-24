@@ -11,6 +11,8 @@ protected:
     std::vector<int> pos_start_of_turn;
     std::vector<int> pos_end_of_turn;
     int dice_roll;
+    int* gamesTotal;
+
     virtual int make_decision();    //function is used for polymorphysim by different players
 
     int isOccupied(int index,\
@@ -31,19 +33,26 @@ protected:
                     (const std::vector<int>& candidates,\
                      const std::vector<int>& relative_player_positions);
 
-    std::vector<int> move_piece(int relative_piece);
+    std::vector<int> move_piece(const std::vector<int>& state,\
+                                int relative_piece, int dice_roll);
     void move_start(int relative_piece,\
-                    std::vector<int>& new_relative_positions);
+                    const std::vector<int>& state,\
+                    std::vector<int>& new_state);
     void send_them_home(int relative_index,\
-                                     std::vector<int>& new_relative_positions);
+                        const std::vector<int>& state,\
+                        std::vector<int>& new_state);
     int isStar(int index);
-    std::vector<int> get_move_candidates();
+    std::vector<int> get_move_candidates(const std::vector<int>& state,
+                                         int dice_roll);
 
     void print_player_piece_positions();
     void print_dice_roll();    
 public:
     std::string player_type;
     ludo_player();
+
+    void set_gamesTotal(int* gamesTotal_from_game)
+        {                   this->gamesTotal = gamesTotal_from_game; }
 signals:
     void select_piece(int);
     void turn_complete(bool);
