@@ -143,6 +143,7 @@ double ludo_player_expert::reward(std::vector<int>& new_state,\
 
     // Evaluate other players state
     double damage_to_opponent = 0;
+    int opponents_in_goal_stretch = 0;
 
     for (size_t i = 4; i < new_state.size(); ++i)
     {
@@ -152,13 +153,19 @@ double ludo_player_expert::reward(std::vector<int>& new_state,\
 
             damage_to_opponent += 1;
         }
+        // opponents in the goal_stretch
+        else if (new_state[i] >= 52)
+        {
+            ++opponents_in_goal_stretch;
+        }
     }
 
     reward += pieces_in_goal + new_pieces_in_goal\
             - pieces_in_jail + new_piece_from_jail\
             + pieces_save - total_vulnerability\
             + damage_to_opponent + star_bonus\
-            + progress_in_play - move_in_stretch + win*100;
+            + progress_in_play - move_in_stretch + win*10\
+            - opponents_in_goal_stretch*3;
 
     return reward;
 

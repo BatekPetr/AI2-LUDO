@@ -55,7 +55,6 @@ int main(int argc, char *argv[]){
 
     //instanciate the players here
     ludo_player_Qlearning p1;
-    p1.setFANN(ann);
     ludo_player_random p2;
     ludo_player_random p3;
     ludo_player_random p4;
@@ -63,7 +62,9 @@ int main(int argc, char *argv[]){
     game g;
     g.setFANN(ann);
 
+    p1.setFANN(ann, &g.learning_rate);
     p1.set_gamesTotal(&g.gamesTotal);
+    p1.restart();
 
     
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));

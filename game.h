@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define MODE 0 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
+#define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
 #define GAMES_NO 5000000
 
 #include <vector>
@@ -31,6 +31,7 @@ enum Color{
 class game : public QThread
 {
     Q_OBJECT
+
 private:
     struct fann *ann;
     bool game_complete;
@@ -54,6 +55,7 @@ private:
         }
     }
 public:
+    double learning_rate;
     int turnsNo;
     int color;
     std::vector<int> player_positions;
@@ -69,6 +71,7 @@ public:
     game();
     void setGameDelay(unsigned int mili_seconds){ game_delay = mili_seconds; }
     void reset();
+
 signals:
     void player1_start(positions_and_dice);
     void player2_start(positions_and_dice);

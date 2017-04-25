@@ -4,11 +4,35 @@ ludo_player_Qlearning::ludo_player_Qlearning():ludo_player_expert()
 {
     // Change player type from parent class
     this->player_type = "Qlearning";
+
+    // Set initial positions
+    for(int i = 0; i < 16; ++i)
+    {
+        this->previous_state.positions.push_back(-1);
+    }
+    this->previous_state.dice_roll = 0;
+    this->previous_state.action = 0;
+    this->previous_state.reward = 0;
+    this->previous_state.Q = 0;
 }
 
-void ludo_player_Qlearning::setFANN(struct fann *ann_from_main)
+void ludo_player_Qlearning::setFANN(struct fann *ann_from_main, double *learning_rate_from_main)
 {
     this->ann = ann_from_main;
+    this->learning_rate = learning_rate_from_main;
+}
+
+void ludo_player_Qlearning::restart()
+{
+    // Set initial positions
+    for(auto &i : this->previous_state.positions)
+    {
+        i = -1;
+    }
+    this->previous_state.dice_roll = 0;
+    this->previous_state.action = 0;
+    this->previous_state.reward = 0;
+    this->previous_state.Q = 0;
 }
 
 int ludo_player_Qlearning::make_decision()
@@ -21,89 +45,107 @@ int ludo_player_Qlearning::make_decision()
     if ( candidates.empty() )
         return -1;  // skip all the rest of the function
 
+    fann_type ann_input[ANN_INPUTS];
+    int chosen_move;
+    float current_state_action_Q;
 
     if ( (rand()%100 < 30) && (*gamesTotal % 10000 > 1000) ) // don't use random moves when testing performance
-        return pick_random_move(candidates);
+    {
+        chosen_move = pick_random_move(candidates);
+        current_state_action_Q = fann_Q_estimate(pos_start_of_turn, dice_roll,\
+                                chosen_move, ann_input);
+    }
     else
     {
         // sort candidate moves according to reward of moves
-        std::map<float, std::vector<int>, std::greater<int>>  move_priorities; //sorts key in decreasing order
+        std::map<float, std::vector<int>, std::greater<float>>  move_priorities; //sorts key in decreasing order
 
-        fann_type ann_input[ANN_INPUTS];
 
+
+        // Find the best candidate from available moves
         for (auto &c : candidates)
         {
-
             // Estimate Q value using FANN
-            float current_state_action_Q = fann_Q_estimate(pos_start_of_turn,\
+            current_state_action_Q = fann_Q_estimate(pos_start_of_turn,\
                                           dice_roll,\
                                           c, ann_input);
-
-            // debug print out
             /*
+            // debug print out
             std::cout << ann_input[0] << ", " << ann_input[1] << ", "
                                       << ann_input[2] << ", " << ann_input[3] << ", "
                                       << ann_input[4] << ", " <<ann_input[5] << ", "
                                       << ann_input[6] << ", " << std::endl;
-            */
+
 
             //convert_to_FANN_inputs(pos_start_of_turn, new_relative_positions, c, ann_input);
             //float *old_q = fann_run(ann, ann_input);
 
             // Order possible next moves according to their old Q-value
+            */
             move_priorities[current_state_action_Q].push_back(c);
         }
-
-        int chosen_move = pick_random_move(move_priorities.begin()->second);
-
-        float old_q = move_priorities.begin()->first;
-
-        auto new_relative_positions = move_piece\
-                                    (pos_start_of_turn, chosen_move, dice_roll);
-        // Get reward for new state
-        double actual_reward = reward(new_relative_positions, chosen_move);
-        //double actual_reward = reward(new_relative_positions);
-
-        // skip learning in 1st 1000 games after every x*10 000 games
-        // for testing learning statistics
-        if (*gamesTotal % 10000 > 1000)
-        {
-            // Q LEARNING
-            // --------------------------------------------------------
-
-            // Estimate Q value of best successor of new state
-            float max_Q_est = estimate_Max_Q(new_relative_positions);
-
-            //Perform Q learning update
-            float new_q = old_q + LEARNING_RATE *\
-                    ( actual_reward + DISCOUNT_RATE * max_Q_est - old_q );
-
-            fann_type desired_output = new_q;
-            //ANN update
-            fann_train(ann, ann_input, &desired_output);
-            // --------------------------------------------------------
-
-            // SARSA
-/*
-            //Perform SARSA learning update
-            float new_q = previous_state.Q + LEARNING_RATE *\
-                    ( previous_state.reward + DISCOUNT_RATE * current_state_action_Q - previous_state.Q );
-
-            //previous_state.ann = ann_input;
-            previous_state.reward = actual_reward;
-            previous_state.Q = current_state_action_Q;
-
-            fann_type desired_output = new_q;
-            //ANN update
-            fann_train(ann, previous_ann_input, &desired_output);
-*/
-        }
-
-
         // pick randomly one move from moves with highest old Q_value
-        return chosen_move;
+        chosen_move = pick_random_move(move_priorities.begin()->second);
+        current_state_action_Q = move_priorities.begin()->first;
     }
 
+    auto new_relative_positions = move_piece\
+                                (pos_start_of_turn, chosen_move, dice_roll);
+    // Get reward for new state
+    //double actual_reward = reward(new_relative_positions, chosen_move);
+    double actual_reward = reward(new_relative_positions);
+
+    // skip learning in 1st 1000 games after every x*10 000 games
+    // for testing learning statistics
+    if (*gamesTotal % 10000 > 1000)
+    {
+        // Q LEARNING
+/*
+        // --------------------------------------------------------
+        float old_q = current_state_action_Q;
+        // Estimate Q value of best successor of new state
+        float max_Q_est = estimate_Max_Q(new_relative_positions);
+
+
+        //Perform Q learning update
+        float new_q = old_q + (*learning_rate) *\
+                ( actual_reward + DISCOUNT_RATE * max_Q_est - old_q );
+
+        fann_type desired_output = new_q;
+        //ANN update
+        fann_train(ann, ann_input, &desired_output);
+        // --------------------------------------------------------
+*/
+
+        // SARSA
+
+        // --------------------------------------------------------
+        //Perform SARSA learning update
+        float new_q = previous_state.Q + (*learning_rate) *\
+                ( previous_state.reward + DISCOUNT_RATE * current_state_action_Q - previous_state.Q );
+        fann_type desired_output = new_q;
+
+        fann_type previous_ann_input[ANN_INPUTS];
+        convert_to_FANN_inputs(previous_state.positions,\
+                               previous_state.dice_roll,\
+                               previous_state.action,\
+                               previous_ann_input);
+
+        //ANN update
+        fann_train(ann, previous_ann_input, &desired_output);
+
+        // Save current state for the update of Q table in the next iteration
+        //previous_state.ann = ann_input;
+        previous_state.reward = actual_reward;
+        previous_state.Q = current_state_action_Q;
+        previous_state.positions = pos_start_of_turn;
+        previous_state.dice_roll = dice_roll;
+        // --------------------------------------------------------
+
+    }
+
+
+    return chosen_move;
 }
 
 float ludo_player_Qlearning::fann_Q_estimate(const std::vector<int>& state,\
@@ -221,7 +263,7 @@ float ludo_player_Qlearning::estimate_Max_Q(const std::vector<int>& new_state)
     return max_q;
 }
 
-/*
+
 double ludo_player_Qlearning::reward(std::vector<int>& new_state)
 {
     double reward = 0;
@@ -289,10 +331,10 @@ double ludo_player_Qlearning::reward(std::vector<int>& new_state)
         }
     }
 
-    reward += pieces_in_goal + 0.5*pieces_in_goal_stretch - pieces_in_jail\
-            - opponents_in_goal - 0.5*opponents_in_goal_stretch + opponents_in_jail\
-            + win*100;
+    reward += pieces_in_goal + 0.5*pieces_in_goal_stretch - pieces_in_jail*5\
+            - opponents_in_goal*2 - 0.5*opponents_in_goal_stretch + opponents_in_jail\
+            + win*10;
 
     return reward;
 }
-*/
+

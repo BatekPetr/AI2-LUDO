@@ -14,7 +14,8 @@ game::game():
     color(3),
     player_positions({-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}),
     winStats({0,0,0,0}),
-    gamesTotal(0)
+    gamesTotal(0),
+    learning_rate(1)
 {
     //std::cout << "Game INITIALIZED." << std::endl;
 }
@@ -27,6 +28,7 @@ void game::setFANN(struct fann *ann_from_main)
 void game::reset(){
     game_complete = false;
     turn_complete = true;
+
     for(auto &i : player_positions){ //without & we're changing the copy made in auto rather than the player_position
         i = -1;
     }
@@ -434,10 +436,7 @@ void game::run() {
             ofs << "After game " << i << ": ";
             for(int j = 0; j < 3; j++)
                 ofs << winStats[j]/(float)i << ", ";
-            ofs << winStats[3]/(float)i << std::endl;
-
-            if (i % 10000 == 0)
-                fann_save(ann, "Qlearning_player_ANN.txt");
+            ofs << winStats[3]/(float)i << std::endl;                
 
         }
         */
@@ -447,7 +446,7 @@ void game::run() {
             for(int j = 0; j < 4; j++)
                 winStats[j] = 0;
 
-            fann_save(ann, "Qlearning_player_ANN_4layers_Qcorrected.txt");
+            fann_save(ann, "QL_ANN.txt");
         }
         else if (i % 10000 == 1000)
         {
@@ -455,6 +454,9 @@ void game::run() {
             for(int j = 0; j < 3; j++)
                 std::cout << winStats[j]/1000.0 << ", ";
             std::cout << winStats[3]/1000.0 << std::endl;
+
+            if (i>1)
+                learning_rate = learning_rate*0.95;
         }
         reset();
     }
