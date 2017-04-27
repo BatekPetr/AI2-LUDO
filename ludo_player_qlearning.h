@@ -7,7 +7,7 @@
 
 //ANN Parameters
 #define ANN_INPUTS 238
-#define ANN_LEARNING_RATE 0.005
+#define ANN_LEARNING_RATE 0.5
 //QL Parameters
 #define LEARNING_RATE 1
 #define DISCOUNT_RATE 0.95

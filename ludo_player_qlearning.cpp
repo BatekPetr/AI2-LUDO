@@ -100,7 +100,7 @@ int ludo_player_Qlearning::make_decision()
     if (*gamesTotal % 10000 > 1000)
     {
         // Q LEARNING
-/*
+
         // --------------------------------------------------------
         float old_q = current_state_action_Q;
         // Estimate Q value of best successor of new state
@@ -115,10 +115,10 @@ int ludo_player_Qlearning::make_decision()
         //ANN update
         fann_train(ann, ann_input, &desired_output);
         // --------------------------------------------------------
-*/
+
 
         // SARSA
-
+/*
         // --------------------------------------------------------
         //Perform SARSA learning update
         float new_q = previous_state.Q + (*learning_rate) *\
@@ -141,7 +141,7 @@ int ludo_player_Qlearning::make_decision()
         previous_state.positions = pos_start_of_turn;
         previous_state.dice_roll = dice_roll;
         // --------------------------------------------------------
-
+*/
     }
 
 
@@ -214,7 +214,7 @@ void ludo_player_Qlearning::convert_to_FANN_inputs(const std::vector<int>& state
     }
     // add Two other nearal inputs to represent action
     ann_input[236] = state[action]/58.0;
-    ann_input[237] = dice_roll_local/6.0;
+    ann_input[237] = (state[action] + dice_roll_local)/58;
 
 }
 

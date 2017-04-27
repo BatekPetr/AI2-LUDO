@@ -446,7 +446,7 @@ void game::run() {
             for(int j = 0; j < 4; j++)
                 winStats[j] = 0;
 
-            fann_save(ann, "QL_ANN.txt");
+            fann_save(ann, "QL_ANN_LR_0_05.txt");
         }
         else if (i % 10000 == 1000)
         {
