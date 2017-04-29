@@ -368,9 +368,9 @@ std::vector<int> game::relativePosition(){
         //This condition has to be before condition for indexes larger than modifier but <= 50
         else if(relative_positions[i] > 52) {
             //if((relative_positions[i] > 51 + (1 + color)*5))
-            if((relative_positions[i] > 52 + color*5))
+            if((relative_positions[i] >= 52 + color*5))
                 relative_positions[i] = (relative_positions[i]-color*5);
-            else if ((relative_positions[i] <= 52 + (color)*5))
+            else if ((relative_positions[i] < 52 + (color)*5))
                 relative_positions[i] = (relative_positions[i]+(4-color)*5);
         } 
         else if(relative_positions[i] >= modifier) {
