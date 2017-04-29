@@ -68,38 +68,35 @@ int main(int argc, char *argv[]){
 
     // Set up FANN for state Value approximation
     // ------------------------------------------------------------------
-    struct fann *value_ann;
-    {
+
     //load existing ANN
     std::string value_ANN_file = "";
     //instanciate FANN
     const unsigned int val_num_input = VAL_ANN_INPUTS;
     const unsigned int val_num_output = 1;
-    const unsigned int val_num_layers = 4;
-    const unsigned int val_num_neurons_hidden1 = 20;
+    const unsigned int val_num_layers = 3;
+    const unsigned int val_num_neurons_hidden1 = 10;
     const unsigned int val_num_neurons_hidden2 = 5;
     const unsigned int val_num_neurons_hidden3 = 5;
 
     //unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_neurons_hidden3, num_output};
-    unsigned int val_layers[val_num_layers] = {val_num_input, val_num_neurons_hidden1, val_num_neurons_hidden2, val_num_output};
+    unsigned int val_layers[val_num_layers] = {val_num_input, val_num_neurons_hidden1, val_num_output};
 
+    value_ANN_small value_ann(val_num_layers, val_layers);
 
-
+    /*
     if (value_ANN_file.compare("") == 0)    //filename string empty, create new ANN
     {
-        value_ann = fann_create_standard_array(val_num_layers, val_layers);
+        value_ANN_small value_ann(val_num_layers, val_layers);
     }
     else    // load ANN from the ANN file
     {
-        value_ann = fann_create_from_file(value_ANN_file.c_str());
+        //TODO
+        // create constructor for value_ANN_small for loading from file
+        //value_ann = fann_create_from_file(value_ANN_file.c_str());
     }
+    */
 
-    fann_randomize_weights(value_ann, -1, 1);
-    fann_set_learning_rate(value_ann, ANN_LEARNING_RATE);
-    fann_set_learning_momentum(	value_ann, ANN_MOMENTUM_RATE);
-    fann_set_activation_function_hidden(value_ann, FANN_SIGMOID_SYMMETRIC );
-    fann_set_activation_function_output(value_ann, FANN_LINEAR);
-    }
     // ------------------------------------------------------------------
 
     
@@ -111,15 +108,15 @@ int main(int argc, char *argv[]){
 
 
     //instanciate the players here
-    ludo_player_expert p1(value_ann, value_ann_error_file);
-    ludo_player_defensive p2(value_ann);
-    ludo_player_fast p3(value_ann);
-    ludo_player_random p4(value_ann);
+    ludo_player_expert p1(&value_ann, value_ann_error_file);
+    ludo_player_defensive p2(&value_ann);
+    ludo_player_fast p3(&value_ann);
+    ludo_player_random p4(&value_ann);
 
 
     game g(p1, p2, p3, p4);
-    g.setFANN(ann);
-    g.set_Value_ANN(value_ann);
+    //g.setFANN(ann);
+    g.set_Value_ANN(&value_ann);
 
     // Set pointer to LR in game object
     // this way it is possible to update LR from

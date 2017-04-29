@@ -6,7 +6,7 @@ ludo_player_aggressive::ludo_player_aggressive():ludo_player_random()
     this->player_type = "Aggressive";
 }
 
-ludo_player_aggressive::ludo_player_aggressive(struct fann *value_ann):ludo_player_random(value_ann)
+ludo_player_aggressive::ludo_player_aggressive(value_ANN_small *value_ann):ludo_player_random(value_ann)
 {
     // Change player type from parent class
     this->player_type = "Aggresive";

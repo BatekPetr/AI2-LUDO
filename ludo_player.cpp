@@ -5,12 +5,13 @@ ludo_player::ludo_player():
     player_type("General"),
     pos_start_of_turn(16),
     pos_end_of_turn(16),
-    dice_roll(0)
+    dice_roll(0),
+    V_learning_rate(NULL)
 {
     this->value_ann = NULL;
 }
 
-ludo_player::ludo_player(struct fann *value_ann):
+ludo_player::ludo_player(value_ANN_small *value_ann):
     player_type("General"),
     pos_start_of_turn(16),
     pos_end_of_turn(16),
@@ -19,35 +20,35 @@ ludo_player::ludo_player(struct fann *value_ann):
     this->value_ann = value_ann;
 }
 
-ludo_player::ludo_player(struct fann *value_ann, double *V_lr):
+ludo_player::ludo_player(value_ANN_small *value_ann, double *V_lr):
     player_type("General"),
     pos_start_of_turn(16),
     pos_end_of_turn(16),
     dice_roll(0)
 {
     this->value_ann = value_ann;
-    this->V_learning_rate = V_lr;
+    set_V_Learning_Rate(V_lr);
 }
 
-ludo_player::ludo_player(struct fann *value_ann, std::string const &file):\
+ludo_player::ludo_player(value_ANN_small *value_ann, std::string const &file):\
     ofs_val_ann_error(file.c_str(),std::ofstream::app),
     player_type("General"),
     pos_start_of_turn(16),
     pos_end_of_turn(16),
     dice_roll(0)
 {
-  this->value_ann = value_ann;
+    this->value_ann = value_ann;
 }
 
-ludo_player::ludo_player(struct fann *value_ann, double *V_lr, std::string const &file):\
+ludo_player::ludo_player(value_ANN_small *value_ann, double *V_lr, std::string const &file):\
     ofs_val_ann_error(file.c_str(),std::ofstream::app),
     player_type("General"),
     pos_start_of_turn(16),
     pos_end_of_turn(16),
     dice_roll(0)
 {
-  this->value_ann = value_ann;
-  this->V_learning_rate = V_lr;
+    this->value_ann = value_ann;
+    set_V_Learning_Rate(V_lr);
 }
 
 void ludo_player::set_V_Learning_Rate(double* V_lr)
@@ -105,10 +106,10 @@ float ludo_player::fann_V_estimate(const std::vector<int>& state,\
                                    fann_type *ann_input)
 {
     convert_to_FANN_inputs(state, ann_input);
-    float *V = fann_run(value_ann, ann_input);
+    float V = value_ann->evaluate(ann_input);
 
     // Return Q value by dereferencing pointer
-    return *V;
+    return V;
 }
 
 void ludo_player::convert_to_FANN_inputs(const std::vector<int>& state,\
@@ -118,17 +119,51 @@ void ludo_player::convert_to_FANN_inputs(const std::vector<int>& state,\
     for (int i = 0; i < VAL_ANN_INPUTS; ++i)
         ann_input[i] = 0;
 
-    // Convert piece indexes to FANN inputs
-    for (int player = 0; player < 4; ++player)
+    // Evaluate player own positions
+    for (int i = 0; i < 4; ++i)
+    {
+        int predators = vulnerableBy(state[i], state);
+        //Pieces on goal
+        if ( state[i] == 99)
+            ann_input[0] += 0.25;
+        //Pieces in jail
+        else if (state[i] == -1)
+        {
+            ann_input[1] += 0.25;
+        }
+        //Pieces in goal stretch
+        else if (state[i] > 51)
+        {
+            ann_input[2] += 0.25;
+        }
+        // Pieces on save field
+        else if (isOwnGlobe(state[i]) || isOwnBlockade(state[i], state))
+        {
+            ann_input[3] += 0.25;
+        }
+        // Vulnerable Pieces
+        else if ( predators > 0 || isOpponentReleaseField(state[i]))
+        {
+            ann_input[4] += (predators/4.0 + 1)* 0.25;
+        }
+    }
+
+    // Evaluate opponents possitions
+    int piece_state;
+    for (int player = 1; player < 4; ++player)
     {
         //std::cout << "Player: " << player << std::endl;
         for (int i = 0; i < 4; ++i)
         {
-            //std::cout << "i: " << i << std::endl;
-            if (state[4*player + i] == 99)
-                ann_input[(player + 1)*59 - 1] += 0.25;
-            else
+            piece_state = state[4*player + i];
+            // Opponent pieces on goal
+            if ( piece_state == 99)
+                ann_input[3*player + 2] += 0.25;
+            // Opponent pieces in jail
+            else if (piece_state == -1)
             {
+                ann_input[3*player + 3] += 0.25;
+                /*
                 int relative_position = state[4*player + i];
                 if (relative_position > 56)
                     relative_position -= 5*player;
@@ -139,7 +174,14 @@ void ludo_player::convert_to_FANN_inputs(const std::vector<int>& state,\
                     temp -= 5*player; //opponents in their goal stretch
                     */
                 //std::cout << "temp: " << temp << std::endl;
+                /*
                 ann_input[idx] += 0.25;
+                */
+            }
+            // Opponent pieces in goal stretch
+            else if (state[i] > 51)
+            {
+                ann_input[3*player + 4] += 0.25;
             }
         }
     }
@@ -171,7 +213,10 @@ void ludo_player::start_turn(positions_and_dice relative){
 
 
     // Update weights in ANN
-    fann_train(value_ann, ann_input_END_of_turn, &updated_V_of_END_state);
+    value_ann->train(ann_input_END_of_turn, &updated_V_of_END_state);
+
+    // Debugging output
+    float temp = value_ann->evaluate(ann_input_END_of_turn);
     // ------------------------------------------------------------
 
     int decision = make_decision();
@@ -233,7 +278,7 @@ void ludo_player::post_game_analysis(std::vector<int> relative_pos){
     }
 
     // Update weights in ANN
-    fann_train(value_ann, ann_input_START_of_turn, &updated_V_of_START_state);
+    value_ann->train(ann_input_START_of_turn, &updated_V_of_START_state);
     // ------------------------------------------------------------
 
     emit turn_complete(game_complete);
@@ -245,7 +290,7 @@ void ludo_player::after_game_reward(double reward)
         reward - estimate_V_of_END_state);
 
     // Update weights in ANN
-    fann_train(value_ann, ann_input_END_of_turn, &updated_V_of_END_state);
+    value_ann->train(ann_input_END_of_turn, &updated_V_of_END_state);
 }
 
 /*
@@ -457,6 +502,16 @@ bool ludo_player::isGlobe(int index){
 bool ludo_player::isOwnGlobe(int index){
     if(index < 51){  //check only the indexes on the board, not in the home streak
         if ( index == 0 || (index - 8) % 13 == 0)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ludo_player::isOpponentReleaseField(int index){
+    if(index < 51){  //check only the indexes on the board, not in the home streak
+        if ( index != 0 && index % 13 == 0)
         {
             return true;
         }

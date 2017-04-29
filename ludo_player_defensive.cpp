@@ -7,13 +7,13 @@ ludo_player_defensive::ludo_player_defensive():ludo_player_random()
     this->player_type = "Defensive";
 }
 
-ludo_player_defensive::ludo_player_defensive(struct fann *value_ann):ludo_player_random(value_ann)
+ludo_player_defensive::ludo_player_defensive(value_ANN_small *value_ann):ludo_player_random(value_ann)
 {
     // Change player type from parent class
     this->player_type = "Defensive";
 }
 
-ludo_player_defensive::ludo_player_defensive(struct fann *value_ann, std::string const &file)\
+ludo_player_defensive::ludo_player_defensive(value_ANN_small *value_ann, std::string const &file)\
     :ludo_player_random(value_ann,file)
 {
     // Change player type from parent class

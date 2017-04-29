@@ -19,7 +19,7 @@ protected:
     int pick_random_move(const std::vector<int>& possible_moves);
 public:
     ludo_player_random();
-    ludo_player_random(struct fann *value_ann);
-    ludo_player_random(struct fann *value_ann, std::string const &file);
+    ludo_player_random(value_ANN_small *value_ann);
+    ludo_player_random(value_ANN_small *value_ann, std::string const &file);
 };
 #endif // LUDO_PLAYER_RANDOM_H

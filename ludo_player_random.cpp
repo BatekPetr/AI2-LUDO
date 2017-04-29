@@ -9,8 +9,8 @@ ludo_player_random::ludo_player_random():ludo_player(),
     this->player_type = "Random";
 }
 
-ludo_player_random::ludo_player_random(struct fann *value_ann, std::string const &file):\
-        ludo_player(value_ann, file),
+ludo_player_random::ludo_player_random(value_ANN_small *value_ann, std::string const &file):\
+    ludo_player(value_ann, file),
     rd(),
     gen(rd())
 {
@@ -18,7 +18,7 @@ ludo_player_random::ludo_player_random(struct fann *value_ann, std::string const
     this->player_type = "Random";
 }
 
-ludo_player_random::ludo_player_random(struct fann *value_ann):ludo_player(value_ann),
+ludo_player_random::ludo_player_random(value_ANN_small *value_ann):ludo_player(value_ann),
     rd(),
     gen(rd())
 {

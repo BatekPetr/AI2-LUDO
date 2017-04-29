@@ -5,12 +5,13 @@
 #include <map>
 #include "positions_and_dice.h"
 #include <fstream>
+#include "value_ann_small.h"
 
 #include "fann.h"
 
 // ANN Parameters
 #define ANN_INPUTS 238
-#define VAL_ANN_INPUTS 236
+#define VAL_ANN_INPUTS 14
 
 //QL Parameters
 #define LEARNING_RATE 1
@@ -22,9 +23,11 @@ class ludo_player : public QObject {
 protected:
     std::vector<int> pos_start_of_turn;
     std::vector<int> pos_end_of_turn;
-    struct fann *value_ann;
+
+    value_ANN_small *value_ann;
     fann_type ann_input_START_of_turn[VAL_ANN_INPUTS];
     fann_type ann_input_END_of_turn[VAL_ANN_INPUTS];
+
     float estimate_V_of_START_state;
     float estimate_V_of_END_state;
 
@@ -49,6 +52,7 @@ protected:
 
     bool isOwnBlockade(int index,\
          const std::vector<int>& relative_positions);
+    bool isOpponentReleaseField(int index);
 
     bool dice_roll_tooMuch(int new_relative_position);
 
@@ -87,11 +91,12 @@ public:
     ludo_player(const ludo_player&);
     ludo_player& operator=(const ludo_player&);
 
+    // Class contructors
     ludo_player();
-    ludo_player(struct fann *value_ann);
-    ludo_player(struct fann *value_ann, double *V_learning_rate);
-    ludo_player(struct fann *value_ann, std::string const &file);
-    ludo_player(struct fann *value_ann, double *V_learning_rate, std::string const &file);
+    ludo_player(value_ANN_small *value_ann);
+    ludo_player(value_ANN_small *value_ann, double *V_learning_rate);
+    ludo_player(value_ANN_small *value_ann, std::string const &file);
+    ludo_player(value_ANN_small *value_ann, double *V_learning_rate, std::string const &file);
 
     void open_ANN_oftream(std::ofstream &ofs);
     void open_TD_oftream(std::ofstream &ofs);

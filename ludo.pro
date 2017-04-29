@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     ludo_player_aggressive.cpp \
     ludo_player_defensive.cpp \
     ludo_player_expert.cpp \
-    ludo_player_qlearning.cpp
+    ludo_player_qlearning.cpp \
+    value_ann_small.cpp
 
 HEADERS  += dialog.h \
     game.h \
@@ -32,7 +33,8 @@ HEADERS  += dialog.h \
     ludo_player_aggressive.h \
     ludo_player_defensive.h \
     ludo_player_expert.h \
-    ludo_player_qlearning.h
+    ludo_player_qlearning.h \
+    value_ann_small.h
 
 FORMS    += dialog.ui
 

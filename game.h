@@ -44,8 +44,8 @@ private:
     //                              <std::unique_ptr<ludo_player>>
 
     std::vector<std::unique_ptr<ludo_player>> players;
-    struct fann *ann;
-    struct fann *value_ann;
+    value_ANN_small *ann;
+    value_ANN_small *value_ann;
     bool game_complete;
     bool turn_complete;
     unsigned int game_delay;
@@ -74,8 +74,8 @@ public:
     std::vector<int> winStats;
     int gamesTotal;
 
-    void setFANN(struct fann *ann);
-    void set_Value_ANN(struct fann *value_ann);
+    void setFANN(value_ANN_small *ann);
+    void set_Value_ANN(value_ANN_small *value_ann);
     void rollDice(){
         std::uniform_int_distribution<> dis(1, 6);
         dice_result = dis(gen);

@@ -30,12 +30,12 @@ game::game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4):
     //std::cout << "Game INITIALIZED." << std::endl;
 }
 
-void game::setFANN(struct fann *ann_from_main)
+void game::setFANN(value_ANN_small *ann_from_main)
 {
     this->ann = ann_from_main;
 }
 
-void game::set_Value_ANN(struct fann *value_ann)
+void game::set_Value_ANN(value_ANN_small *value_ann)
 {
     this->value_ann = value_ann;
 }
@@ -388,9 +388,9 @@ std::vector<int> game::relativePosition(){
         //This condition has to be before condition for indexes larger than modifier but <= 50
         else if(relative_positions[i] > 52) {
             //if((relative_positions[i] > 51 + (1 + color)*5))
-            if((relative_positions[i] > 52 + color*5))
+            if((relative_positions[i] >= 52 + color*5))
                 relative_positions[i] = (relative_positions[i]-color*5);
-            else if ((relative_positions[i] <= 52 + (color)*5))
+            else if ((relative_positions[i] < 52 + (color)*5))
                 relative_positions[i] = (relative_positions[i]+(4-color)*5);
         } 
         else if(relative_positions[i] >= modifier) {
@@ -473,7 +473,7 @@ void game::run() {
                 winStats[j] = 0;
 
             if (i > 9999)
-                fann_save(value_ann,"TD_Value_ANN_3_corrected_inputs_blabla.txt");
+                value_ann->save_to_file("TD_Value_ANN_small.txt");
         }
         else if (i % 10000 == 1000)
         {
