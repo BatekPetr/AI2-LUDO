@@ -1,11 +1,24 @@
 #include "ludo_player_expert.h"
 
-ludo_player_expert::ludo_player_expert():ludo_player(),
-  rd(),
-  gen(rd())
+ludo_player_expert::ludo_player_expert():ludo_player_random()//,
+  //rd(),
+  //gen(rd())
 {
     // Change player type from parent class
     this->player_type = "expert";
+}
+
+ludo_player_expert::ludo_player_expert(struct fann *value_ann):ludo_player_random(value_ann)
+{
+    // Change player type from parent class
+    this->player_type = "Expert";
+}
+
+ludo_player_expert::ludo_player_expert(struct fann *value_ann, std::string const &file)\
+    :ludo_player_random(value_ann,file)
+{
+    // Change player type from parent class
+    this->player_type = "Expert";
 }
 
 int ludo_player_expert::make_decision()
@@ -171,6 +184,7 @@ double ludo_player_expert::reward(std::vector<int>& new_state,\
 
 }
 
+/*
 int ludo_player_expert::pick_random_move(const std::vector<int>& possible_moves)
 {
     std::uniform_int_distribution<> piece\
@@ -178,3 +192,4 @@ int ludo_player_expert::pick_random_move(const std::vector<int>& possible_moves)
     int select = piece(gen);
     return possible_moves[select];
 }
+*/

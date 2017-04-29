@@ -10,6 +10,8 @@ private:
     int make_decision(); // polymorphed function
 public:
     ludo_player_fast();
+    ludo_player_fast(struct fann *value_ann);
+    ludo_player_fast(struct fann *value_ann, std::string const &file);
 };
 
 #endif // LUDO_PLAYER_FAST_H

@@ -17,6 +17,7 @@ private:
 
 public:
     ludo_player_aggressive();
+    ludo_player_aggressive(struct fann *value_ann);
 };
 
 #endif // LUDO_PLAYER_AGGRESSIVE_H

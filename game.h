@@ -2,13 +2,14 @@
 #define GAME_H
 
 #define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
-#define GAMES_NO 5000000
+#define GAMES_NO 50000000
 
 #include <vector>
 #include <random>
 #include <iostream>
 #include <QtCore>
 #include <QThread>
+#include "ludo_player.h"
 
 #include <fstream>      // std::ofstream
 
@@ -16,6 +17,8 @@
 
 #include "fann.h"
 
+
+#include <memory> // Library for using smart pointers to subclasses of one superclass
 
 /*
 enum Color{
@@ -33,7 +36,16 @@ class game : public QThread
     Q_OBJECT
 
 private:
+    // players is array of Smart pointer to specialized players
+    // specialized players are subplasses of the base class <ludo_player>
+    // vector <players> is holding pointer to each player
+    // in order to put into one vector of base class different sublasses
+    // it was needed to use array of Smart pointers of type:
+    //                              <std::unique_ptr<ludo_player>>
+
+    std::vector<std::unique_ptr<ludo_player>> players;
     struct fann *ann;
+    struct fann *value_ann;
     bool game_complete;
     bool turn_complete;
     unsigned int game_delay;
@@ -43,9 +55,9 @@ private:
     std::mt19937 gen;
     std::vector<int> relativePosition();
     int isStar(int index);
-    bool isGlobe(int index);
-    int isOccupied(int index); //see if it is occupied and return the piece number
-    int rel_to_fixed(int relative_piece_index);
+    bool isGlobe(int index, int player_No);
+    int isOccupied(int index, int player_No); //see if it is occupied and return the piece number
+    int rel_to_fixed(int relative_piece_index, int player_No);
     void send_them_home(int index);
     void move_start(int fixed_piece);
     int next_turn(unsigned int delay);
@@ -63,12 +75,13 @@ public:
     int gamesTotal;
 
     void setFANN(struct fann *ann);
+    void set_Value_ANN(struct fann *value_ann);
     void rollDice(){
         std::uniform_int_distribution<> dis(1, 6);
         dice_result = dis(gen);
     }
     int getDiceRoll() {return dice_result; }
-    game();
+    game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4);
     void setGameDelay(unsigned int mili_seconds){ game_delay = mili_seconds; }
     void reset();
 

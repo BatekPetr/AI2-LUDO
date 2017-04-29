@@ -18,12 +18,24 @@
 //#include "floatfann.h"
 
 
+//ANN Parameters
+
+// Oscilations with these parameters
+#define ANN_LEARNING_RATE 0.05
+#define ANN_MOMENTUM_RATE 0.08
+
+
+
 Q_DECLARE_METATYPE( positions_and_dice )
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     qRegisterMetaType<positions_and_dice>();
 
+    // Setup FANN for Qlearning
+    // ------------------------------------------------------------------
+    struct fann *ann;
+    {
     //load existing ANN
     std::string ANN_file = "";
     //instanciate FANN
@@ -37,7 +49,6 @@ int main(int argc, char *argv[]){
     //unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_neurons_hidden3, num_output};
     unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_output};
 
-    struct fann *ann;
 
     if (ANN_file.compare(""))
     {
@@ -52,19 +63,80 @@ int main(int argc, char *argv[]){
     fann_set_learning_rate(ann, ANN_LEARNING_RATE);
     fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC );
     fann_set_activation_function_output(ann, FANN_LINEAR);
+    }
+    // ------------------------------------------------------------------
+
+    // Set up FANN for state Value approximation
+    // ------------------------------------------------------------------
+    struct fann *value_ann;
+    {
+    //load existing ANN
+    std::string value_ANN_file = "";
+    //instanciate FANN
+    const unsigned int val_num_input = VAL_ANN_INPUTS;
+    const unsigned int val_num_output = 1;
+    const unsigned int val_num_layers = 4;
+    const unsigned int val_num_neurons_hidden1 = 20;
+    const unsigned int val_num_neurons_hidden2 = 5;
+    const unsigned int val_num_neurons_hidden3 = 5;
+
+    //unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_neurons_hidden3, num_output};
+    unsigned int val_layers[val_num_layers] = {val_num_input, val_num_neurons_hidden1, val_num_neurons_hidden2, val_num_output};
+
+
+
+    if (value_ANN_file.compare("") == 0)    //filename string empty, create new ANN
+    {
+        value_ann = fann_create_standard_array(val_num_layers, val_layers);
+    }
+    else    // load ANN from the ANN file
+    {
+        value_ann = fann_create_from_file(value_ANN_file.c_str());
+    }
+
+    fann_randomize_weights(value_ann, -1, 1);
+    fann_set_learning_rate(value_ann, ANN_LEARNING_RATE);
+    fann_set_learning_momentum(	value_ann, ANN_MOMENTUM_RATE);
+    fann_set_activation_function_hidden(value_ann, FANN_SIGMOID_SYMMETRIC );
+    fann_set_activation_function_output(value_ann, FANN_LINEAR);
+    }
+    // ------------------------------------------------------------------
+
+    
+
+    // Comment out before debugging Game
+    std::string value_ann_error_file = "Value_ANN_Squared_Error.txt";
+    std::ofstream clearFile("Value_ANN_Squared_Error.txt", std::ofstream::out);
+    clearFile.close();
+
 
     //instanciate the players here
-    ludo_player_Qlearning p1;
-    ludo_player_random p2;
-    ludo_player_random p3;
-    ludo_player_random p4;
+    ludo_player_expert p1(value_ann, value_ann_error_file);
+    ludo_player_defensive p2(value_ann);
+    ludo_player_fast p3(value_ann);
+    ludo_player_random p4(value_ann);
 
-    game g;
+
+    game g(p1, p2, p3, p4);
     g.setFANN(ann);
+    g.set_Value_ANN(value_ann);
 
-    p1.setFANN(ann, &g.learning_rate);
-    p1.set_gamesTotal(&g.gamesTotal);
-    p1.restart();
+    // Set pointer to LR in game object
+    // this way it is possible to update LR from
+    // game objects and use it inside players
+    // I know, its very Messy implementation
+    p1.set_V_Learning_Rate(&g.learning_rate);
+    p2.set_V_Learning_Rate(&g.learning_rate);
+    p3.set_V_Learning_Rate(&g.learning_rate);
+    p4.set_V_Learning_Rate(&g.learning_rate);
+
+    //std:ofstream ofs_value_ann_err();
+
+
+    //p1.setFANN(ann, &g.learning_rate);
+    //p1.set_gamesTotal(&g.gamesTotal);
+    //p1.restart();
+
 
     
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));

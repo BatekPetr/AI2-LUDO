@@ -2,7 +2,7 @@
 #define DEBUG 0
 
 
-game::game():
+game::game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4):
     game_complete(false),
     turn_complete(true),
     game_delay(0),
@@ -17,12 +17,27 @@ game::game():
     gamesTotal(0),
     learning_rate(1)
 {
+    // players is array of Smart pointer to specialized players
+    // specialized players are subplasses of the base class <ludo_player>
+    // vector <players> is holding pointer to each player
+    // in order to put into one vector of base class different sublasses
+    // it was needed to use array of Smart pointers of type:
+    //                              <std::unique_ptr<ludo_player>>
+    this->players.emplace_back(&p1);
+    this->players.emplace_back(&p2);
+    this->players.emplace_back(&p3);
+    this->players.emplace_back(&p4);
     //std::cout << "Game INITIALIZED." << std::endl;
 }
 
 void game::setFANN(struct fann *ann_from_main)
 {
     this->ann = ann_from_main;
+}
+
+void game::set_Value_ANN(struct fann *value_ann)
+{
+    this->value_ann = value_ann;
 }
 
 void game::reset(){
@@ -40,10 +55,10 @@ void game::reset(){
 }
 
 /*
- * converts <color> relative piece index to absolute/fixed piece index according to color
+ * converts <player_No> relative piece index to absolute/fixed piece index according to player_No
 */
-int game::rel_to_fixed(int relative_piece_index){
-    return relative_piece_index + color * 4;
+int game::rel_to_fixed(int relative_piece_index, int player_No){
+    return (relative_piece_index + player_No * 4) % 16;
 }
 
 /*
@@ -65,12 +80,12 @@ int game::isStar(int index){
     return 0;
 }
 
-int game::isOccupied(int index){ //returns number of people of another color
+int game::isOccupied(int index, int player_No){ //returns number of people of another color
     int number_of_people = 0;
 
     if(index != 99){
         for(size_t i = 0; i < player_positions.size(); ++i){
-            if(i < static_cast<size_t>(color)*4 || i >= static_cast<size_t>(color)*4 + 4){        //Disregard own players
+            if(i < static_cast<size_t>(player_No)*4 || i >= static_cast<size_t>(player_No)*4 + 4){        //Disregard own players
                 if(player_positions[i] == index){
                     ++number_of_people;
                 }
@@ -80,9 +95,9 @@ int game::isOccupied(int index){ //returns number of people of another color
     return number_of_people;
 }
 
-bool game::isGlobe(int index){
+bool game::isGlobe(int index, int player_No){
     if(index < 52){     //check only the indexes on the board, not in the home streak
-        if(index % 13 == 0 || (index - 8) % 13 == 0 || isOccupied(index) > 1){  //if more people of the same team stand on the same spot it counts as globe
+        if(index % 13 == 0 || (index - 8) % 13 == 0 || isOccupied(index, player_No) > 1){  //if more people of the same team stand on the same spot it counts as globe
             return true;
         }
     }
@@ -138,6 +153,7 @@ int game::next_turn(unsigned int delay = 0){
     emit set_dice_result(dice_result);
 
     msleep(delay);
+
     switch(color){
         case 0:
             emit player1_start(relative);
@@ -153,6 +169,10 @@ int game::next_turn(unsigned int delay = 0){
         default:
             break;
     }
+
+
+    // Using Smart point array to players instead of emmiting signals
+    //players[color]->start_turn(relative);
 
     return 0;
 }
@@ -185,7 +205,7 @@ void game::movePiece(int relative_piece){
     }
 
     // Find piece index in the absolute/fixed vector
-    int fixed_piece = rel_to_fixed(relative_piece);     //index of the piece in player_positions
+    int fixed_piece = rel_to_fixed(relative_piece, color);     //index of the piece in player_positions
     int modifier = color * 13;
     // Get Absolute/fixed position of a particular piece
     int relative_pos = player_positions[fixed_piece];
@@ -300,8 +320,8 @@ void game::movePiece(int relative_piece){
         // ########## END of special case checks ################################
 
         //check for game stuff
-        if(isOccupied(target_pos)){
-            if(isGlobe(target_pos)){
+        if(isOccupied(target_pos, color)){
+            if(isGlobe(target_pos, color)){
                 target_pos = -1; //send me home -> when 2 pieces are on the globe, the new/arriving one,has to leave home
             } else {
                 send_them_home(target_pos);
@@ -390,12 +410,18 @@ void game::turnComplete(bool win){
         //std::cout << "player: " << color << " won" << std::endl;
         ++winStats[color];
         ++gamesTotal;
+
         emit declare_winner(color);
     }
 }
 
 void game::run() {
     if(DEBUG) std::cout << "color:     relative pos => fixed\n";
+
+    for (int i = 0; i < players.size(); ++i)
+    {
+        players[i]->greet();
+    }
 #if MODE==0
     while(!game_complete)
     {
@@ -446,7 +472,8 @@ void game::run() {
             for(int j = 0; j < 4; j++)
                 winStats[j] = 0;
 
-            fann_save(ann, "QL_ANN_LR_0_05.txt");
+            if (i > 9999)
+                fann_save(value_ann,"TD_Value_ANN_3_corrected_inputs_blabla.txt");
         }
         else if (i % 10000 == 1000)
         {
@@ -455,12 +482,30 @@ void game::run() {
                 std::cout << winStats[j]/1000.0 << ", ";
             std::cout << winStats[3]/1000.0 << std::endl;
 
+
+        }
+        else if (i % 5000 == 0)
+        {
             if (i>1)
                 learning_rate = learning_rate*0.95;
         }
+
+        // Set final rewards for each LOOSING player
+        for (int i = 0; i < 4; ++i)
+        {
+            if (i!=color)
+                players[i]->after_game_reward(-100);
+            else
+                players[i]->after_game_reward(100);
+        }
+
         reset();
     }
-
+    for (int i = 0; i < 4; ++i)
+    {
+        players[i]->ofs_val_ann_error.close();
+        //players[i].ofs_TD_error.close();
+    }
     ofs.close();
 #endif
 

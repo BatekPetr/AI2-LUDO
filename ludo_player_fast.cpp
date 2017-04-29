@@ -7,6 +7,18 @@ ludo_player_fast::ludo_player_fast():ludo_player()
     this->player_type = "Fast";
 }
 
+ludo_player_fast::ludo_player_fast(struct fann *value_ann):ludo_player(value_ann)
+{
+    // Change player type from parent class
+    this->player_type = "Fast";
+}
+
+ludo_player_fast::ludo_player_fast(struct fann *value_ann, std::string const &file)\
+    :ludo_player(value_ann,file)
+{
+    ludo_player_fast();
+}
+
 int ludo_player_fast::make_decision()
 {
     /*

@@ -5,12 +5,6 @@
 
 #include <stdlib.h>     /* srand, rand */
 
-//ANN Parameters
-#define ANN_INPUTS 238
-#define ANN_LEARNING_RATE 0.5
-//QL Parameters
-#define LEARNING_RATE 1
-#define DISCOUNT_RATE 0.95
 
 class ludo_player_Qlearning : public ludo_player_expert
 {
@@ -45,6 +39,7 @@ private:
     double reward(std::vector<int>& new_state);
 public:
     ludo_player_Qlearning();
+    //ludo_player_Qlearning(struct fann value_ann);
     void setFANN(struct fann *ann, double *learning_rate);
     void restart();
 };

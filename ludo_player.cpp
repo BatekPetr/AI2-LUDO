@@ -7,7 +7,54 @@ ludo_player::ludo_player():
     pos_end_of_turn(16),
     dice_roll(0)
 {
+    this->value_ann = NULL;
 }
+
+ludo_player::ludo_player(struct fann *value_ann):
+    player_type("General"),
+    pos_start_of_turn(16),
+    pos_end_of_turn(16),
+    dice_roll(0)
+{
+    this->value_ann = value_ann;
+}
+
+ludo_player::ludo_player(struct fann *value_ann, double *V_lr):
+    player_type("General"),
+    pos_start_of_turn(16),
+    pos_end_of_turn(16),
+    dice_roll(0)
+{
+    this->value_ann = value_ann;
+    this->V_learning_rate = V_lr;
+}
+
+ludo_player::ludo_player(struct fann *value_ann, std::string const &file):\
+    ofs_val_ann_error(file.c_str(),std::ofstream::app),
+    player_type("General"),
+    pos_start_of_turn(16),
+    pos_end_of_turn(16),
+    dice_roll(0)
+{
+  this->value_ann = value_ann;
+}
+
+ludo_player::ludo_player(struct fann *value_ann, double *V_lr, std::string const &file):\
+    ofs_val_ann_error(file.c_str(),std::ofstream::app),
+    player_type("General"),
+    pos_start_of_turn(16),
+    pos_end_of_turn(16),
+    dice_roll(0)
+{
+  this->value_ann = value_ann;
+  this->V_learning_rate = V_lr;
+}
+
+void ludo_player::set_V_Learning_Rate(double* V_lr)
+{
+    this->V_learning_rate = V_lr;
+}
+
 
 int ludo_player::make_decision()
 {
@@ -54,9 +101,79 @@ int ludo_player::make_decision()
     return -1;
 }
 
+float ludo_player::fann_V_estimate(const std::vector<int>& state,\
+                                   fann_type *ann_input)
+{
+    convert_to_FANN_inputs(state, ann_input);
+    float *V = fann_run(value_ann, ann_input);
+
+    // Return Q value by dereferencing pointer
+    return *V;
+}
+
+void ludo_player::convert_to_FANN_inputs(const std::vector<int>& state,\
+                                         fann_type *ann_input)
+{
+    // Zero out init values
+    for (int i = 0; i < VAL_ANN_INPUTS; ++i)
+        ann_input[i] = 0;
+
+    // Convert piece indexes to FANN inputs
+    for (int player = 0; player < 4; ++player)
+    {
+        //std::cout << "Player: " << player << std::endl;
+        for (int i = 0; i < 4; ++i)
+        {
+            //std::cout << "i: " << i << std::endl;
+            if (state[4*player + i] == 99)
+                ann_input[(player + 1)*59 - 1] += 0.25;
+            else
+            {
+                int relative_position = state[4*player + i];
+                if (relative_position > 56)
+                    relative_position -= 5*player;
+                int idx = (player*59) + relative_position + 1;
+                /*
+                int temp = (player*59) + (state[4*player + i] + 1);
+                if (temp > 235)
+                    temp -= 5*player; //opponents in their goal stretch
+                    */
+                //std::cout << "temp: " << temp << std::endl;
+                ann_input[idx] += 0.25;
+            }
+        }
+    }
+}
+
+
 void ludo_player::start_turn(positions_and_dice relative){
     pos_start_of_turn = relative.pos;
     dice_roll = relative.dice;
+
+    double actual_reward = 0; // no rewards for intermediate states
+
+    // Update ANN which estimates Value function
+    // ------------------------------------------------------------
+    // recompute inputs for ANN from new <pos_start_of_turn> inside
+    // computing state Value estimate for <pos_start_of_turn>
+    estimate_V_of_START_state = fann_V_estimate(pos_start_of_turn,\
+                                  ann_input_START_of_turn);
+
+    // Temporal Difference update for Value of previous END turn state
+    float updated_V_of_END_state = estimate_V_of_END_state + ((*V_learning_rate) *\
+        actual_reward + discount_rate*estimate_V_of_START_state - estimate_V_of_END_state);
+
+    if (ofs_val_ann_error.is_open())
+    {
+        // Print squared error to the file
+        ofs_val_ann_error << (updated_V_of_END_state - estimate_V_of_END_state) << "  ";
+    }
+
+
+    // Update weights in ANN
+    fann_train(value_ann, ann_input_END_of_turn, &updated_V_of_END_state);
+    // ------------------------------------------------------------
+
     int decision = make_decision();
     //std::vector<int> new_relative_positions = move_piece(decision);
     emit select_piece(decision);
@@ -65,13 +182,79 @@ void ludo_player::start_turn(positions_and_dice relative){
 void ludo_player::post_game_analysis(std::vector<int> relative_pos){
     pos_end_of_turn = relative_pos;
     bool game_complete = true;
+    double actual_reward = 0; // reward for winning the game
+
+    // Check for winning the game
     for(int i = 0; i < 4; ++i){
         if(pos_end_of_turn[i] < 99){
             game_complete = false;
+
+            break;
         }
     }
+
+    /*
+    if (game_complete)
+        std::cout<<"complete"<<std::endl;
+    */
+
+    // Update ANN which estimates Value function
+    // ------------------------------------------------------------
+    float updated_V_of_START_state;
+    // if player won, we don't want to estimate V of winning state
+    // assign only reward wor WIN
+    /*
+    if (game_complete)
+    {
+        // Wait with assing reward !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        actual_reward = 100; // reward for winning the game
+
+        // Temporal Difference update for Value of previous END turn state
+        updated_V_of_START_state = estimate_V_of_START_state + ((*V_learning_rate) *\
+            actual_reward - estimate_V_of_START_state);
+    }
+    else
+    */
+    {
+        // recompute inputs for ANN from new <pos_end_of_turn> inside
+        // computing state Value estimate for <pos_end_of_turn>
+        estimate_V_of_END_state = fann_V_estimate(pos_end_of_turn,\
+                                      ann_input_END_of_turn);
+
+        // Temporal Difference update for Value of previous END turn state
+        updated_V_of_START_state = estimate_V_of_START_state + ((*V_learning_rate) *\
+            actual_reward + discount_rate*estimate_V_of_END_state - estimate_V_of_START_state);
+    }
+
+    if (ofs_val_ann_error.is_open())
+    {
+        // Print squared error to the file
+        ofs_val_ann_error << (updated_V_of_START_state - estimate_V_of_START_state) << std::endl;
+    }
+
+    // Update weights in ANN
+    fann_train(value_ann, ann_input_START_of_turn, &updated_V_of_START_state);
+    // ------------------------------------------------------------
+
     emit turn_complete(game_complete);
 }
+void ludo_player::after_game_reward(double reward)
+{
+    // Temporal Difference update for Value of previous END turn state
+    float updated_V_of_END_state = estimate_V_of_END_state + ((*V_learning_rate) *\
+        reward - estimate_V_of_END_state);
+
+    // Update weights in ANN
+    fann_train(value_ann, ann_input_END_of_turn, &updated_V_of_END_state);
+}
+
+/*
+float ludo_player::assign_final_rewards(std::vector<int> final_state)
+{
+    float game_reward = reward_Win_Loss(final_state);
+    return game_reward;
+}
+*/
 
 /*
  * moves ONE piece, selected by player
@@ -442,6 +625,54 @@ std::vector<int> ludo_player::filter_out_candidates\
     //return filtered_candidates;
 }
 
+// TO DO
+/*
+void ludo_player::update_ANN_after_loss()
+{
+    float new_Q =
+    fann_train(pos_end_of_turn
+}
+*/
+
+float ludo_player::reward_Win_Loss(std::vector<int> state)
+{
+    bool win = true;
+    // Check for WIN
+    for (int i = 0; i < 4; ++i)
+    {
+        if (state[i] != 99)
+            win = false;
+    }
+
+    if (win == true)
+    {
+        return 100;
+    }
+
+    // Check for Loss
+    // Iterate over players
+    for (int p = 1; p < 4; ++p)
+    {
+        bool loss = true;
+        // Iterate over pieces of given player
+        for (int i = 0; i < 4; ++i)
+        {
+            if (state[4*p + i] != 99)
+            {
+                loss = false;
+                break;
+            }
+        }
+        if (loss == true)
+        {
+            return -100;
+        }
+    }
+
+    // NO Win either Loss
+    return 0;
+}
+
 void ludo_player::print_player_piece_positions()
 {
     std::cout << "pos_start_of_turn: [ ";
@@ -456,4 +687,9 @@ void ludo_player::print_player_piece_positions()
 void ludo_player::print_dice_roll()
 {
     std::cout << "dice_roll: " << dice_roll << std::endl;
+}
+
+void ludo_player::greet()
+{
+    std::cout << "Hello I'm player " << player_type << std::endl;
 }

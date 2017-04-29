@@ -1,6 +1,24 @@
 #include "ludo_player_random.h"
 
+
 ludo_player_random::ludo_player_random():ludo_player(),
+    rd(),
+    gen(rd())
+{
+    // Change player type from parent class
+    this->player_type = "Random";
+}
+
+ludo_player_random::ludo_player_random(struct fann *value_ann, std::string const &file):\
+        ludo_player(value_ann, file),
+    rd(),
+    gen(rd())
+{
+    // Change player type from parent class
+    this->player_type = "Random";
+}
+
+ludo_player_random::ludo_player_random(struct fann *value_ann):ludo_player(value_ann),
     rd(),
     gen(rd())
 {
@@ -29,4 +47,5 @@ int ludo_player_random::pick_random_move(const std::vector<int>& possible_moves)
     int select = piece(gen);
     return possible_moves[select];
 }
+
 
