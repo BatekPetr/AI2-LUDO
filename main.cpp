@@ -8,14 +8,12 @@
 #include "ludo_player_aggressive.h"
 #include "ludo_player_defensive.h"
 #include "ludo_player_expert.h"
-#include "ludo_player_qlearning.h"
+#include "ludo_player_genetic.h"
+
 
 #include "positions_and_dice.h"
 
 #include <stdio.h>
-#include "fann.h" // FAST ANN library
-//#include "doublefann.h"
-//#include "floatfann.h"
 
 
 Q_DECLARE_METATYPE( positions_and_dice )
@@ -24,47 +22,15 @@ int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     qRegisterMetaType<positions_and_dice>();
 
-    //load existing ANN
-    std::string ANN_file = "";
-    //instanciate FANN
-    const unsigned int num_input = ANN_INPUTS;
-    const unsigned int num_output = 1;
-    const unsigned int num_layers = 4;
-    const unsigned int num_neurons_hidden1 = 20;
-    const unsigned int num_neurons_hidden2 = 5;
-    const unsigned int num_neurons_hidden3 = 5;
 
-    //unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_neurons_hidden3, num_output};
-    unsigned int layers[num_layers] = {num_input, num_neurons_hidden1, num_neurons_hidden2, num_output};
-
-    struct fann *ann;
-
-    if (ANN_file.compare(""))
-    {
-        ann = fann_create_from_file(ANN_file.c_str());
-    }
-    else
-    {
-        ann = fann_create_standard_array(num_layers, layers);
-    }
-
-    fann_randomize_weights(ann, -1, 1);
-    fann_set_learning_rate(ann, ANN_LEARNING_RATE);
-    fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC );
-    fann_set_activation_function_output(ann, FANN_LINEAR);
 
     //instanciate the players here
-    ludo_player_Qlearning p1;
-    ludo_player_random p2;
-    ludo_player_random p3;
-    ludo_player_random p4;
+    ludo_player_genetic p1({1,0,0,0,0,0,0});
+    ludo_player_genetic p2({0,1,0,0,0,0,0});
+    ludo_player_genetic p3({0,0,1,0,0,0,0});
+    ludo_player_genetic p4({0,0,0,1,0,0,0});
 
     game g;
-    g.setFANN(ann);
-
-    p1.setFANN(ann, &g.learning_rate);
-    p1.set_gamesTotal(&g.gamesTotal);
-    p1.restart();
 
     
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));
@@ -131,7 +97,7 @@ int main(int argc, char *argv[]){
     std::cout << " Players | " << p1.player_type << " | " << p2.player_type << " | "\
                                << p3.player_type << " | " << p4.player_type << " | " << std::endl;
     std::cout << " ------------------------------------------------------- " << std::endl;
-    std::cout << "Stats: ";
+    std::cout << "Stats: [";
     for(int i = 0; i < 3; i++)
         std::cout << g.winStats[i] << ", ";
     std::cout << g.winStats[3] << " ]"<< std::endl;

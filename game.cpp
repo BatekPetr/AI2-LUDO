@@ -14,16 +14,11 @@ game::game():
     color(3),
     player_positions({-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}),
     winStats({0,0,0,0}),
-    gamesTotal(0),
-    learning_rate(1)
+    gamesTotal(0)
 {
     //std::cout << "Game INITIALIZED." << std::endl;
 }
 
-void game::setFANN(struct fann *ann_from_main)
-{
-    this->ann = ann_from_main;
-}
 
 void game::reset(){
     game_complete = false;
@@ -425,28 +420,12 @@ void game::run() {
 
             //std::cout << "Game complete." << std::endl;
         }
-        /*
-        if (i % 1000 == 0 )
-        {
-            std::cout << "After game " << i << ": ";
-            for(int j = 0; j < 3; j++)
-                std::cout << winStats[j]/(float)i << ", ";
-            std::cout << winStats[3]/(float)i << std::endl;
 
-            ofs << "After game " << i << ": ";
-            for(int j = 0; j < 3; j++)
-                ofs << winStats[j]/(float)i << ", ";
-            ofs << winStats[3]/(float)i << std::endl;                
-
-        }
-        */
         if (i % 10000 == 0 )
         {
             // zero out winning statistics
             for(int j = 0; j < 4; j++)
                 winStats[j] = 0;
-
-            fann_save(ann, "QL_ANN_LR_0_05.txt");
         }
         else if (i % 10000 == 1000)
         {
@@ -455,8 +434,6 @@ void game::run() {
                 std::cout << winStats[j]/1000.0 << ", ";
             std::cout << winStats[3]/1000.0 << std::endl;
 
-            if (i>1)
-                learning_rate = learning_rate*0.95;
         }
         reset();
     }
