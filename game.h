@@ -30,6 +30,8 @@ class game : public QThread
     Q_OBJECT
 
 private:
+    std::vector<std::unique_ptr<ludo_player>> players;
+
     bool game_complete;
     bool turn_complete;
     unsigned int game_delay;

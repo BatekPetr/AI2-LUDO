@@ -16,6 +16,18 @@ game::game():
     winStats({0,0,0,0}),
     gamesTotal(0)
 {
+    // players is array of Smart pointer to specialized players
+    // specialized players are subplasses of the base class <ludo_player>
+    // vector <players> is holding pointer to each player
+    // in order to put into one vector of base class different sublasses
+    // it was needed to use array of Smart pointers of type:
+    //                              <std::unique_ptr<ludo_player>>
+
+    this->players.emplace_back(&p1);
+    this->players.emplace_back(&p2);
+    this->players.emplace_back(&p3);
+    this->players.emplace_back(&p4);
+
     //std::cout << "Game INITIALIZED." << std::endl;
 }
 
