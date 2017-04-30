@@ -2,7 +2,7 @@
 #define DEBUG 0
 
 
-game::game():
+game::game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4):
     game_complete(false),
     turn_complete(true),
     game_delay(0),
@@ -28,8 +28,17 @@ game::game():
     this->players.emplace_back(&p3);
     this->players.emplace_back(&p4);
 
-    //std::cout << "Game INITIALIZED." << std::endl;
+    std::cout << "Game INITIALIZED." << std::endl;
+    introduce_players();
 }
+
+void game::introduce_players()
+{
+    std::cout << "Players in the game are: " << std::endl;
+    std::cout << "Green: " << players[0]->say_hi() << std::endl;
+    std::cout << "Yellow: " << players[0]->say_hi() << std::endl;
+    std::cout << "Blue: " << players[0]->say_hi() << std::endl;
+    std::cout << "Red: " << players[0]->say_hi() << std::endl;
 
 
 void game::reset(){

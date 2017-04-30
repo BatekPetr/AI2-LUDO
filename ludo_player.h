@@ -50,6 +50,7 @@ protected:
 public:
     std::string player_type;
     ludo_player();
+    void say_hi();
 
     void set_gamesTotal(int* gamesTotal_from_game)
         {                   this->gamesTotal = gamesTotal_from_game; }

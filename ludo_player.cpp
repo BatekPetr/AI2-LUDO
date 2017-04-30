@@ -9,6 +9,11 @@ ludo_player::ludo_player():
 {
 }
 
+void ludo_player::say_hi()
+{
+    std::cout << this->player_type;
+}
+
 int ludo_player::make_decision()
 {
     /*

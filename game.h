@@ -11,7 +11,7 @@
 #include <QThread>
 
 #include <fstream>      // std::ofstream
-
+#include "ludo_player.h"
 #include "positions_and_dice.h"
 
 /*
@@ -59,12 +59,15 @@ public:
     std::vector<int> winStats;
     int gamesTotal;
 
+    game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4);
+    void introduce_players();
+
     void rollDice(){
         std::uniform_int_distribution<> dis(1, 6);
         dice_result = dis(gen);
     }
     int getDiceRoll() {return dice_result; }
-    game();
+
     void setGameDelay(unsigned int mili_seconds){ game_delay = mili_seconds; }
     void reset();
 
