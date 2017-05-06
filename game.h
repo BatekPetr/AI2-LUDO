@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define MODE 0 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
-#define GAMES_NO 21000
+#define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
+#define GAMES_NO 1000000
 
 #include <vector>
 #include <random>
@@ -12,7 +12,10 @@
 
 #include <fstream>      // std::ofstream
 #include "ludo_player.h"
+#include "ludo_player_genetic.h"
 #include "positions_and_dice.h"
+
+#include <memory> // Library for using smart pointers to subclasses of one superclass
 
 /*
 enum Color{
@@ -30,7 +33,14 @@ class game : public QThread
     Q_OBJECT
 
 private:
-    std::vector<std::unique_ptr<ludo_player>> players;
+    //std::vector<std::unique_ptr<ludo_player_genetic>> players;
+    //std::vector<std::unique_ptr<ludo_player>> players;
+    std::vector<ludo_player*> players;
+
+    std::vector<ludo_player_genetic*> genetic_players;
+    std::vector<ludo_player*> test_players;
+
+    std::vector<ludo_player*> substitudes_bench;
 
     bool game_complete;
     bool turn_complete;
@@ -52,6 +62,12 @@ private:
             QThread::msleep(msecs);
         }
     }
+
+    void find_2_best_players(int &best, int &second_best);
+    void find_2_worst_players(int &worst, int &second_worst);
+    void crossover();
+    void mutation();
+
 public:
     int turnsNo;
     int color;
@@ -59,7 +75,17 @@ public:
     std::vector<int> winStats;
     int gamesTotal;
 
-    game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4);
+    game();
+    //game(ludo_player_genetic &p1, ludo_player_genetic &p2, ludo_player_genetic &p3, ludo_player_genetic &p4);
+    //game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4);
+    game(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4);
+
+    game(ludo_player_genetic *p1, ludo_player_genetic *p2,\
+               ludo_player_genetic *p3, ludo_player_genetic *p4);
+
+    void set_test_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4);
+    void set_active_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4);
+
     void introduce_players();
 
     void rollDice(){

@@ -10,8 +10,6 @@ class ludo_player_genetic : public ludo_player_random
 {
     Q_OBJECT
 private:
-    std::vector<double> genes;
-
     int make_decision();    //polymorphed function
 
     double get_move_score(const std::vector<int> &move_type, const std::vector<double> &genes);
@@ -25,8 +23,22 @@ private:
     int is_self_kill(const std::vector<int> &state, int piece_to_move, int dice_roll);
 
 public:
+    std::vector<double> genes;
+
     ludo_player_genetic();
     ludo_player_genetic(std::vector<double> genes);
+
+    std::vector<double> get_genes()
+    {
+        return this->genes;
+    }
+
+    void set_genes(std::vector<double> genes)
+    {
+        this->genes = genes;
+    }
+
+    void say_hi();
 
 };
 

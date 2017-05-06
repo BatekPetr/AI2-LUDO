@@ -49,8 +49,11 @@ protected:
     void print_dice_roll();    
 public:
     std::string player_type;
+    std::vector<double> genes;  //to make it possible to use unique_ptr for other players than just genetic
+
+
     ludo_player();
-    void say_hi();
+    virtual void say_hi();
 
     void set_gamesTotal(int* gamesTotal_from_game)
         {                   this->gamesTotal = gamesTotal_from_game; }

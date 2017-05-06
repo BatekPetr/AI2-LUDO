@@ -1,8 +1,7 @@
 #include "game.h"
 #define DEBUG 0
 
-
-game::game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4):
+game::game():
     game_complete(false),
     turn_complete(true),
     game_delay(0),
@@ -23,22 +22,101 @@ game::game(ludo_player &p1, ludo_player &p2, ludo_player &p3, ludo_player &p4):
     // it was needed to use array of Smart pointers of type:
     //                              <std::unique_ptr<ludo_player>>
 
+    std::cout << "Game INITIALIZED." << std::endl;
+    //introduce_players();
+}
+
+//game::game(ludo_player_genetic &p1, ludo_player_genetic &p2, ludo_player_genetic &p3, ludo_player_genetic &p4):
+game::game(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4):
+    game_complete(false),
+    turn_complete(true),
+    game_delay(0),
+    relative(),
+    dice_result(1),
+    rd(),
+    gen(rd()),
+    turnsNo(0),
+    color(3),
+    player_positions({-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}),
+    winStats({0,0,0,0}),
+    gamesTotal(0)
+{
+    // players is array of Smart pointer to specialized players
+    // specialized players are subplasses of the base class <ludo_player>
+    // vector <players> is holding pointer to each player
+    // in order to put into one vector of base class different sublasses
+    // it was needed to use array of Smart pointers of type:
+    //                              <std::unique_ptr<ludo_player>>
+    /*
     this->players.emplace_back(&p1);
     this->players.emplace_back(&p2);
     this->players.emplace_back(&p3);
     this->players.emplace_back(&p4);
+    */
+
+    this->players.push_back(p1);
+    this->players.push_back(p2);
+    this->players.push_back(p3);
+    this->players.push_back(p4);
 
     std::cout << "Game INITIALIZED." << std::endl;
     introduce_players();
 }
 
+game::game(ludo_player_genetic *p1, ludo_player_genetic *p2,\
+           ludo_player_genetic *p3, ludo_player_genetic *p4):
+    game_complete(false),
+    turn_complete(true),
+    game_delay(0),
+    relative(),
+    dice_result(1),
+    rd(),
+    gen(rd()),
+    turnsNo(0),
+    color(3),
+    player_positions({-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}),
+    winStats({0,0,0,0}),
+    gamesTotal(0)
+{
+    this->genetic_players.push_back(p1);
+    this->genetic_players.push_back(p2);
+    this->genetic_players.push_back(p3);
+    this->genetic_players.push_back(p4);
+
+    //Set active players
+    for (int i = 0; i < genetic_players.size(); ++i)
+        this->players.push_back(genetic_players[i]);
+
+    std::cout << "Game INITIALIZED." << std::endl;
+    introduce_players();
+}
+
+
+void game::set_test_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4)
+{
+    this->test_players.push_back(p1);
+    this->test_players.push_back(p2);
+    this->test_players.push_back(p3);
+    this->test_players.push_back(p4);
+}
+
+void game::set_active_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4)
+{
+    this->players[0] = p1;
+    this->players[1] = p2;
+    this->players[2] = p3;
+    this->players[3] = p4;
+}
+
+
 void game::introduce_players()
 {
     std::cout << "Players in the game are: " << std::endl;
-    std::cout << "Green: " << players[0]->say_hi() << std::endl;
-    std::cout << "Yellow: " << players[0]->say_hi() << std::endl;
-    std::cout << "Blue: " << players[0]->say_hi() << std::endl;
-    std::cout << "Red: " << players[0]->say_hi() << std::endl;
+    std::cout << "Green:  "; players[0]->say_hi(); std::cout << std::endl;
+    std::cout << "Yellow: "; players[1]->say_hi(); std::cout << std::endl;
+    std::cout << "Blue:   "; players[2]->say_hi(); std::cout << std::endl;
+    std::cout << "Red:    "; players[3]->say_hi(); std::cout << std::endl;
+}
 
 
 void game::reset(){
@@ -219,7 +297,7 @@ void game::movePiece(int relative_piece){
         if(relative_pos == 99)
         {
             // selected relative piece is already at the goal
-            std::cout << "I tought this would be it ";
+            //std::cout << "I tought this would be it ";
         }
         /* //Probably not needed in new indexing
         else if(relative_pos == 51){ //if people land on 51, they shouldn't be sent to goal stretch
@@ -426,7 +504,7 @@ void game::run() {
    std::cout << "Player " << color << " WON!" << std::endl;
 
 #else
-    std::ofstream ofs ("RunningStats.txt", std::ofstream::app);
+    std::ofstream ofs ("running_stats.txt", std::ofstream::out);
 
     for(int i = 1; i < GAMES_NO + 1; ++i)
     {
@@ -442,19 +520,76 @@ void game::run() {
             //std::cout << "Game complete." << std::endl;
         }
 
-        if (i % 10000 == 0 )
+        if (i % 1000 == 0)
         {
-            // zero out winning statistics
-            for(int j = 0; j < 4; j++)
-                winStats[j] = 0;
-        }
-        else if (i % 10000 == 1000)
-        {
+            // every (2i)*1000 (even 1000s) of games evaluate best player performance
+            // against random opponents
+            // and afterwards change random players to last genetic ones for further evolution
+            if ((i / 1000)%2 == 0)
+            {
+                // save winning statistics
+                for(int j = 0; j < 4; j++)
+                {
+                    ofs << winStats[j] << " ";
+                }
+                ofs << std::endl;
+
+                players.clear();
+                // Put genetic players back into play
+                for (int j = 0; j < 4; ++j)
+                {
+                    players.push_back(genetic_players[j]);
+                }
+
+                // clear substitudes_bench
+                //substitudes_bench.clear();
+
+                //players[1] = test_players[1];
+
+
+            }
+            // every (2i+1)*1000 evaluate game play of 4 genetic players and create new offsprings
+            // And change 3 worst players to random ones for the next 1000 test games
+            else // ((i / 1000)%2 != 0)
+            {
+                // generate new offsprings
+                // this does not affect testing against random opponents, since the best player
+                // from previous 1000 games is left intact and selected for testing based on
+                // winning statistics
+                crossover();
+                mutation();
+
+                int best, second_best;
+                // Find best player for testing it against random opponents in the next set of 1000 games
+                find_2_best_players(best, second_best);
+
+                // Change genetic players for testing ones, keep only best genetic player
+                // Save pointers to all genetic players to be able to recover them for
+                // further evolution
+                ludo_player* best_player = players[best];
+                players.clear();
+                players.push_back(best_player);
+                for (int j = 1; j < 4; ++j)
+                {
+                    players.push_back(test_players[j]);
+                }
+
+
+            }
+
             std::cout << "After game " << i << ": ";
             for(int j = 0; j < 3; j++)
                 std::cout << winStats[j]/1000.0 << ", ";
             std::cout << winStats[3]/1000.0 << std::endl;
 
+            // zero out winning statistics
+            for(int j = 0; j < 4; j++)
+            {
+                winStats[j] = 0;
+            }
+
+            // introduce player for the next set of 1000 games
+            introduce_players();
         }
         reset();
     }
@@ -464,4 +599,149 @@ void game::run() {
 
     emit close();
     QThread::exit();
+}
+
+void game::find_2_best_players(int &best, int &second_best)
+{
+    int best_score = INT_MIN;
+    int second_best_score = INT_MIN;
+    best = 0;
+    second_best = 0;
+
+    for (int i = 0; i < players.size(); ++i)
+    {
+        if(winStats[i] > best_score)
+        {
+            second_best = best;
+            second_best_score = best_score;
+            best = i;
+            best_score = winStats[i];
+        }
+        else if (winStats[i] > second_best_score)
+        {
+            second_best = i;
+            second_best_score = winStats[i];
+        }
+    }
+}
+
+void game::find_2_worst_players(int &worst, int &second_worst)
+{
+    int worst_score = INT_MAX;
+    int second_worst_score = INT_MAX;
+    worst = 0;
+    second_worst = 0;
+
+    for (int i = 0; i < players.size(); ++i)
+    {
+        if(winStats[i] < worst_score)
+        {
+            second_worst = worst;
+            second_worst_score = worst_score;
+            worst = i;
+            worst_score = winStats[i];
+        }
+        else if (winStats[i] < second_worst_score)
+        {
+            second_worst = i;
+            second_worst_score = winStats[i];
+        }
+    }
+}
+
+void game::crossover()
+{
+    int best, second_best;
+    find_2_best_players(best, second_best);
+    std::cout << "2 best players are: " << best << ", " << second_best << std::endl;
+
+    //std::vector<double> best_genes = players[best]->get_genes();
+    //std::vector<double> second_best_genes = players[best]->get_genes();
+
+    int worst, second_worst;
+    find_2_worst_players(worst, second_worst);
+    std::cout << "2 worst players are: " << worst << ", " << second_worst << std::endl;
+
+    std::uniform_real_distribution<double> uniform(0.0, 1.0);
+
+    //DEBUG
+    //std::cout << "Genes size: " << genetic_players[0]->genes.size() << std::endl;
+
+    for (size_t i = 0; i < genetic_players[0]->genes.size(); ++i)
+    {
+        double crossover_eps = uniform(gen);
+        if (crossover_eps < 0.2)
+        {
+            genetic_players[worst]->genes[i] = genetic_players[best]->genes[i];
+            genetic_players[second_worst]->genes[i] = genetic_players[second_best]->genes[i];
+        }
+        else
+        {
+            genetic_players[second_worst]->genes[i] = genetic_players[best]->genes[i];
+            genetic_players[worst]->genes[i] = genetic_players[second_best]->genes[i];
+        }
+    }
+
+    /*
+    for (size_t i = 0; i < players[0].genes.size(); ++i)
+    {
+        double crossover_eps = uniform(gen);
+        if (crossover_eps < 0.3)
+        {
+            players[worst].genes[i] = players[best].genes[i];
+            players[second_worst].genes[i] = players[second_best].genes[i];
+        }
+        else
+        {
+            players[second_worst].genes[i] = players[best].genes[i];
+            players[worst].genes[i] = players[second_best].genes[i];
+        }
+    }
+    */
+
+}
+
+void game::mutation()
+{
+    int worst, second_worst;
+    find_2_worst_players(worst, second_worst);
+
+    std::uniform_real_distribution<double> uniform(0.0, 1.0);
+    std::normal_distribution<double> normal(0.0, 0.1);
+
+    for (size_t i = 0; i < genetic_players[0]->genes.size(); ++i)
+    {
+        double mutation_eps1 = uniform(gen);
+        if (mutation_eps1 < 0.5)
+        {
+            double mutation = normal(gen);
+            genetic_players[worst]->genes[i] += mutation;
+        }
+
+        double mutation_eps2 = uniform(gen);
+        if (mutation_eps2 < 0.5)
+        {
+            double mutation = normal(gen);
+            genetic_players[second_worst]->genes[i] += mutation;
+        }
+    }
+
+    /*
+    for (size_t i = 0; i < players[0].genes.size(); ++i)
+    {
+        double mutation_eps1 = uniform(gen);
+        if (mutation_eps1 < 0.5)
+        {
+            double mutation = normal(gen);
+            players[worst].genes[i] += mutation;
+        }
+
+        double mutation_eps2 = uniform(gen);
+        if (mutation_eps2 < 0.5)
+        {
+            double mutation = normal(gen);
+            players[second_worst].genes[i] += mutation;
+        }
+    }
+    */
 }

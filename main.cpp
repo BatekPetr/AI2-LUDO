@@ -25,14 +25,30 @@ int main(int argc, char *argv[]){
 
 
     //instanciate the players here
-    ludo_player_genetic p1({1,0,0,0,0,0,0});
+    //ludo_player_genetic p1({0.687911, -0.664374, -0.650685, 1.85043, -2.63294, 0.248475, -2.93138});
+    //ludo_player_genetic p1({0.30707, 0.393183, 1.71379, 2.65896, -2.87579, 1.0961, -3.36521});
+    //ludo_player_genetic p1({0.178733, 1.19993, 0.9947, 4.02446, -4.0747, 3.4376, -8.43951});
+    //ludo_player_genetic p1({0.680486, 2.49537, 0.977971, 6.61366, -5.81463, 5.03729, -10.0762});
+    ludo_player_genetic p1({0.831189, -0.571975, 0.0712427, 0.243404, -0.27479, 0.0607256, -0.400426});
+    //ludo_player_genetic p1({1,0,0,0,0,0,0});
     ludo_player_genetic p2({0,1,0,0,0,0,0});
     ludo_player_genetic p3({0,0,1,0,0,0,0});
     ludo_player_genetic p4({0,0,0,1,0,0,0});
+    game g(&p1,&p2,&p3,&p4);
 
-    game g;
 
-    
+
+
+    ludo_player_random rd_p1;
+    ludo_player_random rd_p2;
+    ludo_player_random rd_p3;
+    ludo_player_random rd_p4;
+
+    //game g(&p1,&rd_p2,&rd_p3,&rd_p4);
+    g.set_test_players(&rd_p1, &rd_p2, &rd_p3, &rd_p4);
+    //game g;
+
+
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));
 
     //set up for each player
@@ -55,6 +71,7 @@ int main(int argc, char *argv[]){
     QObject::connect(&p4,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
     QObject::connect(&g, SIGNAL(player4_end(std::vector<int>)),    &p4,SLOT(post_game_analysis(std::vector<int>)));
     QObject::connect(&p4,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
+
 
 #if MODE==0
     // Add a GUI <-- remove the '/' to uncomment block

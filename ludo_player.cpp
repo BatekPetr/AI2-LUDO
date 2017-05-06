@@ -110,7 +110,7 @@ std::vector<int> ludo_player::move_piece(const std::vector<int>& state,\
         if(relative_pos == 99)
         {
             // selected relative piece is already at the goal
-            std::cout << "I tought this would be it ";
+            //std::cout << "I tought this would be it ";
         }
 
         // Update relative index by score from dice roll

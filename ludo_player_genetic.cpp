@@ -3,13 +3,25 @@
 ludo_player_genetic::ludo_player_genetic():ludo_player_random()
 {
     // Change player type from parent class
-    this->player_type = "genetic";
+    this->player_type = "Genetic";
 }
 
 ludo_player_genetic::ludo_player_genetic(std::vector<double> genes):ludo_player_random()
 {
-    this->player_type = "genetic";
+    this->player_type = "Genetic";
     this->genes = genes;
+}
+
+void ludo_player_genetic::say_hi()
+{
+    std::cout << this->player_type;
+
+    std::cout << ": [ ";
+    for (int i = 0; i < genes.size() - 1; ++i)
+    {
+        std::cout << this->genes[i] << ", ";
+    }
+    std::cout << this->genes[genes.size() - 1] << " ]";
 }
 
 int ludo_player_genetic::make_decision()
