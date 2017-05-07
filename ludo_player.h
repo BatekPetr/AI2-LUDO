@@ -61,8 +61,8 @@ signals:
     void select_piece(int);
     void turn_complete(bool);
 public slots:
-    void start_turn(positions_and_dice relative);
-    void post_game_analysis(std::vector<int> relative_pos);
+    int start_turn(positions_and_dice relative);
+    bool post_game_analysis(std::vector<int> relative_pos);
 };
 
 #endif // LUDO_PLAYER_H

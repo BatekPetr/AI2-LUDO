@@ -14,6 +14,7 @@ void ludo_player::say_hi()
     std::cout << this->player_type;
 }
 
+
 int ludo_player::make_decision()
 {
     /*
@@ -59,15 +60,17 @@ int ludo_player::make_decision()
     return -1;
 }
 
-void ludo_player::start_turn(positions_and_dice relative){
+int ludo_player::start_turn(positions_and_dice relative){
     pos_start_of_turn = relative.pos;
     dice_roll = relative.dice;
     int decision = make_decision();
     //std::vector<int> new_relative_positions = move_piece(decision);
-    emit select_piece(decision);
+    //emit select_piece(decision);
+
+    return decision;
 }
 
-void ludo_player::post_game_analysis(std::vector<int> relative_pos){
+bool ludo_player::post_game_analysis(std::vector<int> relative_pos){
     pos_end_of_turn = relative_pos;
     bool game_complete = true;
     for(int i = 0; i < 4; ++i){
@@ -75,7 +78,9 @@ void ludo_player::post_game_analysis(std::vector<int> relative_pos){
             game_complete = false;
         }
     }
-    emit turn_complete(game_complete);
+    //emit turn_complete(game_complete);
+
+    return game_complete;
 }
 
 /*

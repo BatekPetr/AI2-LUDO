@@ -91,7 +91,6 @@ game::game(ludo_player_genetic *p1, ludo_player_genetic *p2,\
     introduce_players();
 }
 
-
 void game::set_test_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4)
 {
     this->test_players.push_back(p1);
@@ -232,6 +231,7 @@ int game::next_turn(unsigned int delay = 0){
     emit set_dice_result(dice_result);
 
     msleep(delay);
+    /*
     switch(color){
         case 0:
             emit player1_start(relative);
@@ -247,6 +247,9 @@ int game::next_turn(unsigned int delay = 0){
         default:
             break;
     }
+    */
+    int selected_piece = players[color]->start_turn(relative);
+    movePiece(selected_piece);
 
     return 0;
 }
@@ -260,6 +263,7 @@ void game::movePiece(int relative_piece){
     if (relative_piece == -1)
     {
         std::vector<int> new_relative = relativePosition();
+        /*
         switch(color){
             case 0:
                 emit player1_end(new_relative);
@@ -275,6 +279,10 @@ void game::movePiece(int relative_piece){
             default:
                 break;
         }
+        */
+        bool game_complete = players[color]->post_game_analysis(new_relative);
+        turnComplete(game_complete);
+
         return;
     }
 
@@ -405,6 +413,7 @@ void game::movePiece(int relative_piece){
         player_positions[fixed_piece] = target_pos;
     }
     std::vector<int> new_relative = relativePosition();
+    /*
     switch(color){
         case 0:
             emit player1_end(new_relative);
@@ -420,6 +429,10 @@ void game::movePiece(int relative_piece){
         default:
             break;
     }
+    */
+    bool game_complete = players[color]->post_game_analysis(new_relative);
+    turnComplete(game_complete);
+
     emit update_graphics(player_positions);
 }
 
@@ -505,6 +518,7 @@ void game::run() {
 
 #else
     std::ofstream ofs ("running_stats.txt", std::ofstream::out);
+    std::ofstream ofs_chromozome("chromozome_development.txt", std::ofstream::out);
 
     for(int i = 1; i < GAMES_NO + 1; ++i)
     {
@@ -566,7 +580,16 @@ void game::run() {
                 // Change genetic players for testing ones, keep only best genetic player
                 // Save pointers to all genetic players to be able to recover them for
                 // further evolution
-                ludo_player* best_player = players[best];
+                ludo_player_genetic* best_player = dynamic_cast<ludo_player_genetic*>(players[best]);
+
+                // Save values for genes in chromozome
+                for (int j = 1; j < best_player->genes.size(); ++j)
+                {
+                    ofs_chromozome << best_player->genes[j] << "    ";
+                }
+                ofs_chromozome << std::endl;
+
+                // Set test players active
                 players.clear();
                 players.push_back(best_player);
                 for (int j = 1; j < 4; ++j)
@@ -595,6 +618,8 @@ void game::run() {
     }
 
     ofs.close();
+    ofs_chromozome.close();
+
 #endif
 
     emit close();
@@ -670,7 +695,7 @@ void game::crossover()
     for (size_t i = 0; i < genetic_players[0]->genes.size(); ++i)
     {
         double crossover_eps = uniform(gen);
-        if (crossover_eps < 0.2)
+        if (crossover_eps < 0.1)
         {
             genetic_players[worst]->genes[i] = genetic_players[best]->genes[i];
             genetic_players[second_worst]->genes[i] = genetic_players[second_best]->genes[i];
@@ -707,19 +732,19 @@ void game::mutation()
     find_2_worst_players(worst, second_worst);
 
     std::uniform_real_distribution<double> uniform(0.0, 1.0);
-    std::normal_distribution<double> normal(0.0, 0.1);
+    std::normal_distribution<double> normal(0.0, 0.001);
 
     for (size_t i = 0; i < genetic_players[0]->genes.size(); ++i)
     {
         double mutation_eps1 = uniform(gen);
-        if (mutation_eps1 < 0.5)
+        if (mutation_eps1 < 0.1)
         {
             double mutation = normal(gen);
             genetic_players[worst]->genes[i] += mutation;
         }
 
         double mutation_eps2 = uniform(gen);
-        if (mutation_eps2 < 0.5)
+        if (mutation_eps2 < 0.1)
         {
             double mutation = normal(gen);
             genetic_players[second_worst]->genes[i] += mutation;
