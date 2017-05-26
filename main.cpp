@@ -25,48 +25,30 @@ int main(int argc, char *argv[]){
 
 
     //instanciate the players here
-    //ludo_player_genetic p1({0.687911, -0.664374, -0.650685, 1.85043, -2.63294, 0.248475, -2.93138});
-    //ludo_player_genetic p1({0.30707, 0.393183, 1.71379, 2.65896, -2.87579, 1.0961, -3.36521});
-    //ludo_player_genetic p1({0.178733, 1.19993, 0.9947, 4.02446, -4.0747, 3.4376, -8.43951});
-    //ludo_player_genetic p1({0.680486, 2.49537, 0.977971, 6.61366, -5.81463, 5.03729, -10.0762});
-    //ludo_player_genetic p1({0.831189, -0.571975, 0.0712427, 0.243404, -0.27479, 0.0607256, -0.400426});
-    ludo_player_genetic p1({0.995752, 0.000142775, 0.000462792, 0.00569885, -0.00330003, 2.61931e-05, -0.00863978 });
-    ludo_player_genetic p2({0.992881, 0.000142775, 0.000462792, 0.00569885, -0.00330003, 2.61931e-05, -0.00863978});
-    ludo_player_genetic p3({0.992881, 0.000142775, 0.000462792, 0.00569885, -0.00330003, 2.61931e-05, -0.00863978});
-    ludo_player_genetic p4({0.992542, 0.000142775, 0.000462792, 0.00569885, -0.00330003, 2.61931e-05, -0.00863978});
+
+    // Player after 500 evolution episodes
+    //ludo_player_genetic p1({0.0972394, 0.272931, 0.236266, 0.399862, -0.83557, -0.345521, -1.24923});
+    /*
+    ludo_player_genetic p1({1,0,0,0,0,0,0});
+    ludo_player_genetic p2({0,1,0,0,0,0,0});
+    ludo_player_genetic p3({0,0,1,0,0,0,0});
+    ludo_player_genetic p4({0,0,0,1,0,0,0});
+    */
+    ludo_player_genetic p1({0.744648, 0.117856, 0.487484, 1.40823, -0.632367, 1.03243, -2.21635});
+    ludo_player_genetic p2({0.684924, 0.188297, 0.744413, 1.33665, -0.538997, 1.03243, -2.21635 });
+    ludo_player_genetic p3({0.95887, 0.16744, 0.487484, 1.35318, -0.632367, 1.03676, -2.21635});
+    ludo_player_genetic p4({0.684924, 0.117856, 0.487484, 1.25273, -0.584465, 1.03243, -2.21635});
     game g(&p1,&p2,&p3,&p4);
 
 
     ludo_player_random rd_p1;
-    ludo_player_random rd_p2;
-    ludo_player_random rd_p3;
-    ludo_player_random rd_p4;
+    ludo_player rd_p2;
+    ludo_player_expert rd_p3;
+    ludo_player_expert rd_p4;
     g.set_test_players(&rd_p1, &rd_p2, &rd_p3, &rd_p4);
 
 
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));
-
-    //set up for each player
-    //QObject::connect(&g, SIGNAL(player1_start(positions_and_dice)),&p1,SLOT(start_turn(positions_and_dice)));
-    //QObject::connect(&p1,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
-    //QObject::connect(&g, SIGNAL(player1_end(std::vector<int>)),    &p1,SLOT(post_game_analysis(std::vector<int>)));
-    //QObject::connect(&p1,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
-
-    //QObject::connect(&g, SIGNAL(player2_start(positions_and_dice)),&p2,SLOT(start_turn(positions_and_dice)));
-    //QObject::connect(&p2,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
-    //QObject::connect(&g, SIGNAL(player2_end(std::vector<int>)),    &p2,SLOT(post_game_analysis(std::vector<int>)));
-    //QObject::connect(&p2,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
-
-    //QObject::connect(&g, SIGNAL(player3_start(positions_and_dice)),&p3,SLOT(start_turn(positions_and_dice)));
-    //QObject::connect(&p3,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
-    //QObject::connect(&g, SIGNAL(player3_end(std::vector<int>)),    &p3,SLOT(post_game_analysis(std::vector<int>)));
-    //QObject::connect(&p3,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
-
-    //QObject::connect(&g, SIGNAL(player4_start(positions_and_dice)),&p4,SLOT(start_turn(positions_and_dice)));
-    //QObject::connect(&p4,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
-    //QObject::connect(&g, SIGNAL(player4_end(std::vector<int>)),    &p4,SLOT(post_game_analysis(std::vector<int>)));
-    //QObject::connect(&p4,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
-
 
 #if MODE==0
     // Add a GUI <-- remove the '/' to uncomment block

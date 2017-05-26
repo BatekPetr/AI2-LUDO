@@ -305,7 +305,7 @@ void game::movePiece(int relative_piece){
         if(relative_pos == 99)
         {
             // selected relative piece is already at the goal
-            //std::cout << "I tought this would be it ";
+            std::cout << "I tought this would be it ";
         }
         /* //Probably not needed in new indexing
         else if(relative_pos == 51){ //if people land on 51, they shouldn't be sent to goal stretch
@@ -583,7 +583,7 @@ void game::run() {
                 ludo_player_genetic* best_player = dynamic_cast<ludo_player_genetic*>(players[best]);
 
                 // Save values for genes in chromozome
-                for (int j = 1; j < best_player->genes.size(); ++j)
+                for (int j = 0; j < best_player->genes.size(); ++j)
                 {
                     ofs_chromozome << best_player->genes[j] << "    ";
                 }
@@ -592,7 +592,7 @@ void game::run() {
                 // Set test players active
                 players.clear();
                 players.push_back(best_player);
-                for (int j = 1; j < 4; ++j)
+                for (int j = 0; j < 4; ++j)
                 {
                     players.push_back(test_players[j]);
                 }
@@ -695,7 +695,7 @@ void game::crossover()
     for (size_t i = 0; i < genetic_players[0]->genes.size(); ++i)
     {
         double crossover_eps = uniform(gen);
-        if (crossover_eps < 0.1)
+        if (crossover_eps < 0.2)
         {
             genetic_players[worst]->genes[i] = genetic_players[best]->genes[i];
             genetic_players[second_worst]->genes[i] = genetic_players[second_best]->genes[i];
@@ -732,19 +732,19 @@ void game::mutation()
     find_2_worst_players(worst, second_worst);
 
     std::uniform_real_distribution<double> uniform(0.0, 1.0);
-    std::normal_distribution<double> normal(0.0, 0.001);
+    std::normal_distribution<double> normal(0.0, 0.1);
 
     for (size_t i = 0; i < genetic_players[0]->genes.size(); ++i)
     {
         double mutation_eps1 = uniform(gen);
-        if (mutation_eps1 < 0.1)
+        if (mutation_eps1 < 0.5)
         {
             double mutation = normal(gen);
             genetic_players[worst]->genes[i] += mutation;
         }
 
         double mutation_eps2 = uniform(gen);
-        if (mutation_eps2 < 0.1)
+        if (mutation_eps2 < 0.5)
         {
             double mutation = normal(gen);
             genetic_players[second_worst]->genes[i] += mutation;

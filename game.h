@@ -2,7 +2,7 @@
 #define GAME_H
 
 #define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
-#define GAMES_NO 1000000
+#define GAMES_NO 10000000
 
 #include <vector>
 #include <random>
