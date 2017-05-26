@@ -21,8 +21,11 @@ SOURCES += main.cpp\
     ludo_player_aggressive.cpp \
     ludo_player_defensive.cpp \
     ludo_player_expert.cpp \
-    ludo_player_qlearning.cpp \
-    ludo_player_genetic.cpp
+    ludo_player_genetic.cpp \
+    ludo_player_michael.cpp \
+    ludo_player_bjarki.cpp \
+    individual.cpp \
+    ludo_player_jesper.cpp
 
 HEADERS  += dialog.h \
     game.h \
@@ -33,8 +36,11 @@ HEADERS  += dialog.h \
     ludo_player_aggressive.h \
     ludo_player_defensive.h \
     ludo_player_expert.h \
-    ludo_player_qlearning.h \
-    ludo_player_genetic.h
+    ludo_player_genetic.h \
+    ludo_player_michael.h \
+    ludo_player_bjarki.h \
+    individual.h \
+    ludo_player_jesper.h
 
 FORMS    += dialog.ui
 

@@ -92,6 +92,7 @@ game::game(ludo_player_genetic *p1, ludo_player_genetic *p2,\
 }
 
 
+
 void game::set_test_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4)
 {
     this->test_players.push_back(p1);
@@ -522,6 +523,7 @@ void game::run() {
 
         if (i % 1000 == 0)
         {
+            /*
             // every (2i)*1000 (even 1000s) of games evaluate best player performance
             // against random opponents
             // and afterwards change random players to last genetic ones for further evolution
@@ -576,11 +578,19 @@ void game::run() {
 
 
             }
+            */
 
             std::cout << "After game " << i << ": ";
             for(int j = 0; j < 3; j++)
                 std::cout << winStats[j]/1000.0 << ", ";
             std::cout << winStats[3]/1000.0 << std::endl;
+
+            // save winning statistics
+            for(int j = 0; j < 4; j++)
+            {
+                ofs << winStats[j] << " ";
+            }
+            ofs << std::endl;
 
             // zero out winning statistics
             for(int j = 0; j < 4; j++)

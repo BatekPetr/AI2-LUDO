@@ -9,6 +9,14 @@
 #include "ludo_player_defensive.h"
 #include "ludo_player_expert.h"
 #include "ludo_player_genetic.h"
+#include "ludo_player_michael.h"
+#include "ludo_player_bjarki.h"
+
+//Jesper includes
+#include "ludo_player_jesper.h"
+#include "floatfann.h"
+#include <fann_cpp.h>
+#include "individual.h"
 
 
 #include "positions_and_dice.h"
@@ -29,23 +37,58 @@ int main(int argc, char *argv[]){
     //ludo_player_genetic p1({0.30707, 0.393183, 1.71379, 2.65896, -2.87579, 1.0961, -3.36521});
     //ludo_player_genetic p1({0.178733, 1.19993, 0.9947, 4.02446, -4.0747, 3.4376, -8.43951});
     //ludo_player_genetic p1({0.680486, 2.49537, 0.977971, 6.61366, -5.81463, 5.03729, -10.0762});
-    ludo_player_genetic p1({0.831189, -0.571975, 0.0712427, 0.243404, -0.27479, 0.0607256, -0.400426});
+    //ludo_player_genetic p1({0.831189, -0.571975, 0.0712427, 0.243404, -0.27479, 0.0607256, -0.400426});
+
+
+    ludo_player_genetic p3({0.1060, 0.2681, 0.2329, 1.2725, -0.3701, 0.5848, -1.0245});
     //ludo_player_genetic p1({1,0,0,0,0,0,0});
+    /*
     ludo_player_genetic p2({0,1,0,0,0,0,0});
     ludo_player_genetic p3({0,0,1,0,0,0,0});
     ludo_player_genetic p4({0,0,0,1,0,0,0});
+    */
+    //game g(&p1,&p2,&p3,&p4);
+
+    //Bjarki
+    ludo_player_bjarki p1;
+
+    std::vector<double> wts = {0.530612, -0.925832, -0.252766, -0.756744, -0.439359, -0.528879, 0.761011, -0.448725, 0.970962, 0.590247, -0.692254};
+    p1.setWeights(wts);
+
+    //ludo_player_bjarki p2;
+
+    //std::vector<double> wts = {0.530612, -0.925832, -0.252766, -0.756744, -0.439359, -0.528879, 0.761011, -0.448725, 0.970962, 0.590247, -0.692254};
+    //p2.setWeights(wts);
+
+
+    //Michaels
+    ludo_player_michael p2;
+    p2.loadQtable("/media/petr/HDD/SDU/RMAI2/LUDO/Ludo_from_GitLab/ludo/qtablefile");
+    p2.update_qtable = true;
+
+/*
+    ludo_player_michael p3;
+    p3.loadQtable("/media/petr/HDD/SDU/RMAI2/LUDO/Ludo_from_GitLab/ludo/qtablefile");
+    p3.update_qtable = true;
+
+    ludo_player_michael p4;
+    p4.loadQtable("/media/petr/HDD/SDU/RMAI2/LUDO/Ludo_from_GitLab/ludo/qtablefile");
+    p4.update_qtable = true;
+*/
+    //Jesper
+    // The parameters in the constructor of individual is not important since you just load in your own network.
+    setlocale(LC_ALL, "C");
+    ludo_player_jesper p4;
+    individual* tactic=new individual(-1, 1,5,0);
+    tactic->ann.create_from_file("/media/petr/HDD/SDU/RMAI2/LUDO/Ludo_from_GitLab/ludo/The_best_net.net");
+    p4.change_individual(tactic);
+
+   // ludo_player_random p3;
+  //  ludo_player_random p4;
     game g(&p1,&p2,&p3,&p4);
 
-
-
-
-    ludo_player_random rd_p1;
-    ludo_player_random rd_p2;
-    ludo_player_random rd_p3;
-    ludo_player_random rd_p4;
-
     //game g(&p1,&rd_p2,&rd_p3,&rd_p4);
-    g.set_test_players(&rd_p1, &rd_p2, &rd_p3, &rd_p4);
+    //g.set_test_players(&rd_p1, &rd_p2, &rd_p3, &rd_p4);
     //game g;
 
 
@@ -96,7 +139,7 @@ int main(int argc, char *argv[]){
 
     ofs << " ================== LUDO Game running statistics ================== " << std::endl;
     ofs << " ------------------------------------------------------------------ " << std::endl;
-    ofs << " Players: " << p1.player_type << " , " << p2.player_type << " , "\
+    //ofs << " Players: " << p1.player_type << " , " << p2.player_type << " , "\
                                << p3.player_type << " , " << p4.player_type << " , " << std::endl;
     //ofs << " ------------------------------------------------------------------ " << std::endl;
 
@@ -111,7 +154,7 @@ int main(int argc, char *argv[]){
     std::cout << "Total games played: " << g.gamesTotal << std::endl;
     std::cout << "Victory stats: " << std::endl;
     std::cout << " ------------------------------------------------------- " << std::endl;
-    std::cout << " Players | " << p1.player_type << " | " << p2.player_type << " | "\
+    //std::cout << " Players | " << p1.player_type << " | " << p2.player_type << " | "\
                                << p3.player_type << " | " << p4.player_type << " | " << std::endl;
     std::cout << " ------------------------------------------------------- " << std::endl;
     std::cout << "Stats: [";

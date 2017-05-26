@@ -13,6 +13,8 @@
 #include <fstream>      // std::ofstream
 #include "ludo_player.h"
 #include "ludo_player_genetic.h"
+#include "ludo_player_michael.h"
+#include "ludo_player_jesper.h"
 #include "positions_and_dice.h"
 
 #include <memory> // Library for using smart pointers to subclasses of one superclass
