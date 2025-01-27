@@ -23,6 +23,11 @@ sudo apt update
 sudo apt install build-essential qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools g++
 ```
 
+### Install FANN Library
+```bash
+sudo apt install libfann-dev
+```
+
 ### Clone Repo, Build and Run
 
 ```bash
