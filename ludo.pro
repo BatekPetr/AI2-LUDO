@@ -38,6 +38,12 @@ HEADERS  += dialog.h \
 
 FORMS    += dialog.ui
 
+DISTFILES += star.png \
+             globe.png
+
 LIBS += -lfann
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wunused
+
+# Copy image to the build directory
+QMAKE_POST_LINK += cp $$PWD/images/* $$OUT_PWD

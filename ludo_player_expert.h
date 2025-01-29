@@ -2,6 +2,7 @@
 #define LUDO_PLAYER_EXPERT_H
 #include <QObject>
 #include <iostream>
+#include <random>
 #include "positions_and_dice.h"
 #include "ludo_player.h"
 

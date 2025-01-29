@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define MODE 1 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
-#define GAMES_NO 10000000
+#define MODE 0 // 0 - single game with GUI; 1 - multiple games, no GUI, with Statistics
+#define GAMES_NO 10000
 
 #include <vector>
 #include <random>

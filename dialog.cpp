@@ -92,8 +92,8 @@ Dialog::Dialog(QWidget *this_parent) :
     for(int dy=710; dy>=430; dy-=offset)
         fieldPos.push_back(QPointF(470,dy));
 
-    QImage globe_img("../globe.png");//http://www.clker.com/clipart-world-black-and-white.html
-    QImage star_img("../star.png");  //http://www.clker.com/clipart-2568.html
+    QImage globe_img("./globe.png");//http://www.clker.com/clipart-world-black-and-white.html
+    QImage star_img("./star.png");  //http://www.clker.com/clipart-2568.html
 //    QGraphicsPixmapItem globe( QPixmap::fromImage(QImage("../globe.png")));
 //    QGraphicsPixmapItem star( QPixmap::fromImage(QImage("../star.png")));
     for(size_t c = 0; c < base_colors.size(); ++c){

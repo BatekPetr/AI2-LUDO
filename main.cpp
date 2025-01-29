@@ -21,6 +21,7 @@ Q_DECLARE_METATYPE( positions_and_dice )
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     qRegisterMetaType<positions_and_dice>();
+    qRegisterMetaType<std::vector<int>>();
 
 
 
