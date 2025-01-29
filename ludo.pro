@@ -39,7 +39,8 @@ HEADERS  += src/dialog.h \
 FORMS    += dialog.ui
 
 DISTFILES += images/star.png \
-             images/globe.png
+             images/globe.png \
+             Doxyfile
 
 LIBS += -lfann
 
