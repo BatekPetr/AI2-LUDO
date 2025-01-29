@@ -4,11 +4,14 @@ ludo_player_random::ludo_player_random():ludo_player(),
     rd(),
     gen(rd())
 {
+    // Change player type from parent class
+    this->player_type = "Random";
 }
 
 int ludo_player_random::make_decision(){
 
-    std::vector<int> candidates = get_move_candidates();
+    std::vector<int> candidates = get_move_candidates\
+                                    (pos_start_of_turn, dice_roll);
 
     // if there is no possible move for the player
     // return -1 as relative_piece in PLAYER relative position ARRAY

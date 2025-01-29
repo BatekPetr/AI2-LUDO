@@ -14,9 +14,7 @@ class ludo_player_aggressive : public ludo_player_random {
     Q_OBJECT
 private:
     int make_decision(); // polymorphed function
-    std::vector<int> filter_out_candidates\
-                    (const std::vector<int>& candidates,\
-                     const std::vector<int>& relative_player_positions);
+
 public:
     ludo_player_aggressive();
 };

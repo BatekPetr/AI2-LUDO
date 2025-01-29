@@ -1,8 +1,10 @@
 #include "ludo_player_fast.h"
-#include <map>
+
 
 ludo_player_fast::ludo_player_fast():ludo_player()
 {
+    // Change player type from parent class
+    this->player_type = "Fast";
 }
 
 int ludo_player_fast::make_decision()
@@ -12,7 +14,8 @@ int ludo_player_fast::make_decision()
      * moves available returned by get_move_candidates()
      */
 
-    std::vector<int> candidates = get_move_candidates();
+    std::vector<int> candidates = get_move_candidates\
+                                    (pos_start_of_turn, dice_roll);
 
     // if there is no possible move for the player
     // return -1 as relative_piece in PLAYER relative position ARRAY
