@@ -1,0 +1,6 @@
+<map id="ludo_player_Qlearning" name="ludo_player_Qlearning">
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,173,256"/>
+<area shape="rect" id="node2" href="$classludo__player__expert.html" title=" " alt="" coords="16,155,163,181"/>
+<area shape="rect" id="node3" href="$classludo__player.html" title=" " alt="" coords="40,80,139,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="52,5,127,32"/>
+</map>

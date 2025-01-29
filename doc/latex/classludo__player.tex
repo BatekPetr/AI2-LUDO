@@ -1,0 +1,285 @@
+\hypertarget{classludo__player}{}\doxysection{ludo\+\_\+player Class Reference}
+\label{classludo__player}\index{ludo\_player@{ludo\_player}}
+
+
+{\ttfamily \#include $<$ludo\+\_\+player.\+h$>$}
+
+
+
+Inheritance diagram for ludo\+\_\+player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classludo__player__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ludo\+\_\+player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classludo__player__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classludo__player_a1ffff5b21bcafcc00828ea3c859dc5a7}{start\+\_\+turn}} (\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}} relative)
+\item 
+bool \mbox{\hyperlink{classludo__player_a7ea6e5db6b189463e34dfbe8d3e93436}{post\+\_\+game\+\_\+analysis}} (std\+::vector$<$ int $>$ relative\+\_\+pos)
+\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classludo__player_a28b971f31b9356e9156bf5489bf69b07}{select\+\_\+piece}} (int)
+\item 
+void \mbox{\hyperlink{classludo__player_a186eca28b52909dd86215359fe6c75f1}{turn\+\_\+complete}} (bool)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classludo__player_ac839876d2abafa92d7f0ec292640f173}{ludo\+\_\+player}} ()
+\item 
+virtual void \mbox{\hyperlink{classludo__player_a3de415d2e7bd7ebc70e41c7972c36549}{say\+\_\+hi}} ()
+\item 
+void \mbox{\hyperlink{classludo__player_aae1cc634ff30361a77fb95e79320a834}{set\+\_\+games\+Total}} (int $\ast$games\+Total\+\_\+from\+\_\+game)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classludo__player_a8d7a91f84a9cc99551c8a6fe743bd60c}{player\+\_\+type}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player_ac172bc3238eb23681ade815dc7bdbf49}{genes}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{classludo__player_a20adec314bec5ec84ad30f63c9de91a6}{make\+\_\+decision}} ()
+\item 
+int \mbox{\hyperlink{classludo__player_a473a83517ea2ff55af8681650bb8bf2c}{is\+Occupied}} (int index, const std\+::vector$<$ int $>$ \&relative\+\_\+player\+\_\+positions)
+\item 
+bool \mbox{\hyperlink{classludo__player_a4f146a29fd7f6307c6276322d50a7eab}{is\+Globe}} (int index)
+\item 
+bool \mbox{\hyperlink{classludo__player_a8539729043cb0d51560995ddb31f677d}{is\+Own\+Globe}} (int index)
+\item 
+bool \mbox{\hyperlink{classludo__player_ad14e635c987101abfb6ae796bfc877f5}{is\+Own\+Blockade}} (int index, const std\+::vector$<$ int $>$ \&relative\+\_\+positions)
+\item 
+bool \mbox{\hyperlink{classludo__player_a8af54ff6abda88f2fe1ce62e63dc6006}{dice\+\_\+roll\+\_\+too\+Much}} (int new\+\_\+relative\+\_\+position)
+\item 
+int \mbox{\hyperlink{classludo__player_a36078e651c131edfda9efb80bdf6f4e8}{vulnerable\+By}} (int index, const std\+::vector$<$ int $>$ \&relative\+\_\+positions)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classludo__player_ae905b44680a167c1d86118d896b9eec0}{filter\+\_\+out\+\_\+candidates}} (const std\+::vector$<$ int $>$ \&candidates, const std\+::vector$<$ int $>$ \&relative\+\_\+player\+\_\+positions)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classludo__player_a0c9449c7fffb174de3df9527b224c322}{move\+\_\+piece}} (const std\+::vector$<$ int $>$ \&state, int relative\+\_\+piece, int \mbox{\hyperlink{classludo__player_a89ac1eaa32bff104eb1ccf275a7c0890}{dice\+\_\+roll}})
+\item 
+void \mbox{\hyperlink{classludo__player_a5b93ca5927d452bb6510713c0e49baef}{move\+\_\+start}} (int relative\+\_\+piece, const std\+::vector$<$ int $>$ \&state, std\+::vector$<$ int $>$ \&new\+\_\+state)
+\item 
+void \mbox{\hyperlink{classludo__player_a535a7dc2c61065efbe17707169b48b74}{send\+\_\+them\+\_\+home}} (int relative\+\_\+index, const std\+::vector$<$ int $>$ \&state, std\+::vector$<$ int $>$ \&new\+\_\+state)
+\item 
+int \mbox{\hyperlink{classludo__player_a9f1535f5950a88ffb5a7992ba5aa289b}{is\+Star}} (int index)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classludo__player_a04274d32860bd70ca6595276b4f72861}{get\+\_\+move\+\_\+candidates}} (const std\+::vector$<$ int $>$ \&state, int \mbox{\hyperlink{classludo__player_a89ac1eaa32bff104eb1ccf275a7c0890}{dice\+\_\+roll}})
+\item 
+void \mbox{\hyperlink{classludo__player_a1f47467836dfeec12791c1cc0f4f7f08}{print\+\_\+player\+\_\+piece\+\_\+positions}} ()
+\item 
+void \mbox{\hyperlink{classludo__player_a29a4c557cd769321c9a6f82016b9c043}{print\+\_\+dice\+\_\+roll}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classludo__player_a347a4e99ef74815ed2907d424280d3e3}{pos\+\_\+start\+\_\+of\+\_\+turn}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classludo__player_ac538e8574f091c3d6106eb45f1677b55}{pos\+\_\+end\+\_\+of\+\_\+turn}}
+\item 
+int \mbox{\hyperlink{classludo__player_a89ac1eaa32bff104eb1ccf275a7c0890}{dice\+\_\+roll}}
+\item 
+int $\ast$ \mbox{\hyperlink{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}{games\+Total}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classludo__player_ac839876d2abafa92d7f0ec292640f173}\label{classludo__player_ac839876d2abafa92d7f0ec292640f173}} 
+\index{ludo\_player@{ludo\_player}!ludo\_player@{ludo\_player}}
+\index{ludo\_player@{ludo\_player}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{ludo\_player()}{ludo\_player()}}
+{\footnotesize\ttfamily ludo\+\_\+player\+::ludo\+\_\+player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classludo__player_a8af54ff6abda88f2fe1ce62e63dc6006}\label{classludo__player_a8af54ff6abda88f2fe1ce62e63dc6006}} 
+\index{ludo\_player@{ludo\_player}!dice\_roll\_tooMuch@{dice\_roll\_tooMuch}}
+\index{dice\_roll\_tooMuch@{dice\_roll\_tooMuch}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{dice\_roll\_tooMuch()}{dice\_roll\_tooMuch()}}
+{\footnotesize\ttfamily bool ludo\+\_\+player\+::dice\+\_\+roll\+\_\+too\+Much (\begin{DoxyParamCaption}\item[{int}]{new\+\_\+relative\+\_\+position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_ae905b44680a167c1d86118d896b9eec0}\label{classludo__player_ae905b44680a167c1d86118d896b9eec0}} 
+\index{ludo\_player@{ludo\_player}!filter\_out\_candidates@{filter\_out\_candidates}}
+\index{filter\_out\_candidates@{filter\_out\_candidates}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{filter\_out\_candidates()}{filter\_out\_candidates()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ ludo\+\_\+player\+::filter\+\_\+out\+\_\+candidates (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{candidates,  }\item[{const std\+::vector$<$ int $>$ \&}]{relative\+\_\+player\+\_\+positions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a04274d32860bd70ca6595276b4f72861}\label{classludo__player_a04274d32860bd70ca6595276b4f72861}} 
+\index{ludo\_player@{ludo\_player}!get\_move\_candidates@{get\_move\_candidates}}
+\index{get\_move\_candidates@{get\_move\_candidates}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{get\_move\_candidates()}{get\_move\_candidates()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ ludo\+\_\+player\+::get\+\_\+move\+\_\+candidates (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{state,  }\item[{int}]{dice\+\_\+roll }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a4f146a29fd7f6307c6276322d50a7eab}\label{classludo__player_a4f146a29fd7f6307c6276322d50a7eab}} 
+\index{ludo\_player@{ludo\_player}!isGlobe@{isGlobe}}
+\index{isGlobe@{isGlobe}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{isGlobe()}{isGlobe()}}
+{\footnotesize\ttfamily bool ludo\+\_\+player\+::is\+Globe (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a473a83517ea2ff55af8681650bb8bf2c}\label{classludo__player_a473a83517ea2ff55af8681650bb8bf2c}} 
+\index{ludo\_player@{ludo\_player}!isOccupied@{isOccupied}}
+\index{isOccupied@{isOccupied}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{isOccupied()}{isOccupied()}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::is\+Occupied (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{const std\+::vector$<$ int $>$ \&}]{relative\+\_\+player\+\_\+positions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_ad14e635c987101abfb6ae796bfc877f5}\label{classludo__player_ad14e635c987101abfb6ae796bfc877f5}} 
+\index{ludo\_player@{ludo\_player}!isOwnBlockade@{isOwnBlockade}}
+\index{isOwnBlockade@{isOwnBlockade}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{isOwnBlockade()}{isOwnBlockade()}}
+{\footnotesize\ttfamily bool ludo\+\_\+player\+::is\+Own\+Blockade (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{const std\+::vector$<$ int $>$ \&}]{relative\+\_\+positions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a8539729043cb0d51560995ddb31f677d}\label{classludo__player_a8539729043cb0d51560995ddb31f677d}} 
+\index{ludo\_player@{ludo\_player}!isOwnGlobe@{isOwnGlobe}}
+\index{isOwnGlobe@{isOwnGlobe}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{isOwnGlobe()}{isOwnGlobe()}}
+{\footnotesize\ttfamily bool ludo\+\_\+player\+::is\+Own\+Globe (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a9f1535f5950a88ffb5a7992ba5aa289b}\label{classludo__player_a9f1535f5950a88ffb5a7992ba5aa289b}} 
+\index{ludo\_player@{ludo\_player}!isStar@{isStar}}
+\index{isStar@{isStar}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{isStar()}{isStar()}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::is\+Star (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a20adec314bec5ec84ad30f63c9de91a6}\label{classludo__player_a20adec314bec5ec84ad30f63c9de91a6}} 
+\index{ludo\_player@{ludo\_player}!make\_decision@{make\_decision}}
+\index{make\_decision@{make\_decision}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{make\_decision()}{make\_decision()}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::make\+\_\+decision (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classludo__player_a0c9449c7fffb174de3df9527b224c322}\label{classludo__player_a0c9449c7fffb174de3df9527b224c322}} 
+\index{ludo\_player@{ludo\_player}!move\_piece@{move\_piece}}
+\index{move\_piece@{move\_piece}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{move\_piece()}{move\_piece()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ ludo\+\_\+player\+::move\+\_\+piece (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{state,  }\item[{int}]{relative\+\_\+piece,  }\item[{int}]{dice\+\_\+roll }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a5b93ca5927d452bb6510713c0e49baef}\label{classludo__player_a5b93ca5927d452bb6510713c0e49baef}} 
+\index{ludo\_player@{ludo\_player}!move\_start@{move\_start}}
+\index{move\_start@{move\_start}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{move\_start()}{move\_start()}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::move\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{relative\+\_\+piece,  }\item[{const std\+::vector$<$ int $>$ \&}]{state,  }\item[{std\+::vector$<$ int $>$ \&}]{new\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a7ea6e5db6b189463e34dfbe8d3e93436}\label{classludo__player_a7ea6e5db6b189463e34dfbe8d3e93436}} 
+\index{ludo\_player@{ludo\_player}!post\_game\_analysis@{post\_game\_analysis}}
+\index{post\_game\_analysis@{post\_game\_analysis}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{post\_game\_analysis}{post\_game\_analysis}}
+{\footnotesize\ttfamily bool ludo\+\_\+player\+::post\+\_\+game\+\_\+analysis (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{relative\+\_\+pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classludo__player_a29a4c557cd769321c9a6f82016b9c043}\label{classludo__player_a29a4c557cd769321c9a6f82016b9c043}} 
+\index{ludo\_player@{ludo\_player}!print\_dice\_roll@{print\_dice\_roll}}
+\index{print\_dice\_roll@{print\_dice\_roll}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{print\_dice\_roll()}{print\_dice\_roll()}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::print\+\_\+dice\+\_\+roll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a1f47467836dfeec12791c1cc0f4f7f08}\label{classludo__player_a1f47467836dfeec12791c1cc0f4f7f08}} 
+\index{ludo\_player@{ludo\_player}!print\_player\_piece\_positions@{print\_player\_piece\_positions}}
+\index{print\_player\_piece\_positions@{print\_player\_piece\_positions}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{print\_player\_piece\_positions()}{print\_player\_piece\_positions()}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::print\+\_\+player\+\_\+piece\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a3de415d2e7bd7ebc70e41c7972c36549}\label{classludo__player_a3de415d2e7bd7ebc70e41c7972c36549}} 
+\index{ludo\_player@{ludo\_player}!say\_hi@{say\_hi}}
+\index{say\_hi@{say\_hi}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{say\_hi()}{say\_hi()}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::say\+\_\+hi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classludo__player__genetic_ac1565423dae4eb7fbe2e2332ad2bc695}{ludo\+\_\+player\+\_\+genetic}}.
+
+\mbox{\Hypertarget{classludo__player_a28b971f31b9356e9156bf5489bf69b07}\label{classludo__player_a28b971f31b9356e9156bf5489bf69b07}} 
+\index{ludo\_player@{ludo\_player}!select\_piece@{select\_piece}}
+\index{select\_piece@{select\_piece}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{select\_piece}{select\_piece}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::select\+\_\+piece (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\mbox{\Hypertarget{classludo__player_a535a7dc2c61065efbe17707169b48b74}\label{classludo__player_a535a7dc2c61065efbe17707169b48b74}} 
+\index{ludo\_player@{ludo\_player}!send\_them\_home@{send\_them\_home}}
+\index{send\_them\_home@{send\_them\_home}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{send\_them\_home()}{send\_them\_home()}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::send\+\_\+them\+\_\+home (\begin{DoxyParamCaption}\item[{int}]{relative\+\_\+index,  }\item[{const std\+::vector$<$ int $>$ \&}]{state,  }\item[{std\+::vector$<$ int $>$ \&}]{new\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_aae1cc634ff30361a77fb95e79320a834}\label{classludo__player_aae1cc634ff30361a77fb95e79320a834}} 
+\index{ludo\_player@{ludo\_player}!set\_gamesTotal@{set\_gamesTotal}}
+\index{set\_gamesTotal@{set\_gamesTotal}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{set\_gamesTotal()}{set\_gamesTotal()}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::set\+\_\+games\+Total (\begin{DoxyParamCaption}\item[{int $\ast$}]{games\+Total\+\_\+from\+\_\+game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classludo__player_a1ffff5b21bcafcc00828ea3c859dc5a7}\label{classludo__player_a1ffff5b21bcafcc00828ea3c859dc5a7}} 
+\index{ludo\_player@{ludo\_player}!start\_turn@{start\_turn}}
+\index{start\_turn@{start\_turn}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{start\_turn}{start\_turn}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::start\+\_\+turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}}}]{relative }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classludo__player_a186eca28b52909dd86215359fe6c75f1}\label{classludo__player_a186eca28b52909dd86215359fe6c75f1}} 
+\index{ludo\_player@{ludo\_player}!turn\_complete@{turn\_complete}}
+\index{turn\_complete@{turn\_complete}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{turn\_complete}{turn\_complete}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+::turn\+\_\+complete (\begin{DoxyParamCaption}\item[{bool}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\mbox{\Hypertarget{classludo__player_a36078e651c131edfda9efb80bdf6f4e8}\label{classludo__player_a36078e651c131edfda9efb80bdf6f4e8}} 
+\index{ludo\_player@{ludo\_player}!vulnerableBy@{vulnerableBy}}
+\index{vulnerableBy@{vulnerableBy}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{vulnerableBy()}{vulnerableBy()}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::vulnerable\+By (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{const std\+::vector$<$ int $>$ \&}]{relative\+\_\+positions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classludo__player_a89ac1eaa32bff104eb1ccf275a7c0890}\label{classludo__player_a89ac1eaa32bff104eb1ccf275a7c0890}} 
+\index{ludo\_player@{ludo\_player}!dice\_roll@{dice\_roll}}
+\index{dice\_roll@{dice\_roll}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{dice\_roll}{dice\_roll}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::dice\+\_\+roll\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}\label{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}} 
+\index{ludo\_player@{ludo\_player}!gamesTotal@{gamesTotal}}
+\index{gamesTotal@{gamesTotal}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{gamesTotal}{gamesTotal}}
+{\footnotesize\ttfamily int$\ast$ ludo\+\_\+player\+::games\+Total\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_ac172bc3238eb23681ade815dc7bdbf49}\label{classludo__player_ac172bc3238eb23681ade815dc7bdbf49}} 
+\index{ludo\_player@{ludo\_player}!genes@{genes}}
+\index{genes@{genes}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{genes}{genes}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ ludo\+\_\+player\+::genes}
+
+\mbox{\Hypertarget{classludo__player_a8d7a91f84a9cc99551c8a6fe743bd60c}\label{classludo__player_a8d7a91f84a9cc99551c8a6fe743bd60c}} 
+\index{ludo\_player@{ludo\_player}!player\_type@{player\_type}}
+\index{player\_type@{player\_type}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{player\_type}{player\_type}}
+{\footnotesize\ttfamily std\+::string ludo\+\_\+player\+::player\+\_\+type}
+
+\mbox{\Hypertarget{classludo__player_ac538e8574f091c3d6106eb45f1677b55}\label{classludo__player_ac538e8574f091c3d6106eb45f1677b55}} 
+\index{ludo\_player@{ludo\_player}!pos\_end\_of\_turn@{pos\_end\_of\_turn}}
+\index{pos\_end\_of\_turn@{pos\_end\_of\_turn}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{pos\_end\_of\_turn}{pos\_end\_of\_turn}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ ludo\+\_\+player\+::pos\+\_\+end\+\_\+of\+\_\+turn\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classludo__player_a347a4e99ef74815ed2907d424280d3e3}\label{classludo__player_a347a4e99ef74815ed2907d424280d3e3}} 
+\index{ludo\_player@{ludo\_player}!pos\_start\_of\_turn@{pos\_start\_of\_turn}}
+\index{pos\_start\_of\_turn@{pos\_start\_of\_turn}!ludo\_player@{ludo\_player}}
+\doxysubsubsection{\texorpdfstring{pos\_start\_of\_turn}{pos\_start\_of\_turn}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ ludo\+\_\+player\+::pos\+\_\+start\+\_\+of\+\_\+turn\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{ludo__player_8h}{ludo\+\_\+player.\+h}}\item 
+src/\mbox{\hyperlink{ludo__player_8cpp}{ludo\+\_\+player.\+cpp}}\end{DoxyCompactItemize}

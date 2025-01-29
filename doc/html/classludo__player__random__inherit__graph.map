@@ -1,0 +1,8 @@
+<map id="ludo_player_random" name="ludo_player_random">
+<area shape="rect" id="node1" title=" " alt="" coords="213,155,368,181"/>
+<area shape="rect" id="node4" href="$classludo__player__aggressive.html" title=" " alt="" coords="5,229,181,256"/>
+<area shape="rect" id="node5" href="$classludo__player__defensive.html" title=" " alt="" coords="206,229,375,256"/>
+<area shape="rect" id="node6" href="$classludo__player__genetic.html" title=" " alt="" coords="399,229,553,256"/>
+<area shape="rect" id="node2" href="$classludo__player.html" title=" " alt="" coords="241,80,340,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="253,5,328,32"/>
+</map>

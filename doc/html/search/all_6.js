@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['learning_5frate_33',['LEARNING_RATE',['../ludo__player__qlearning_8h.html#ac9d3b34ee7e35eab6a81ed21f18f6e64',1,'ludo_player_qlearning.h']]],
+  ['ludo_5fplayer_34',['ludo_player',['../classludo__player.html',1,'ludo_player'],['../classludo__player.html#ac839876d2abafa92d7f0ec292640f173',1,'ludo_player::ludo_player()']]],
+  ['ludo_5fplayer_2ecpp_35',['ludo_player.cpp',['../ludo__player_8cpp.html',1,'']]],
+  ['ludo_5fplayer_2eh_36',['ludo_player.h',['../ludo__player_8h.html',1,'']]],
+  ['ludo_5fplayer_5faggressive_37',['ludo_player_aggressive',['../classludo__player__aggressive.html',1,'ludo_player_aggressive'],['../classludo__player__aggressive.html#a08d0108c9ee10f703ca22650777516c1',1,'ludo_player_aggressive::ludo_player_aggressive()']]],
+  ['ludo_5fplayer_5faggressive_2ecpp_38',['ludo_player_aggressive.cpp',['../ludo__player__aggressive_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5faggressive_2eh_39',['ludo_player_aggressive.h',['../ludo__player__aggressive_8h.html',1,'']]],
+  ['ludo_5fplayer_5fdefensive_40',['ludo_player_defensive',['../classludo__player__defensive.html',1,'ludo_player_defensive'],['../classludo__player__defensive.html#a09aed26e309722b8c08963eccf9169b6',1,'ludo_player_defensive::ludo_player_defensive()']]],
+  ['ludo_5fplayer_5fdefensive_2ecpp_41',['ludo_player_defensive.cpp',['../ludo__player__defensive_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5fdefensive_2eh_42',['ludo_player_defensive.h',['../ludo__player__defensive_8h.html',1,'']]],
+  ['ludo_5fplayer_5fexpert_43',['ludo_player_expert',['../classludo__player__expert.html#a52bf56a781476ed69f28d426cd555c53',1,'ludo_player_expert::ludo_player_expert()'],['../classludo__player__expert.html',1,'ludo_player_expert']]],
+  ['ludo_5fplayer_5fexpert_2ecpp_44',['ludo_player_expert.cpp',['../ludo__player__expert_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5fexpert_2eh_45',['ludo_player_expert.h',['../ludo__player__expert_8h.html',1,'']]],
+  ['ludo_5fplayer_5ffast_46',['ludo_player_fast',['../classludo__player__fast.html#a89d3bc95c8d16d9e5754636f8c9dab92',1,'ludo_player_fast::ludo_player_fast()'],['../classludo__player__fast.html',1,'ludo_player_fast']]],
+  ['ludo_5fplayer_5ffast_2ecpp_47',['ludo_player_fast.cpp',['../ludo__player__fast_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5ffast_2eh_48',['ludo_player_fast.h',['../ludo__player__fast_8h.html',1,'']]],
+  ['ludo_5fplayer_5fgenetic_49',['ludo_player_genetic',['../classludo__player__genetic.html#a34f9e46fa900c1a33cbf3006c168fce7',1,'ludo_player_genetic::ludo_player_genetic(std::vector&lt; double &gt; genes)'],['../classludo__player__genetic.html#a379471031a1ed13a7b393c8910ed234c',1,'ludo_player_genetic::ludo_player_genetic()'],['../classludo__player__genetic.html',1,'ludo_player_genetic']]],
+  ['ludo_5fplayer_5fgenetic_2ecpp_50',['ludo_player_genetic.cpp',['../ludo__player__genetic_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5fgenetic_2eh_51',['ludo_player_genetic.h',['../ludo__player__genetic_8h.html',1,'']]],
+  ['ludo_5fplayer_5fqlearning_52',['ludo_player_Qlearning',['../classludo__player__Qlearning.html#a7fdc8a436a8069ee19091df40d9fdec9',1,'ludo_player_Qlearning::ludo_player_Qlearning()'],['../classludo__player__Qlearning.html',1,'ludo_player_Qlearning']]],
+  ['ludo_5fplayer_5fqlearning_2ecpp_53',['ludo_player_qlearning.cpp',['../ludo__player__qlearning_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5fqlearning_2eh_54',['ludo_player_qlearning.h',['../ludo__player__qlearning_8h.html',1,'']]],
+  ['ludo_5fplayer_5frandom_55',['ludo_player_random',['../classludo__player__random.html#a4aee9c21dfff3809904f92c4704a1d04',1,'ludo_player_random::ludo_player_random()'],['../classludo__player__random.html',1,'ludo_player_random']]],
+  ['ludo_5fplayer_5frandom_2ecpp_56',['ludo_player_random.cpp',['../ludo__player__random_8cpp.html',1,'']]],
+  ['ludo_5fplayer_5frandom_2eh_57',['ludo_player_random.h',['../ludo__player__random_8h.html',1,'']]]
+];

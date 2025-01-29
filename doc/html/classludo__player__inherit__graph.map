@@ -1,0 +1,11 @@
+<map id="ludo_player" name="ludo_player">
+<area shape="rect" id="node1" title=" " alt="" coords="128,56,227,83"/>
+<area shape="rect" id="node3" href="$classludo__player__expert.html" title=" " alt="" coords="279,5,425,32"/>
+<area shape="rect" id="node5" href="$classludo__player__fast.html" title=" " alt="" coords="287,56,417,83"/>
+<area shape="rect" id="node6" href="$classludo__player__random.html" title=" " alt="" coords="275,107,429,133"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,56,80,83"/>
+<area shape="rect" id="node4" href="$classludo__player__Qlearning.html" title=" " alt="" coords="481,5,649,32"/>
+<area shape="rect" id="node7" href="$classludo__player__aggressive.html" title=" " alt="" coords="477,56,653,83"/>
+<area shape="rect" id="node8" href="$classludo__player__defensive.html" title=" " alt="" coords="481,107,650,133"/>
+<area shape="rect" id="node9" href="$classludo__player__genetic.html" title=" " alt="" coords="489,157,642,184"/>
+</map>
