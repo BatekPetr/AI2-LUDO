@@ -12,34 +12,34 @@ TARGET = ludo
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        dialog.cpp \
-    game.cpp \
-    ludo_player.cpp \
-    ludo_player_random.cpp \
-    ludo_player_fast.cpp \
-    ludo_player_aggressive.cpp \
-    ludo_player_defensive.cpp \
-    ludo_player_expert.cpp \
-    ludo_player_qlearning.cpp \
-    ludo_player_genetic.cpp
+SOURCES += src/main.cpp\
+           src/dialog.cpp \
+           src/game.cpp \
+           src/ludo_player.cpp \
+           src/ludo_player_random.cpp \
+           src/ludo_player_fast.cpp \
+           src/ludo_player_aggressive.cpp \
+           src/ludo_player_defensive.cpp \
+           src/ludo_player_expert.cpp \
+           src/ludo_player_qlearning.cpp \
+           src/ludo_player_genetic.cpp
 
-HEADERS  += dialog.h \
-    game.h \
-    ludo_player.h \
-    positions_and_dice.h \
-    ludo_player_random.h \
-    ludo_player_fast.h \
-    ludo_player_aggressive.h \
-    ludo_player_defensive.h \
-    ludo_player_expert.h \
-    ludo_player_qlearning.h \
-    ludo_player_genetic.h
+HEADERS  += src/dialog.h \
+            src/game.h \
+            src/ludo_player.h \
+            src/positions_and_dice.h \
+            src/ludo_player_random.h \
+            src/ludo_player_fast.h \
+            src/ludo_player_aggressive.h \
+            src/ludo_player_defensive.h \
+            src/ludo_player_expert.h \
+            src/ludo_player_qlearning.h \
+            src/ludo_player_genetic.h
 
 FORMS    += dialog.ui
 
-DISTFILES += star.png \
-             globe.png
+DISTFILES += images/star.png \
+             images/globe.png
 
 LIBS += -lfann
 
