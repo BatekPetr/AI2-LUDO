@@ -62,8 +62,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-slots">Public Slots</a> &#124;
-<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -73,13 +71,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The game class defines LUDO game interface.  
+ <a href="classgame.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classgame__inherit__graph.png" border="0" usemap="#agame_inherit__map" alt="Inheritance graph"/></div>
 <map name="agame_inherit__map" id="agame_inherit__map">
-<area shape="rect" title=" " alt="" coords="15,80,73,107"/>
+<area shape="rect" title="The game class defines LUDO game interface." alt="" coords="15,80,73,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,83,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -88,20 +89,35 @@ Collaboration diagram for game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classgame__coll__graph.png" border="0" usemap="#agame_coll__map" alt="Collaboration graph"/></div>
 <map name="agame_coll__map" id="agame_coll__map">
-<area shape="rect" title=" " alt="" coords="15,80,73,107"/>
+<area shape="rect" title="The game class defines LUDO game interface." alt="" coords="15,80,73,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,83,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:a2dc92189089c10cfb1dc0b4a563167af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a2dc92189089c10cfb1dc0b4a563167af">turnComplete</a> (bool win)</td></tr>
-<tr class="separator:a2dc92189089c10cfb1dc0b4a563167af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad687aefa2a292a3a94e9784304160ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ad687aefa2a292a3a94e9784304160ef1">movePiece</a> (int relative_piece)</td></tr>
-<tr class="separator:ad687aefa2a292a3a94e9784304160ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
-Signals</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad9c102127b5038f880067ad6c9198d38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ad9c102127b5038f880067ad6c9198d38">game</a> ()</td></tr>
+<tr class="separator:ad9c102127b5038f880067ad6c9198d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d0d064e093135feeee064102c6ab6c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a3d0d064e093135feeee064102c6ab6c9">game</a> (<a class="el" href="classludo__player.html">ludo_player</a> *p1, <a class="el" href="classludo__player.html">ludo_player</a> *p2, <a class="el" href="classludo__player.html">ludo_player</a> *p3, <a class="el" href="classludo__player.html">ludo_player</a> *p4)</td></tr>
+<tr class="separator:a3d0d064e093135feeee064102c6ab6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a4aa06423452ea48865b7f9eb067e22"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a8a4aa06423452ea48865b7f9eb067e22">game</a> (<a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p1, <a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p2, <a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p3, <a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p4)</td></tr>
+<tr class="separator:a8a4aa06423452ea48865b7f9eb067e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb3890aa7505192a72619b0e67af3570"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#afb3890aa7505192a72619b0e67af3570">set_test_players</a> (<a class="el" href="classludo__player.html">ludo_player</a> *p1, <a class="el" href="classludo__player.html">ludo_player</a> *p2, <a class="el" href="classludo__player.html">ludo_player</a> *p3, <a class="el" href="classludo__player.html">ludo_player</a> *p4)</td></tr>
+<tr class="memdesc:afb3890aa7505192a72619b0e67af3570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set test players for evaluation of player evolution/strength.  <a href="classgame.html#afb3890aa7505192a72619b0e67af3570">More...</a><br /></td></tr>
+<tr class="separator:afb3890aa7505192a72619b0e67af3570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab795dd934122a733b696e478bb63ac9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ab795dd934122a733b696e478bb63ac9c">set_active_players</a> (<a class="el" href="classludo__player.html">ludo_player</a> *p1, <a class="el" href="classludo__player.html">ludo_player</a> *p2, <a class="el" href="classludo__player.html">ludo_player</a> *p3, <a class="el" href="classludo__player.html">ludo_player</a> *p4)</td></tr>
+<tr class="memdesc:ab795dd934122a733b696e478bb63ac9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set active players for the next game.  <a href="classgame.html#ab795dd934122a733b696e478bb63ac9c">More...</a><br /></td></tr>
+<tr class="separator:ab795dd934122a733b696e478bb63ac9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d08d8e1fd14838b05c21a265b35c29f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a4d08d8e1fd14838b05c21a265b35c29f">introduce_players</a> ()</td></tr>
+<tr class="separator:a4d08d8e1fd14838b05c21a265b35c29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05958886e13a10ab50bda2ec7402502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ad05958886e13a10ab50bda2ec7402502">rollDice</a> ()</td></tr>
+<tr class="separator:ad05958886e13a10ab50bda2ec7402502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b87066a1a1c13486ea17fde0ca3ce6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a12b87066a1a1c13486ea17fde0ca3ce6">getDiceRoll</a> ()</td></tr>
+<tr class="separator:a12b87066a1a1c13486ea17fde0ca3ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730ba1605a80b32904ef3b844259470b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a730ba1605a80b32904ef3b844259470b">setGameDelay</a> (unsigned int mili_seconds)</td></tr>
+<tr class="separator:a730ba1605a80b32904ef3b844259470b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573e942d47b45644d5022c8e1fee116d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a573e942d47b45644d5022c8e1fee116d">reset</a> ()</td></tr>
+<tr class="separator:a573e942d47b45644d5022c8e1fee116d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0b3b9796f853253221214fb3e79efa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ac0b3b9796f853253221214fb3e79efa3">player1_start</a> (<a class="el" href="structpositions__and__dice.html">positions_and_dice</a>)</td></tr>
 <tr class="separator:ac0b3b9796f853253221214fb3e79efa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24e7f9a0bf359911447e81b958f3fee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a24e7f9a0bf359911447e81b958f3fee8">player2_start</a> (<a class="el" href="structpositions__and__dice.html">positions_and_dice</a>)</td></tr>
@@ -128,49 +144,37 @@ Signals</h2></td></tr>
 <tr class="separator:a338dc5101b333a9e2b52eabdaa5bed7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5078a9b3362193ef263c107f73d0a614"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a5078a9b3362193ef263c107f73d0a614">close</a> ()</td></tr>
 <tr class="separator:a5078a9b3362193ef263c107f73d0a614"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9c102127b5038f880067ad6c9198d38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ad9c102127b5038f880067ad6c9198d38">game</a> ()</td></tr>
-<tr class="separator:ad9c102127b5038f880067ad6c9198d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d0d064e093135feeee064102c6ab6c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a3d0d064e093135feeee064102c6ab6c9">game</a> (<a class="el" href="classludo__player.html">ludo_player</a> *p1, <a class="el" href="classludo__player.html">ludo_player</a> *p2, <a class="el" href="classludo__player.html">ludo_player</a> *p3, <a class="el" href="classludo__player.html">ludo_player</a> *p4)</td></tr>
-<tr class="separator:a3d0d064e093135feeee064102c6ab6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a4aa06423452ea48865b7f9eb067e22"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a8a4aa06423452ea48865b7f9eb067e22">game</a> (<a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p1, <a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p2, <a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p3, <a class="el" href="classludo__player__genetic.html">ludo_player_genetic</a> *p4)</td></tr>
-<tr class="separator:a8a4aa06423452ea48865b7f9eb067e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb3890aa7505192a72619b0e67af3570"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#afb3890aa7505192a72619b0e67af3570">set_test_players</a> (<a class="el" href="classludo__player.html">ludo_player</a> *p1, <a class="el" href="classludo__player.html">ludo_player</a> *p2, <a class="el" href="classludo__player.html">ludo_player</a> *p3, <a class="el" href="classludo__player.html">ludo_player</a> *p4)</td></tr>
-<tr class="separator:afb3890aa7505192a72619b0e67af3570"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab795dd934122a733b696e478bb63ac9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ab795dd934122a733b696e478bb63ac9c">set_active_players</a> (<a class="el" href="classludo__player.html">ludo_player</a> *p1, <a class="el" href="classludo__player.html">ludo_player</a> *p2, <a class="el" href="classludo__player.html">ludo_player</a> *p3, <a class="el" href="classludo__player.html">ludo_player</a> *p4)</td></tr>
-<tr class="separator:ab795dd934122a733b696e478bb63ac9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d08d8e1fd14838b05c21a265b35c29f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a4d08d8e1fd14838b05c21a265b35c29f">introduce_players</a> ()</td></tr>
-<tr class="separator:a4d08d8e1fd14838b05c21a265b35c29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad05958886e13a10ab50bda2ec7402502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ad05958886e13a10ab50bda2ec7402502">rollDice</a> ()</td></tr>
-<tr class="separator:ad05958886e13a10ab50bda2ec7402502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12b87066a1a1c13486ea17fde0ca3ce6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a12b87066a1a1c13486ea17fde0ca3ce6">getDiceRoll</a> ()</td></tr>
-<tr class="separator:a12b87066a1a1c13486ea17fde0ca3ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a730ba1605a80b32904ef3b844259470b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a730ba1605a80b32904ef3b844259470b">setGameDelay</a> (unsigned int mili_seconds)</td></tr>
-<tr class="separator:a730ba1605a80b32904ef3b844259470b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a573e942d47b45644d5022c8e1fee116d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a573e942d47b45644d5022c8e1fee116d">reset</a> ()</td></tr>
-<tr class="separator:a573e942d47b45644d5022c8e1fee116d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc92189089c10cfb1dc0b4a563167af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a2dc92189089c10cfb1dc0b4a563167af">turnComplete</a> (bool win)</td></tr>
+<tr class="separator:a2dc92189089c10cfb1dc0b4a563167af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad687aefa2a292a3a94e9784304160ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ad687aefa2a292a3a94e9784304160ef1">movePiece</a> (int relative_piece)</td></tr>
+<tr class="separator:ad687aefa2a292a3a94e9784304160ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:af72c8d449f37387665daba9837f9d85f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#af72c8d449f37387665daba9837f9d85f">turnsNo</a></td></tr>
-<tr class="separator:af72c8d449f37387665daba9837f9d85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac93fa8e3c6efb668830fd2d083fa385"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#aac93fa8e3c6efb668830fd2d083fa385">color</a></td></tr>
+<tr class="memdesc:aac93fa8e3c6efb668830fd2d083fa385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identification of current player [0-3].  <a href="classgame.html#aac93fa8e3c6efb668830fd2d083fa385">More...</a><br /></td></tr>
 <tr class="separator:aac93fa8e3c6efb668830fd2d083fa385"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6094dc70b5021f290178cdc6648fa59"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#aa6094dc70b5021f290178cdc6648fa59">player_positions</a></td></tr>
+<tr class="memdesc:aa6094dc70b5021f290178cdc6648fa59"><td class="mdescLeft">&#160;</td><td class="mdescRight">LUDO pieces positions on the game-plan.  <a href="classgame.html#aa6094dc70b5021f290178cdc6648fa59">More...</a><br /></td></tr>
 <tr class="separator:aa6094dc70b5021f290178cdc6648fa59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a983614b1e3606858b69f1f0b8808d475"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a983614b1e3606858b69f1f0b8808d475">winStats</a></td></tr>
+<tr class="memdesc:a983614b1e3606858b69f1f0b8808d475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of wins of the players. Used in Multi-game scenario (MODE == 1)  <a href="classgame.html#a983614b1e3606858b69f1f0b8808d475">More...</a><br /></td></tr>
 <tr class="separator:a983614b1e3606858b69f1f0b8808d475"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a992706bf097989a96139a7f3706c8497"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#a992706bf097989a96139a7f3706c8497">gamesTotal</a></td></tr>
+<tr class="memdesc:a992706bf097989a96139a7f3706c8497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of finished games.  <a href="classgame.html#a992706bf097989a96139a7f3706c8497">More...</a><br /></td></tr>
 <tr class="separator:a992706bf097989a96139a7f3706c8497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72c8d449f37387665daba9837f9d85f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#af72c8d449f37387665daba9837f9d85f">turnsNo</a></td></tr>
+<tr class="memdesc:af72c8d449f37387665daba9837f9d85f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of turns in a game.  <a href="classgame.html#af72c8d449f37387665daba9837f9d85f">More...</a><br /></td></tr>
+<tr class="separator:af72c8d449f37387665daba9837f9d85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ac0989b3bcd3a7a806cd7c3211bc339e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html#ac0989b3bcd3a7a806cd7c3211bc339e8">run</a> ()</td></tr>
 <tr class="separator:ac0989b3bcd3a7a806cd7c3211bc339e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The game class defines LUDO game interface. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad9c102127b5038f880067ad6c9198d38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad9c102127b5038f880067ad6c9198d38">&#9670;&nbsp;</a></span>game() <span class="overload">[1/3]</span></h2>
 
@@ -270,13 +274,10 @@ Protected Member Functions</h2></td></tr>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5078a9b3362193ef263c107f73d0a614"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5078a9b3362193ef263c107f73d0a614">&#9670;&nbsp;</a></span>close</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5078a9b3362193ef263c107f73d0a614">&#9670;&nbsp;</a></span>close()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::close </td>
@@ -285,23 +286,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="a338dc5101b333a9e2b52eabdaa5bed7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a338dc5101b333a9e2b52eabdaa5bed7e">&#9670;&nbsp;</a></span>declare_winner</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a338dc5101b333a9e2b52eabdaa5bed7e">&#9670;&nbsp;</a></span>declare_winner()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::declare_winner </td>
@@ -311,11 +304,6 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -363,13 +351,10 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ad687aefa2a292a3a94e9784304160ef1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad687aefa2a292a3a94e9784304160ef1">&#9670;&nbsp;</a></span>movePiece</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad687aefa2a292a3a94e9784304160ef1">&#9670;&nbsp;</a></span>movePiece()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::movePiece </td>
@@ -379,23 +364,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="af4bdbe5f2b21dde0460eb8a17a921489"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4bdbe5f2b21dde0460eb8a17a921489">&#9670;&nbsp;</a></span>player1_end</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af4bdbe5f2b21dde0460eb8a17a921489">&#9670;&nbsp;</a></span>player1_end()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player1_end </td>
@@ -405,23 +382,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="ac0b3b9796f853253221214fb3e79efa3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0b3b9796f853253221214fb3e79efa3">&#9670;&nbsp;</a></span>player1_start</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b3b9796f853253221214fb3e79efa3">&#9670;&nbsp;</a></span>player1_start()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player1_start </td>
@@ -431,23 +400,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="acd9673ecfb94d5f8834a498b9d7cd02f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd9673ecfb94d5f8834a498b9d7cd02f">&#9670;&nbsp;</a></span>player2_end</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acd9673ecfb94d5f8834a498b9d7cd02f">&#9670;&nbsp;</a></span>player2_end()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player2_end </td>
@@ -457,23 +418,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="a24e7f9a0bf359911447e81b958f3fee8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24e7f9a0bf359911447e81b958f3fee8">&#9670;&nbsp;</a></span>player2_start</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e7f9a0bf359911447e81b958f3fee8">&#9670;&nbsp;</a></span>player2_start()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player2_start </td>
@@ -483,23 +436,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="a32519190b5f8a5adc5548bd5ff87ca4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32519190b5f8a5adc5548bd5ff87ca4f">&#9670;&nbsp;</a></span>player3_end</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a32519190b5f8a5adc5548bd5ff87ca4f">&#9670;&nbsp;</a></span>player3_end()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player3_end </td>
@@ -509,23 +454,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="ad00fb0141c961b5c9e7887174b13ca40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad00fb0141c961b5c9e7887174b13ca40">&#9670;&nbsp;</a></span>player3_start</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad00fb0141c961b5c9e7887174b13ca40">&#9670;&nbsp;</a></span>player3_start()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player3_start </td>
@@ -535,23 +472,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="abb1efbc3f516a1948cc284088e43497f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb1efbc3f516a1948cc284088e43497f">&#9670;&nbsp;</a></span>player4_end</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abb1efbc3f516a1948cc284088e43497f">&#9670;&nbsp;</a></span>player4_end()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player4_end </td>
@@ -561,23 +490,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="aa88b66adc2c94796fbcc74f044be9396"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa88b66adc2c94796fbcc74f044be9396">&#9670;&nbsp;</a></span>player4_start</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa88b66adc2c94796fbcc74f044be9396">&#9670;&nbsp;</a></span>player4_start()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::player4_start </td>
@@ -587,11 +508,6 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -701,16 +617,24 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set active players for the next game. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+    <tr><td class="paramname">p2</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+    <tr><td class="paramname">p3</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+    <tr><td class="paramname">p4</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa7fe5f6d83fc5ed17d3889919a2b8907"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7fe5f6d83fc5ed17d3889919a2b8907">&#9670;&nbsp;</a></span>set_color</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7fe5f6d83fc5ed17d3889919a2b8907">&#9670;&nbsp;</a></span>set_color()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::set_color </td>
@@ -720,23 +644,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="a93410f1cc771811853d12cd2f4c9fd96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93410f1cc771811853d12cd2f4c9fd96">&#9670;&nbsp;</a></span>set_dice_result</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a93410f1cc771811853d12cd2f4c9fd96">&#9670;&nbsp;</a></span>set_dice_result()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::set_dice_result </td>
@@ -746,11 +662,6 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -793,6 +704,17 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set test players for evaluation of player evolution/strength. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+    <tr><td class="paramname">p2</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+    <tr><td class="paramname">p3</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+    <tr><td class="paramname">p4</td><td>pointer to object implementing <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> interface </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a730ba1605a80b32904ef3b844259470b"></a>
@@ -822,13 +744,10 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a2dc92189089c10cfb1dc0b4a563167af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dc92189089c10cfb1dc0b4a563167af">&#9670;&nbsp;</a></span>turnComplete</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc92189089c10cfb1dc0b4a563167af">&#9670;&nbsp;</a></span>turnComplete()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::turnComplete </td>
@@ -838,23 +757,15 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <a id="aa2175cec4555bcc48108e3fca9910982"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2175cec4555bcc48108e3fca9910982">&#9670;&nbsp;</a></span>update_graphics</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2175cec4555bcc48108e3fca9910982">&#9670;&nbsp;</a></span>update_graphics()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void game::update_graphics </td>
@@ -864,11 +775,6 @@ Protected Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -886,6 +792,8 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Identification of current player [0-3]. </p>
+
 </div>
 </div>
 <a id="a992706bf097989a96139a7f3706c8497"></a>
@@ -899,6 +807,8 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of finished games. </p>
 
 </div>
 </div>
@@ -914,6 +824,8 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>LUDO pieces positions on the game-plan. </p>
+
 </div>
 </div>
 <a id="af72c8d449f37387665daba9837f9d85f"></a>
@@ -928,6 +840,8 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Number of turns in a game. </p>
+
 </div>
 </div>
 <a id="a983614b1e3606858b69f1f0b8808d475"></a>
@@ -941,6 +855,8 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of wins of the players. Used in Multi-game scenario (MODE == 1) </p>
 
 </div>
 </div>

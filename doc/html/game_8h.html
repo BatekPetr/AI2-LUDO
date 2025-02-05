@@ -72,6 +72,9 @@ $(function() {
 <div class="title">game.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This file defines interface for a LUDO game.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;random&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
@@ -87,14 +90,14 @@ Include dependency graph for game.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="game_8h__incl.png" border="0" usemap="#asrc_2game_8h" alt=""/></div>
 <map name="asrc_2game_8h" id="asrc_2game_8h">
-<area shape="rect" title=" " alt="" coords="414,5,509,32"/>
+<area shape="rect" title="This file defines interface for a LUDO game." alt="" coords="414,5,509,32"/>
 <area shape="rect" title=" " alt="" coords="218,379,281,405"/>
 <area shape="rect" title=" " alt="" coords="547,229,619,256"/>
 <area shape="rect" title=" " alt="" coords="136,304,216,331"/>
 <area shape="rect" title=" " alt="" coords="283,80,349,107"/>
 <area shape="rect" title=" " alt="" coords="373,80,451,107"/>
 <area shape="rect" title=" " alt="" coords="475,80,549,107"/>
-<area shape="rect" href="ludo__player_8h.html" title=" " alt="" coords="315,229,424,256"/>
+<area shape="rect" href="ludo__player_8h.html" title="This file defines interface for a generall LUDO player." alt="" coords="315,229,424,256"/>
 <area shape="rect" href="positions__and__dice_8h.html" title=" " alt="" coords="414,304,573,331"/>
 <area shape="rect" href="ludo__player__genetic_8h.html" title=" " alt="" coords="93,80,259,107"/>
 <area shape="rect" title=" " alt="" coords="725,80,803,107"/>
@@ -108,9 +111,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="game_8h__dep__incl.png" border="0" usemap="#asrc_2game_8hdep" alt=""/></div>
 <map name="asrc_2game_8hdep" id="asrc_2game_8hdep">
-<area shape="rect" title=" " alt="" coords="59,5,153,32"/>
+<area shape="rect" title="This file defines interface for a LUDO game." alt="" coords="59,5,153,32"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="5,155,111,181"/>
-<area shape="rect" href="game_8cpp.html" title=" " alt="" coords="51,80,161,107"/>
+<area shape="rect" href="game_8cpp.html" title="This file contains implementation of LUDO game." alt="" coords="51,80,161,107"/>
 <area shape="rect" href="dialog_8h.html" title=" " alt="" coords="185,80,283,107"/>
 <area shape="rect" href="dialog_8cpp.html" title=" " alt="" coords="178,155,290,181"/>
 </map>
@@ -121,16 +124,22 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgame.html">game</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The game class defines LUDO game interface.  <a href="classgame.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ab8c52c1b4c021ed3e6b6b677bd2ac019"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ab8c52c1b4c021ed3e6b6b677bd2ac019">MODE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:ab8c52c1b4c021ed3e6b6b677bd2ac019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch for selection between a Single GUI game or multiple NO-GUI games.  <a href="game_8h.html#ab8c52c1b4c021ed3e6b6b677bd2ac019">More...</a><br /></td></tr>
 <tr class="separator:ab8c52c1b4c021ed3e6b6b677bd2ac019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33a8038e7bcddf21f95fcc19e85ad688"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a33a8038e7bcddf21f95fcc19e85ad688">GAMES_NO</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="memdesc:a33a8038e7bcddf21f95fcc19e85ad688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of Games to play in case of Multiple games (MODE == 1)  <a href="game_8h.html#a33a8038e7bcddf21f95fcc19e85ad688">More...</a><br /></td></tr>
 <tr class="separator:a33a8038e7bcddf21f95fcc19e85ad688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This file defines interface for a LUDO game. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Decide on and use only one naming convention </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a33a8038e7bcddf21f95fcc19e85ad688"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a33a8038e7bcddf21f95fcc19e85ad688">&#9670;&nbsp;</a></span>GAMES_NO</h2>
 
@@ -142,6 +151,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of Games to play in case of Multiple games (MODE == 1) </p>
 
 </div>
 </div>
@@ -156,6 +167,15 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Switch for selection between a Single GUI game or multiple NO-GUI games. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">0</td><td>- single game with GUI </td></tr>
+    <tr><td class="paramname">1</td><td>- multiple games, no GUI, with Statistics </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

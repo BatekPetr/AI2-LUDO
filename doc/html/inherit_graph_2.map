@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classludo__player__random.html" title=" " alt="" coords="5,81,160,108"/>
-<area shape="rect" id="node2" href="$classludo__player.html" title=" " alt="" coords="247,31,345,57"/>
+<area shape="rect" id="node2" href="$classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="247,31,345,57"/>
 <area shape="rect" id="node6" href="$classludo__player__aggressive.html" title=" " alt="" coords="208,81,384,108"/>
 <area shape="rect" id="node7" href="$classludo__player__defensive.html" title=" " alt="" coords="211,132,381,159"/>
 <area shape="rect" id="node8" href="$classludo__player__genetic.html" title=" " alt="" coords="219,183,373,209"/>

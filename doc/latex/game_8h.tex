@@ -1,5 +1,10 @@
 \hypertarget{game_8h}{}\doxysection{src/game.h File Reference}
 \label{game_8h}\index{src/game.h@{src/game.h}}
+
+
+This file defines interface for a LUDO game.  
+
+
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$random$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
@@ -17,7 +22,8 @@ Include dependency graph for game.\+h\+:\nopagebreak
 \includegraphics[width=350pt]{game_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,14 +34,21 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classgame}{game}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The game class defines LUDO game interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{game_8h_ab8c52c1b4c021ed3e6b6b677bd2ac019}{MODE}}~0
-\item 
+\begin{DoxyCompactList}\small\item\em Switch for selection between a Single GUI game or multiple NO-\/\+GUI games. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{game_8h_a33a8038e7bcddf21f95fcc19e85ad688}{GAMES\+\_\+\+NO}}~10000
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Number of Games to play in case of Multiple games (MODE == 1) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file defines interface for a LUDO game. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Decide on and use only one naming convention \end{DoxyRefDesc}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -45,9 +58,24 @@ class \mbox{\hyperlink{classgame}{game}}
 \doxysubsubsection{\texorpdfstring{GAMES\_NO}{GAMES\_NO}}
 {\footnotesize\ttfamily \#define GAMES\+\_\+\+NO~10000}
 
+
+
+Number of Games to play in case of Multiple games (MODE == 1) 
+
 \mbox{\Hypertarget{game_8h_ab8c52c1b4c021ed3e6b6b677bd2ac019}\label{game_8h_ab8c52c1b4c021ed3e6b6b677bd2ac019}} 
 \index{game.h@{game.h}!MODE@{MODE}}
 \index{MODE@{MODE}!game.h@{game.h}}
 \doxysubsubsection{\texorpdfstring{MODE}{MODE}}
 {\footnotesize\ttfamily \#define MODE~0}
 
+
+
+Switch for selection between a Single GUI game or multiple NO-\/\+GUI games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em 0} & -\/ single game with GUI \\
+\hline
+{\em 1} & -\/ multiple games, no GUI, with Statistics \\
+\hline
+\end{DoxyParams}

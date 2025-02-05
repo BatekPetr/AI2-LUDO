@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['winstats_224',['winStats',['../classgame.html#a983614b1e3606858b69f1f0b8808d475',1,'game']]]
+  ['winstats_227',['winStats',['../classgame.html#a983614b1e3606858b69f1f0b8808d475',1,'game']]]
 ];

@@ -2,6 +2,11 @@
 \label{classludo__player}\index{ludo\_player@{ludo\_player}}
 
 
+The \mbox{\hyperlink{classludo__player}{ludo\+\_\+player}} class defines LUDO player interface.  
+
+
+
+
 {\ttfamily \#include $<$ludo\+\_\+player.\+h$>$}
 
 
@@ -22,41 +27,35 @@ Collaboration diagram for ludo\+\_\+player\+:\nopagebreak
 \includegraphics[width=154pt]{classludo__player__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Slots}
-\begin{DoxyCompactItemize}
-\item 
-int \mbox{\hyperlink{classludo__player_a1ffff5b21bcafcc00828ea3c859dc5a7}{start\+\_\+turn}} (\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}} relative)
-\item 
-bool \mbox{\hyperlink{classludo__player_a7ea6e5db6b189463e34dfbe8d3e93436}{post\+\_\+game\+\_\+analysis}} (std\+::vector$<$ int $>$ relative\+\_\+pos)
-\end{DoxyCompactItemize}
-\doxysubsection*{Signals}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{classludo__player_a28b971f31b9356e9156bf5489bf69b07}{select\+\_\+piece}} (int)
-\item 
-void \mbox{\hyperlink{classludo__player_a186eca28b52909dd86215359fe6c75f1}{turn\+\_\+complete}} (bool)
-\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classludo__player_ac839876d2abafa92d7f0ec292640f173}{ludo\+\_\+player}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classludo__player_a3de415d2e7bd7ebc70e41c7972c36549}{say\+\_\+hi}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em A Virtual function for identification of Polymorfed player. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classludo__player_aae1cc634ff30361a77fb95e79320a834}{set\+\_\+games\+Total}} (int $\ast$games\+Total\+\_\+from\+\_\+game)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Setter for No. of games\+Total variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Signals_ga28b971f31b9356e9156bf5489bf69b07}{select\+\_\+piece}} (int)
+\begin{DoxyCompactList}\small\item\em select\+\_\+piece signal emmited when a piece for play turn was chosen \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Signals_ga186eca28b52909dd86215359fe6c75f1}{turn\+\_\+complete}} (bool)
+\begin{DoxyCompactList}\small\item\em turn\+\_\+complete signal emmited when player\textquotesingle{}s turn is finished \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__Slots_ga1ffff5b21bcafcc00828ea3c859dc5a7}{start\+\_\+turn}} (\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}} relative)
+\begin{DoxyCompactList}\small\item\em start\+\_\+turn slot for initiating a player turn \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__Slots_ga7ea6e5db6b189463e34dfbe8d3e93436}{post\+\_\+game\+\_\+analysis}} (std\+::vector$<$ int $>$ relative\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em post\+\_\+game\+\_\+analysis slot starts evaluation of a gamestate after player\textquotesingle{}s turn \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{classludo__player_a8d7a91f84a9cc99551c8a6fe743bd60c}{player\+\_\+type}}
-\item 
+\begin{DoxyCompactList}\small\item\em A String name of player type. \end{DoxyCompactList}\item 
 std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player_ac172bc3238eb23681ade815dc7bdbf49}{genes}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A Vector of player feature genes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 virtual int \mbox{\hyperlink{classludo__player_a20adec314bec5ec84ad30f63c9de91a6}{make\+\_\+decision}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em make\+\_\+decision A virtual function to be re-\/implemented by more specialized player \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classludo__player_a473a83517ea2ff55af8681650bb8bf2c}{is\+Occupied}} (int index, const std\+::vector$<$ int $>$ \&relative\+\_\+player\+\_\+positions)
 \item 
 bool \mbox{\hyperlink{classludo__player_a4f146a29fd7f6307c6276322d50a7eab}{is\+Globe}} (int index)
@@ -98,12 +97,19 @@ int $\ast$ \mbox{\hyperlink{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classludo__player}{ludo\+\_\+player}} class defines LUDO player interface. 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classludo__player_ac839876d2abafa92d7f0ec292640f173}\label{classludo__player_ac839876d2abafa92d7f0ec292640f173}} 
 \index{ludo\_player@{ludo\_player}!ludo\_player@{ludo\_player}}
 \index{ludo\_player@{ludo\_player}!ludo\_player@{ludo\_player}}
 \doxysubsubsection{\texorpdfstring{ludo\_player()}{ludo\_player()}}
 {\footnotesize\ttfamily ludo\+\_\+player\+::ludo\+\_\+player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default Constructor. 
 
 
 
@@ -162,6 +168,16 @@ int $\ast$ \mbox{\hyperlink{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}
 \doxysubsubsection{\texorpdfstring{make\_decision()}{make\_decision()}}
 {\footnotesize\ttfamily int ludo\+\_\+player\+::make\+\_\+decision (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+
+
+make\+\_\+decision A virtual function to be re-\/implemented by more specialized player 
+
+\begin{DoxyReturn}{Returns}
+integer number of player\textquotesingle{}s piece to play with 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+function is used for polymorphysim by different players 
+\end{DoxyNote}
 \mbox{\Hypertarget{classludo__player_a0c9449c7fffb174de3df9527b224c322}\label{classludo__player_a0c9449c7fffb174de3df9527b224c322}} 
 \index{ludo\_player@{ludo\_player}!move\_piece@{move\_piece}}
 \index{move\_piece@{move\_piece}!ludo\_player@{ludo\_player}}
@@ -173,12 +189,6 @@ int $\ast$ \mbox{\hyperlink{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}
 \index{move\_start@{move\_start}!ludo\_player@{ludo\_player}}
 \doxysubsubsection{\texorpdfstring{move\_start()}{move\_start()}}
 {\footnotesize\ttfamily void ludo\+\_\+player\+::move\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{relative\+\_\+piece,  }\item[{const std\+::vector$<$ int $>$ \&}]{state,  }\item[{std\+::vector$<$ int $>$ \&}]{new\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
-
-\mbox{\Hypertarget{classludo__player_a7ea6e5db6b189463e34dfbe8d3e93436}\label{classludo__player_a7ea6e5db6b189463e34dfbe8d3e93436}} 
-\index{ludo\_player@{ludo\_player}!post\_game\_analysis@{post\_game\_analysis}}
-\index{post\_game\_analysis@{post\_game\_analysis}!ludo\_player@{ludo\_player}}
-\doxysubsubsection{\texorpdfstring{post\_game\_analysis}{post\_game\_analysis}}
-{\footnotesize\ttfamily bool ludo\+\_\+player\+::post\+\_\+game\+\_\+analysis (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{relative\+\_\+pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
 
 \mbox{\Hypertarget{classludo__player_a29a4c557cd769321c9a6f82016b9c043}\label{classludo__player_a29a4c557cd769321c9a6f82016b9c043}} 
 \index{ludo\_player@{ludo\_player}!print\_dice\_roll@{print\_dice\_roll}}
@@ -200,13 +210,11 @@ int $\ast$ \mbox{\hyperlink{classludo__player_acedd2969c385b5dd1d9cea24df5e232e}
 
 
 
-Reimplemented in \mbox{\hyperlink{classludo__player__genetic_ac1565423dae4eb7fbe2e2332ad2bc695}{ludo\+\_\+player\+\_\+genetic}}.
+A Virtual function for identification of Polymorfed player. 
 
-\mbox{\Hypertarget{classludo__player_a28b971f31b9356e9156bf5489bf69b07}\label{classludo__player_a28b971f31b9356e9156bf5489bf69b07}} 
-\index{ludo\_player@{ludo\_player}!select\_piece@{select\_piece}}
-\index{select\_piece@{select\_piece}!ludo\_player@{ludo\_player}}
-\doxysubsubsection{\texorpdfstring{select\_piece}{select\_piece}}
-{\footnotesize\ttfamily void ludo\+\_\+player\+::select\+\_\+piece (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+Reimplemented in \mbox{\hyperlink{classludo__player__genetic_ac1565423dae4eb7fbe2e2332ad2bc695}{ludo\+\_\+player\+\_\+genetic}}.
 
 \mbox{\Hypertarget{classludo__player_a535a7dc2c61065efbe17707169b48b74}\label{classludo__player_a535a7dc2c61065efbe17707169b48b74}} 
 \index{ludo\_player@{ludo\_player}!send\_them\_home@{send\_them\_home}}
@@ -220,17 +228,9 @@ Reimplemented in \mbox{\hyperlink{classludo__player__genetic_ac1565423dae4eb7fbe
 \doxysubsubsection{\texorpdfstring{set\_gamesTotal()}{set\_gamesTotal()}}
 {\footnotesize\ttfamily void ludo\+\_\+player\+::set\+\_\+games\+Total (\begin{DoxyParamCaption}\item[{int $\ast$}]{games\+Total\+\_\+from\+\_\+game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classludo__player_a1ffff5b21bcafcc00828ea3c859dc5a7}\label{classludo__player_a1ffff5b21bcafcc00828ea3c859dc5a7}} 
-\index{ludo\_player@{ludo\_player}!start\_turn@{start\_turn}}
-\index{start\_turn@{start\_turn}!ludo\_player@{ludo\_player}}
-\doxysubsubsection{\texorpdfstring{start\_turn}{start\_turn}}
-{\footnotesize\ttfamily int ludo\+\_\+player\+::start\+\_\+turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}}}]{relative }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
 
-\mbox{\Hypertarget{classludo__player_a186eca28b52909dd86215359fe6c75f1}\label{classludo__player_a186eca28b52909dd86215359fe6c75f1}} 
-\index{ludo\_player@{ludo\_player}!turn\_complete@{turn\_complete}}
-\index{turn\_complete@{turn\_complete}!ludo\_player@{ludo\_player}}
-\doxysubsubsection{\texorpdfstring{turn\_complete}{turn\_complete}}
-{\footnotesize\ttfamily void ludo\+\_\+player\+::turn\+\_\+complete (\begin{DoxyParamCaption}\item[{bool}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+Setter for No. of games\+Total variable. 
 
 \mbox{\Hypertarget{classludo__player_a36078e651c131edfda9efb80bdf6f4e8}\label{classludo__player_a36078e651c131edfda9efb80bdf6f4e8}} 
 \index{ludo\_player@{ludo\_player}!vulnerableBy@{vulnerableBy}}
@@ -259,12 +259,26 @@ Reimplemented in \mbox{\hyperlink{classludo__player__genetic_ac1565423dae4eb7fbe
 \doxysubsubsection{\texorpdfstring{genes}{genes}}
 {\footnotesize\ttfamily std\+::vector$<$double$>$ ludo\+\_\+player\+::genes}
 
+
+
+A Vector of player feature genes. 
+
+\begin{DoxyNote}{Note}
+to make it possible to use unique\+\_\+ptr for other players than just genetic 
+\end{DoxyNote}
 \mbox{\Hypertarget{classludo__player_a8d7a91f84a9cc99551c8a6fe743bd60c}\label{classludo__player_a8d7a91f84a9cc99551c8a6fe743bd60c}} 
 \index{ludo\_player@{ludo\_player}!player\_type@{player\_type}}
 \index{player\_type@{player\_type}!ludo\_player@{ludo\_player}}
 \doxysubsubsection{\texorpdfstring{player\_type}{player\_type}}
 {\footnotesize\ttfamily std\+::string ludo\+\_\+player\+::player\+\_\+type}
 
+
+
+A String name of player type. 
+
+E.\+g.\+: \char`\"{}aggresssive\char`\"{}, \char`\"{}defensive\char`\"{}, \char`\"{}expert\char`\"{}, \char`\"{}fast\char`\"{}, \char`\"{}genetic\char`\"{}, etc. \begin{DoxyNote}{Note}
+Would be better to use Enum type 
+\end{DoxyNote}
 \mbox{\Hypertarget{classludo__player_ac538e8574f091c3d6106eb45f1677b55}\label{classludo__player_ac538e8574f091c3d6106eb45f1677b55}} 
 \index{ludo\_player@{ludo\_player}!pos\_end\_of\_turn@{pos\_end\_of\_turn}}
 \index{pos\_end\_of\_turn@{pos\_end\_of\_turn}!ludo\_player@{ludo\_player}}

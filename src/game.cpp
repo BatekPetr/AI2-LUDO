@@ -1,3 +1,10 @@
+/**
+ * @file game.cpp
+ * @brief This file contains implementation of LUDO game
+ *
+ * @todo Decide on and use only one naming convention
+*/
+
 #include "game.h"
 #define DEBUG 0
 
@@ -132,16 +139,17 @@ void game::reset(){
     //std::cout << "Game RESET." << std::endl;
 }
 
-/*
- * converts <color> relative piece index to absolute/fixed piece index according to color
+/**
+ * @brief Converts relative to <color> piece index (1-4)
+ * to absolute/fixed piece index in player_positions vector
 */
 int game::rel_to_fixed(int relative_piece_index){
     return relative_piece_index + color * 4;
 }
 
-/*
- * checks on which star the piece is standing 
- * returns no. of fields to the next star
+/**
+ * @brief checks on which star the piece is standing
+ * @returns no. of fields to the next star
 */
 int game::isStar(int index){
     if(index == 5  ||

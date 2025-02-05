@@ -1,11 +1,18 @@
+/**
+ * @file ludo_player.cpp
+ * @brief This file contains implementation of some basic functions for ludo_player
+ *
+ * @todo Decide on and use only one naming convention
+*/
+
 #include "ludo_player.h"
 #include <random>
 
 ludo_player::ludo_player():
-    player_type("General"),
     pos_start_of_turn(16),
     pos_end_of_turn(16),
-    dice_roll(0)
+    dice_roll(0),
+    player_type("General")
 {
 }
 

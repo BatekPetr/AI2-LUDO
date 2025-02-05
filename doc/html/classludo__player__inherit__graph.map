@@ -1,5 +1,5 @@
 <map id="ludo_player" name="ludo_player">
-<area shape="rect" id="node1" title=" " alt="" coords="128,56,227,83"/>
+<area shape="rect" id="node1" title="The ludo_player class defines LUDO player interface." alt="" coords="128,56,227,83"/>
 <area shape="rect" id="node3" href="$classludo__player__expert.html" title=" " alt="" coords="279,5,425,32"/>
 <area shape="rect" id="node5" href="$classludo__player__fast.html" title=" " alt="" coords="287,56,417,83"/>
 <area shape="rect" id="node6" href="$classludo__player__random.html" title=" " alt="" coords="275,107,429,133"/>

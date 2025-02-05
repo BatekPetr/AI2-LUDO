@@ -1,6 +1,6 @@
 <map id="ludo_player_aggressive" name="ludo_player_aggressive">
 <area shape="rect" id="node1" title=" " alt="" coords="5,229,181,256"/>
 <area shape="rect" id="node2" href="$classludo__player__random.html" title=" " alt="" coords="16,155,171,181"/>
-<area shape="rect" id="node3" href="$classludo__player.html" title=" " alt="" coords="44,80,143,107"/>
+<area shape="rect" id="node3" href="$classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="44,80,143,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="56,5,131,32"/>
 </map>
