@@ -1,11 +1,14 @@
+/**
+ * @file ludo_player_expert.cpp
+ * @brief This file contains implementation of a ludo_player_expert
+*/
+
 #include "ludo_player_expert.h"
 
-ludo_player_expert::ludo_player_expert():ludo_player(),
-  rd(),
-  gen(rd())
+ludo_player_expert::ludo_player_expert():ludo_player_random()
 {
     // Change player type from parent class
-    this->player_type = "expert";
+    this->player_type = "Expert";
 }
 
 int ludo_player_expert::make_decision()
@@ -169,12 +172,4 @@ double ludo_player_expert::reward(std::vector<int>& new_state,\
 
     return reward;
 
-}
-
-int ludo_player_expert::pick_random_move(const std::vector<int>& possible_moves)
-{
-    std::uniform_int_distribution<> piece\
-                                    (0, possible_moves.size()-1);
-    int select = piece(gen);
-    return possible_moves[select];
 }

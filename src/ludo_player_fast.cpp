@@ -1,3 +1,8 @@
+/**
+ * @file ludo_player_fast.cpp
+ * @brief This file contains implementation of a ludo_player_fast
+*/
+
 #include "ludo_player_fast.h"
 
 

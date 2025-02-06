@@ -1,3 +1,8 @@
+/**
+ * @file ludo_player_random.cpp
+ * @brief This file contains implementation of a ludo_player_random
+*/
+
 #include "ludo_player_random.h"
 
 ludo_player_random::ludo_player_random():ludo_player(),

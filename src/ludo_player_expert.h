@@ -1,25 +1,30 @@
+/**
+ * @file ludo_player_expert.h
+ * @brief This file contains interface for a ludo_player_expert
+*/
+
 #ifndef LUDO_PLAYER_EXPERT_H
 #define LUDO_PLAYER_EXPERT_H
 #include <QObject>
-#include <iostream>
-#include <random>
-#include "positions_and_dice.h"
-#include "ludo_player.h"
 
-/* Children of class ludo_player
- * make_decision() function is polymorphed/changed
- * for Random Player
+#include "ludo_player_random.h"
+
+/**
+ * @class ludo_player_expert
+ * @brief The ludo_player_expert class extends ludo_player_random and overrides make_decision() function.
+ *
+ * @details The main difference of this player to the other players is that,
+ * it has the most sophisticated strategy designed by a human. The class contains reward() function, which
+ * was designed with advanced human strategy in place and fine-tuned.
+ * It shall be considered as the most advanced non-AI player.
  */
-class ludo_player_expert : public ludo_player
+class ludo_player_expert : public ludo_player_random
 {
     Q_OBJECT
 private:
-    std::random_device rd;
-    std::mt19937 gen;
-    int make_decision(); // polymorphed function
+    int make_decision() override; // polymorphed function
 protected:
     virtual double reward(std::vector<int>& new_state, int piece_moved);
-    int pick_random_move(const std::vector<int>& possible_moves);
 public:
     ludo_player_expert();
 };

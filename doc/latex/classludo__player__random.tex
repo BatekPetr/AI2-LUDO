@@ -2,11 +2,17 @@
 \label{classludo__player__random}\index{ludo\_player\_random@{ludo\_player\_random}}
 
 
+The \mbox{\hyperlink{classludo__player__random}{ludo\+\_\+player\+\_\+random}} class extends general \mbox{\hyperlink{classludo__player}{ludo\+\_\+player}} by pick\+\_\+random\+\_\+move function.  
+
+
+
+
 {\ttfamily \#include $<$ludo\+\_\+player\+\_\+random.\+h$>$}
 
 
 
-Inheritance diagram for ludo\+\_\+player\+\_\+random\+:\nopagebreak
+Inheritance diagram for ludo\+\_\+player\+\_\+random\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,7 +37,7 @@ Collaboration diagram for ludo\+\_\+player\+\_\+random\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{classludo__player__random_a271f4cafdadd2007c4f0805a6e928796}{pick\+\_\+random\+\_\+move}} (const std\+::vector$<$ int $>$ \&possible\+\_\+moves)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Randomly pick a piece to play with from possible\+\_\+moves. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,6 +47,9 @@ std\+::mt19937 \mbox{\hyperlink{classludo__player__random_a9c066d029c7df513f1993
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classludo__player__random}{ludo\+\_\+player\+\_\+random}} class extends general \mbox{\hyperlink{classludo__player}{ludo\+\_\+player}} by pick\+\_\+random\+\_\+move function. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classludo__player__random_a4aee9c21dfff3809904f92c4704a1d04}\label{classludo__player__random_a4aee9c21dfff3809904f92c4704a1d04}} 
@@ -58,6 +67,18 @@ std\+::mt19937 \mbox{\hyperlink{classludo__player__random_a9c066d029c7df513f1993
 \doxysubsubsection{\texorpdfstring{pick\_random\_move()}{pick\_random\_move()}}
 {\footnotesize\ttfamily int ludo\+\_\+player\+\_\+random\+::pick\+\_\+random\+\_\+move (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{possible\+\_\+moves }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Randomly pick a piece to play with from possible\+\_\+moves. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em possible\+\_\+moves} & Vector of player\textquotesingle{}s possible moves (pieces to play with) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int identification of randomly selected peace to play with 
+\end{DoxyReturn}
 
 
 \doxysubsection{Member Data Documentation}

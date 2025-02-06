@@ -1,3 +1,10 @@
+/**
+ * @file dialog.cpp
+ * @brief This file contains implementation of GUI gameplay Dialog
+ *
+ * @todo Decide on and use only one naming convention
+*/
+
 #include "dialog.h"
 #include "ui_dialog.h"
 

@@ -71,18 +71,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The <a class="el" href="classludo__player__random.html" title="The ludo_player_random class extends general ludo_player by pick_random_move function.">ludo_player_random</a> class extends general <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> by pick_random_move function.  
+ <a href="classludo__player__random.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ludo__player__random_8h_source.html">ludo_player_random.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ludo_player_random:</div>
 <div class="dyncontent">
 <div class="center"><img src="classludo__player__random__inherit__graph.png" border="0" usemap="#aludo__player__random_inherit__map" alt="Inheritance graph"/></div>
 <map name="aludo__player__random_inherit__map" id="aludo__player__random_inherit__map">
-<area shape="rect" title=" " alt="" coords="213,155,368,181"/>
+<area shape="rect" title="The ludo_player_random class extends general ludo_player by pick_random_move function." alt="" coords="304,155,459,181"/>
 <area shape="rect" href="classludo__player__aggressive.html" title=" " alt="" coords="5,229,181,256"/>
 <area shape="rect" href="classludo__player__defensive.html" title=" " alt="" coords="206,229,375,256"/>
-<area shape="rect" href="classludo__player__genetic.html" title=" " alt="" coords="399,229,553,256"/>
-<area shape="rect" href="classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="241,80,340,107"/>
-<area shape="rect" title=" " alt="" coords="253,5,328,32"/>
+<area shape="rect" href="classludo__player__expert.html" title="The ludo_player_expert class extends ludo_player_random and overrides make_decision() function." alt="" coords="400,229,547,256"/>
+<area shape="rect" href="classludo__player__genetic.html" title="The ludo_player_genetic class extends ludo_player_random and overrides make_decision() function." alt="" coords="571,229,725,256"/>
+<area shape="rect" href="classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="332,80,431,107"/>
+<area shape="rect" title=" " alt="" coords="344,5,419,32"/>
+<area shape="rect" href="classludo__player__Qlearning.html" title=" " alt="" coords="389,304,557,331"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -90,7 +95,7 @@ Collaboration diagram for ludo_player_random:</div>
 <div class="dyncontent">
 <div class="center"><img src="classludo__player__random__coll__graph.png" border="0" usemap="#aludo__player__random_coll__map" alt="Collaboration graph"/></div>
 <map name="aludo__player__random_coll__map" id="aludo__player__random_coll__map">
-<area shape="rect" title=" " alt="" coords="5,155,160,181"/>
+<area shape="rect" title="The ludo_player_random class extends general ludo_player by pick_random_move function." alt="" coords="5,155,160,181"/>
 <area shape="rect" href="classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="33,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="45,5,120,32"/>
 </map>
@@ -110,22 +115,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aae1cc634ff30361a77fb95e79320a834 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classludo__player.html#aae1cc634ff30361a77fb95e79320a834">set_gamesTotal</a> (int *gamesTotal_from_game)</td></tr>
 <tr class="memdesc:aae1cc634ff30361a77fb95e79320a834 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for No. of gamesTotal variable.  <a href="classludo__player.html#aae1cc634ff30361a77fb95e79320a834">More...</a><br /></td></tr>
 <tr class="separator:aae1cc634ff30361a77fb95e79320a834 inherit pub_methods_classludo__player"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28b971f31b9356e9156bf5489bf69b07 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Signals.html#ga28b971f31b9356e9156bf5489bf69b07">select_piece</a> (int)</td></tr>
-<tr class="memdesc:ga28b971f31b9356e9156bf5489bf69b07 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">select_piece signal emmited when a piece for play turn was chosen  <a href="group__Signals.html#ga28b971f31b9356e9156bf5489bf69b07">More...</a><br /></td></tr>
+<tr class="memitem:ga28b971f31b9356e9156bf5489bf69b07 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LudoPLayerSignals.html#ga28b971f31b9356e9156bf5489bf69b07">select_piece</a> (int)</td></tr>
+<tr class="memdesc:ga28b971f31b9356e9156bf5489bf69b07 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">select_piece signal emmited when a piece for play turn was chosen  <a href="group__LudoPLayerSignals.html#ga28b971f31b9356e9156bf5489bf69b07">More...</a><br /></td></tr>
 <tr class="separator:ga28b971f31b9356e9156bf5489bf69b07 inherit pub_methods_classludo__player"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga186eca28b52909dd86215359fe6c75f1 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Signals.html#ga186eca28b52909dd86215359fe6c75f1">turn_complete</a> (bool)</td></tr>
-<tr class="memdesc:ga186eca28b52909dd86215359fe6c75f1 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">turn_complete signal emmited when player's turn is finished  <a href="group__Signals.html#ga186eca28b52909dd86215359fe6c75f1">More...</a><br /></td></tr>
+<tr class="memitem:ga186eca28b52909dd86215359fe6c75f1 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LudoPLayerSignals.html#ga186eca28b52909dd86215359fe6c75f1">turn_complete</a> (bool)</td></tr>
+<tr class="memdesc:ga186eca28b52909dd86215359fe6c75f1 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">turn_complete signal emmited when player's turn is finished  <a href="group__LudoPLayerSignals.html#ga186eca28b52909dd86215359fe6c75f1">More...</a><br /></td></tr>
 <tr class="separator:ga186eca28b52909dd86215359fe6c75f1 inherit pub_methods_classludo__player"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1ffff5b21bcafcc00828ea3c859dc5a7 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Slots.html#ga1ffff5b21bcafcc00828ea3c859dc5a7">start_turn</a> (<a class="el" href="structpositions__and__dice.html">positions_and_dice</a> relative)</td></tr>
-<tr class="memdesc:ga1ffff5b21bcafcc00828ea3c859dc5a7 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">start_turn slot for initiating a player turn  <a href="group__Slots.html#ga1ffff5b21bcafcc00828ea3c859dc5a7">More...</a><br /></td></tr>
+<tr class="memitem:ga1ffff5b21bcafcc00828ea3c859dc5a7 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LudoPlayerSlots.html#ga1ffff5b21bcafcc00828ea3c859dc5a7">start_turn</a> (<a class="el" href="structpositions__and__dice.html">positions_and_dice</a> relative)</td></tr>
+<tr class="memdesc:ga1ffff5b21bcafcc00828ea3c859dc5a7 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">start_turn slot for initiating a player turn  <a href="group__LudoPlayerSlots.html#ga1ffff5b21bcafcc00828ea3c859dc5a7">More...</a><br /></td></tr>
 <tr class="separator:ga1ffff5b21bcafcc00828ea3c859dc5a7 inherit pub_methods_classludo__player"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7ea6e5db6b189463e34dfbe8d3e93436 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Slots.html#ga7ea6e5db6b189463e34dfbe8d3e93436">post_game_analysis</a> (std::vector&lt; int &gt; relative_pos)</td></tr>
-<tr class="memdesc:ga7ea6e5db6b189463e34dfbe8d3e93436 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">post_game_analysis slot starts evaluation of a gamestate after player's turn  <a href="group__Slots.html#ga7ea6e5db6b189463e34dfbe8d3e93436">More...</a><br /></td></tr>
+<tr class="memitem:ga7ea6e5db6b189463e34dfbe8d3e93436 inherit pub_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LudoPlayerSlots.html#ga7ea6e5db6b189463e34dfbe8d3e93436">post_game_analysis</a> (std::vector&lt; int &gt; relative_pos)</td></tr>
+<tr class="memdesc:ga7ea6e5db6b189463e34dfbe8d3e93436 inherit pub_methods_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">post_game_analysis slot starts evaluation of a gamestate after player's turn  <a href="group__LudoPlayerSlots.html#ga7ea6e5db6b189463e34dfbe8d3e93436">More...</a><br /></td></tr>
 <tr class="separator:ga7ea6e5db6b189463e34dfbe8d3e93436 inherit pub_methods_classludo__player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a271f4cafdadd2007c4f0805a6e928796"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classludo__player__random.html#a271f4cafdadd2007c4f0805a6e928796">pick_random_move</a> (const std::vector&lt; int &gt; &amp;possible_moves)</td></tr>
+<tr class="memdesc:a271f4cafdadd2007c4f0805a6e928796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly pick a piece to play with from possible_moves.  <a href="classludo__player__random.html#a271f4cafdadd2007c4f0805a6e928796">More...</a><br /></td></tr>
 <tr class="separator:a271f4cafdadd2007c4f0805a6e928796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classludo__player"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classludo__player')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classludo__player.html">ludo_player</a></td></tr>
 <tr class="memitem:a473a83517ea2ff55af8681650bb8bf2c inherit pro_methods_classludo__player"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classludo__player.html#a473a83517ea2ff55af8681650bb8bf2c">isOccupied</a> (int index, const std::vector&lt; int &gt; &amp;relative_player_positions)</td></tr>
@@ -183,7 +189,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:ac172bc3238eb23681ade815dc7bdbf49 inherit pub_attribs_classludo__player"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Vector of player feature genes.  <a href="classludo__player.html#ac172bc3238eb23681ade815dc7bdbf49">More...</a><br /></td></tr>
 <tr class="separator:ac172bc3238eb23681ade815dc7bdbf49 inherit pub_attribs_classludo__player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classludo__player__random.html" title="The ludo_player_random class extends general ludo_player by pick_random_move function.">ludo_player_random</a> class extends general <a class="el" href="classludo__player.html" title="The ludo_player class defines LUDO player interface.">ludo_player</a> by pick_random_move function. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4aee9c21dfff3809904f92c4704a1d04"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4aee9c21dfff3809904f92c4704a1d04">&#9670;&nbsp;</a></span>ludo_player_random()</h2>
 
@@ -225,6 +233,15 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Randomly pick a piece to play with from possible_moves. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">possible_moves</td><td>Vector of player's possible moves (pieces to play with) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int identification of randomly selected peace to play with </dd></dl>
 
 </div>
 </div>

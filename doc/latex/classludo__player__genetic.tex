@@ -2,11 +2,17 @@
 \label{classludo__player__genetic}\index{ludo\_player\_genetic@{ludo\_player\_genetic}}
 
 
+The \mbox{\hyperlink{classludo__player__genetic}{ludo\+\_\+player\+\_\+genetic}} class extends \mbox{\hyperlink{classludo__player__random}{ludo\+\_\+player\+\_\+random}} and overrides make\+\_\+decision() function.  
+
+
+
+
 {\ttfamily \#include $<$ludo\+\_\+player\+\_\+genetic.\+h$>$}
 
 
 
-Inheritance diagram for ludo\+\_\+player\+\_\+genetic\+:\nopagebreak
+Inheritance diagram for ludo\+\_\+player\+\_\+genetic\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for ludo\+\_\+player\+\_\+genetic\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for ludo\+\_\+player\+\_\+genetic\+:\nopagebreak
+Collaboration diagram for ludo\+\_\+player\+\_\+genetic\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -30,18 +37,23 @@ Collaboration diagram for ludo\+\_\+player\+\_\+genetic\+:\nopagebreak
 \mbox{\hyperlink{classludo__player__genetic_a34f9e46fa900c1a33cbf3006c168fce7}{ludo\+\_\+player\+\_\+genetic}} (std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player__genetic_aa3aa2caf530b670ea360aa5fc5712747}{genes}})
 \item 
 std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player__genetic_a9e9bff471235811d7dbf8bbfb0700f7c}{get\+\_\+genes}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Getter of player genes (chromosome) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classludo__player__genetic_a4c83aa766f640cc9df2e10ea72ed771b}{set\+\_\+genes}} (std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player__genetic_aa3aa2caf530b670ea360aa5fc5712747}{genes}})
-\item 
-void \mbox{\hyperlink{classludo__player__genetic_ac1565423dae4eb7fbe2e2332ad2bc695}{say\+\_\+hi}} ()
-\begin{DoxyCompactList}\small\item\em A Virtual function for identification of Polymorfed player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Setter of player genes (chromosome) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classludo__player__genetic_ad36dfb0d1bb8ffc92a67b840911e0775}{say\+\_\+hi}} () override
+\begin{DoxyCompactList}\small\item\em Introduce player and print its chromosome. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player__genetic_aa3aa2caf530b670ea360aa5fc5712747}{genes}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Vector of player genes (chromosome) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classludo__player__genetic}{ludo\+\_\+player\+\_\+genetic}} class extends \mbox{\hyperlink{classludo__player__random}{ludo\+\_\+player\+\_\+random}} and overrides make\+\_\+decision() function. 
+
+This is an AI player, which behaviour is trained and evolved during gameplay. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classludo__player__genetic_a379471031a1ed13a7b393c8910ed234c}\label{classludo__player__genetic_a379471031a1ed13a7b393c8910ed234c}} 
@@ -65,17 +77,21 @@ std\+::vector$<$ double $>$ \mbox{\hyperlink{classludo__player__genetic_aa3aa2ca
 \doxysubsubsection{\texorpdfstring{get\_genes()}{get\_genes()}}
 {\footnotesize\ttfamily std\+::vector$<$double$>$ ludo\+\_\+player\+\_\+genetic\+::get\+\_\+genes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classludo__player__genetic_ac1565423dae4eb7fbe2e2332ad2bc695}\label{classludo__player__genetic_ac1565423dae4eb7fbe2e2332ad2bc695}} 
+
+
+Getter of player genes (chromosome) 
+
+\mbox{\Hypertarget{classludo__player__genetic_ad36dfb0d1bb8ffc92a67b840911e0775}\label{classludo__player__genetic_ad36dfb0d1bb8ffc92a67b840911e0775}} 
 \index{ludo\_player\_genetic@{ludo\_player\_genetic}!say\_hi@{say\_hi}}
 \index{say\_hi@{say\_hi}!ludo\_player\_genetic@{ludo\_player\_genetic}}
 \doxysubsubsection{\texorpdfstring{say\_hi()}{say\_hi()}}
-{\footnotesize\ttfamily void ludo\+\_\+player\+\_\+genetic\+::say\+\_\+hi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void ludo\+\_\+player\+\_\+genetic\+::say\+\_\+hi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
-A Virtual function for identification of Polymorfed player. 
+Introduce player and print its chromosome. 
 
-
+Must be overriden in order to print chromosome 
 
 Reimplemented from \mbox{\hyperlink{classludo__player_a3de415d2e7bd7ebc70e41c7972c36549}{ludo\+\_\+player}}.
 
@@ -87,12 +103,25 @@ Reimplemented from \mbox{\hyperlink{classludo__player_a3de415d2e7bd7ebc70e41c797
 
 
 
+Setter of player genes (chromosome) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em genes} & Vector of genes (chromosome) weights \\
+\hline
+\end{DoxyParams}
+
+
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{classludo__player__genetic_aa3aa2caf530b670ea360aa5fc5712747}\label{classludo__player__genetic_aa3aa2caf530b670ea360aa5fc5712747}} 
 \index{ludo\_player\_genetic@{ludo\_player\_genetic}!genes@{genes}}
 \index{genes@{genes}!ludo\_player\_genetic@{ludo\_player\_genetic}}
 \doxysubsubsection{\texorpdfstring{genes}{genes}}
 {\footnotesize\ttfamily std\+::vector$<$double$>$ ludo\+\_\+player\+\_\+genetic\+::genes}
+
+
+
+Vector of player genes (chromosome) 
 
 
 

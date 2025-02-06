@@ -1,6 +1,7 @@
 <map id="ludo_player_expert" name="ludo_player_expert">
-<area shape="rect" id="node1" title=" " alt="" coords="16,155,163,181"/>
-<area shape="rect" id="node4" href="$classludo__player__Qlearning.html" title=" " alt="" coords="5,229,173,256"/>
-<area shape="rect" id="node2" href="$classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="40,80,139,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="52,5,127,32"/>
+<area shape="rect" id="node1" title="The ludo_player_expert class extends ludo_player_random and overrides make_decision() function." alt="" coords="16,229,163,256"/>
+<area shape="rect" id="node5" href="$classludo__player__Qlearning.html" title=" " alt="" coords="5,304,173,331"/>
+<area shape="rect" id="node2" href="$classludo__player__random.html" title="The ludo_player_random class extends general ludo_player by pick_random_move function." alt="" coords="12,155,167,181"/>
+<area shape="rect" id="node3" href="$classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="40,80,139,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="52,5,127,32"/>
 </map>

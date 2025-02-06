@@ -1,6 +1,6 @@
 /**
  * @file ludo_player.h
- * @brief This file defines interface for a generall LUDO player
+ * @brief This file contains interface for a generall ludo_player
  *
  * @todo Decide on and use only one naming convention
 */
@@ -91,29 +91,30 @@ public:
 
 
 /**
- * @defgroup Signals A Group of Qt Signals
+ * @defgroup LudoPLayerSignals Ludo_player class Qt Signals
  * @note The signals were used in the initial stage of the project,
  * when the game project was handed out with the assignment. During the work on the project,
  * signals and slots were replaced for better scalability.
  */
 signals:
     /**
-     * @ingroup Signals
+     * @ingroup LudoPLayerSignals
      * @brief select_piece signal emmited when a piece for play turn was chosen
      */
     void select_piece(int);
 
     /**
-     * @ingroup Signals
+     * @ingroup LudoPLayerSignals
      * @brief turn_complete signal emmited when player's turn is finished
      */
     void turn_complete(bool);
 
-/** @defgroup Slots A Group of Qt Slots
+/**
+ *  @defgroup LudoPlayerSlots Ludo_player class Qt Slots
  */
 public slots:
     /**
-     * @ingroup Slots
+     * @ingroup LudoPlayerSlots
      * @brief start_turn slot for initiating a player turn
      * @param relative piece positions on the gameplan and dice roll
      * @return integer format of decision, what piece is going to play
@@ -121,7 +122,7 @@ public slots:
     int start_turn(positions_and_dice relative);
 
     /**
-     * @ingroup Slots
+     * @ingroup LudoPlayerSlots
      * @brief post_game_analysis slot starts evaluation of a gamestate after player's turn
      * @param relative_pos player's peaces relative positions vector
      * @return bool, indicating, whether all player's peaces finished the game

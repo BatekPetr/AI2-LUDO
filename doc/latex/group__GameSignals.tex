@@ -1,0 +1,89 @@
+\hypertarget{group__GameSignals}{}\doxysection{Game class Qt Signals}
+\label{group__GameSignals}\index{Game class Qt Signals@{Game class Qt Signals}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__GameSignals_ga7dba796354ffe5a797be144b362ab398}{game\+::update\+\_\+graphics}} (std\+::vector$<$ int $>$ \mbox{\hyperlink{classgame_aa6094dc70b5021f290178cdc6648fa59}{player\+\_\+positions}})
+\begin{DoxyCompactList}\small\item\em Emit signal for GUI update. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__GameSignals_ga355a4b92dd44267da59248aeaa5e1962}{game\+::set\+\_\+color}} (int \mbox{\hyperlink{classgame_aac93fa8e3c6efb668830fd2d083fa385}{color}})
+\begin{DoxyCompactList}\small\item\em Set color of active player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__GameSignals_gab2001add4018c008628ff73549676197}{game\+::set\+\_\+dice\+\_\+result}} (int dice\+\_\+result)
+\begin{DoxyCompactList}\small\item\em Set dice result. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__GameSignals_ga338dc5101b333a9e2b52eabdaa5bed7e}{game\+::declare\+\_\+winner}} (int)
+\begin{DoxyCompactList}\small\item\em Emit signal to show winner in \mbox{\hyperlink{classDialog}{Dialog}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__GameSignals_ga5078a9b3362193ef263c107f73d0a614}{game\+::close}} ()
+\begin{DoxyCompactList}\small\item\em Emit signal to close gameplay GUI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyNote}{Note}
+The signals were used in the initial stage of the project, when the game project was handed out with the assignment. During the work on the project, signals and slots were replaced for better scalability. 
+\end{DoxyNote}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__GameSignals_ga5078a9b3362193ef263c107f73d0a614}\label{group__GameSignals_ga5078a9b3362193ef263c107f73d0a614}} 
+\index{Game class Qt Signals@{Game class Qt Signals}!close@{close}}
+\index{close@{close}!Game class Qt Signals@{Game class Qt Signals}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void game\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Emit signal to close gameplay GUI. 
+
+\mbox{\Hypertarget{group__GameSignals_ga338dc5101b333a9e2b52eabdaa5bed7e}\label{group__GameSignals_ga338dc5101b333a9e2b52eabdaa5bed7e}} 
+\index{Game class Qt Signals@{Game class Qt Signals}!declare\_winner@{declare\_winner}}
+\index{declare\_winner@{declare\_winner}!Game class Qt Signals@{Game class Qt Signals}}
+\doxysubsubsection{\texorpdfstring{declare\_winner()}{declare\_winner()}}
+{\footnotesize\ttfamily void game\+::declare\+\_\+winner (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Emit signal to show winner in \mbox{\hyperlink{classDialog}{Dialog}} object. 
+
+\mbox{\Hypertarget{group__GameSignals_ga355a4b92dd44267da59248aeaa5e1962}\label{group__GameSignals_ga355a4b92dd44267da59248aeaa5e1962}} 
+\index{Game class Qt Signals@{Game class Qt Signals}!set\_color@{set\_color}}
+\index{set\_color@{set\_color}!Game class Qt Signals@{Game class Qt Signals}}
+\doxysubsubsection{\texorpdfstring{set\_color()}{set\_color()}}
+{\footnotesize\ttfamily void game\+::set\+\_\+color (\begin{DoxyParamCaption}\item[{int}]{color }\end{DoxyParamCaption})}
+
+
+
+Set color of active player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & integer representing player \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__GameSignals_gab2001add4018c008628ff73549676197}\label{group__GameSignals_gab2001add4018c008628ff73549676197}} 
+\index{Game class Qt Signals@{Game class Qt Signals}!set\_dice\_result@{set\_dice\_result}}
+\index{set\_dice\_result@{set\_dice\_result}!Game class Qt Signals@{Game class Qt Signals}}
+\doxysubsubsection{\texorpdfstring{set\_dice\_result()}{set\_dice\_result()}}
+{\footnotesize\ttfamily void game\+::set\+\_\+dice\+\_\+result (\begin{DoxyParamCaption}\item[{int}]{dice\+\_\+result }\end{DoxyParamCaption})}
+
+
+
+Set dice result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dice\+\_\+result} & as integer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__GameSignals_ga7dba796354ffe5a797be144b362ab398}\label{group__GameSignals_ga7dba796354ffe5a797be144b362ab398}} 
+\index{Game class Qt Signals@{Game class Qt Signals}!update\_graphics@{update\_graphics}}
+\index{update\_graphics@{update\_graphics}!Game class Qt Signals@{Game class Qt Signals}}
+\doxysubsubsection{\texorpdfstring{update\_graphics()}{update\_graphics()}}
+{\footnotesize\ttfamily void game\+::update\+\_\+graphics (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{player\+\_\+positions }\end{DoxyParamCaption})}
+
+
+
+Emit signal for GUI update. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+\_\+positions} & Vector of all piece\textquotesingle{}s positions \\
+\hline
+\end{DoxyParams}

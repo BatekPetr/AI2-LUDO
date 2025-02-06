@@ -1,3 +1,8 @@
+/**
+ * @file ludo_player_genetic.cpp
+ * @brief This file contains implementation of a ludo_player_genetic
+*/
+
 #include "ludo_player_genetic.h"
 
 ludo_player_genetic::ludo_player_genetic():ludo_player_random()

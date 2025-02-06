@@ -1,0 +1,51 @@
+\hypertarget{group__LudoPlayerSlots}{}\doxysection{Ludo\+\_\+player class Qt Slots}
+\label{group__LudoPlayerSlots}\index{Ludo\_player class Qt Slots@{Ludo\_player class Qt Slots}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__LudoPlayerSlots_ga1ffff5b21bcafcc00828ea3c859dc5a7}{ludo\+\_\+player\+::start\+\_\+turn}} (\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}} relative)
+\begin{DoxyCompactList}\small\item\em start\+\_\+turn slot for initiating a player turn \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__LudoPlayerSlots_ga7ea6e5db6b189463e34dfbe8d3e93436}{ludo\+\_\+player\+::post\+\_\+game\+\_\+analysis}} (std\+::vector$<$ int $>$ relative\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em post\+\_\+game\+\_\+analysis slot starts evaluation of a gamestate after player\textquotesingle{}s turn \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__LudoPlayerSlots_ga7ea6e5db6b189463e34dfbe8d3e93436}\label{group__LudoPlayerSlots_ga7ea6e5db6b189463e34dfbe8d3e93436}} 
+\index{Ludo\_player class Qt Slots@{Ludo\_player class Qt Slots}!post\_game\_analysis@{post\_game\_analysis}}
+\index{post\_game\_analysis@{post\_game\_analysis}!Ludo\_player class Qt Slots@{Ludo\_player class Qt Slots}}
+\doxysubsubsection{\texorpdfstring{post\_game\_analysis()}{post\_game\_analysis()}}
+{\footnotesize\ttfamily bool ludo\+\_\+player\+::post\+\_\+game\+\_\+analysis (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{relative\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+post\+\_\+game\+\_\+analysis slot starts evaluation of a gamestate after player\textquotesingle{}s turn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relative\+\_\+pos} & player\textquotesingle{}s peaces relative positions vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, indicating, whether all player\textquotesingle{}s peaces finished the game 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__LudoPlayerSlots_ga1ffff5b21bcafcc00828ea3c859dc5a7}\label{group__LudoPlayerSlots_ga1ffff5b21bcafcc00828ea3c859dc5a7}} 
+\index{Ludo\_player class Qt Slots@{Ludo\_player class Qt Slots}!start\_turn@{start\_turn}}
+\index{start\_turn@{start\_turn}!Ludo\_player class Qt Slots@{Ludo\_player class Qt Slots}}
+\doxysubsubsection{\texorpdfstring{start\_turn()}{start\_turn()}}
+{\footnotesize\ttfamily int ludo\+\_\+player\+::start\+\_\+turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpositions__and__dice}{positions\+\_\+and\+\_\+dice}}}]{relative }\end{DoxyParamCaption})}
+
+
+
+start\+\_\+turn slot for initiating a player turn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relative} & piece positions on the gameplan and dice roll \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer format of decision, what piece is going to play 
+\end{DoxyReturn}

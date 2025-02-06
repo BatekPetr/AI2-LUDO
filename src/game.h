@@ -1,6 +1,6 @@
 /**
  * @file game.h
- * @brief This file defines interface for a LUDO game
+ * @brief This file contains interface for a LUDO game
  *
  * @todo Decide on and use only one naming convention
 */
@@ -98,7 +98,7 @@ private:
 public:
     /// Identification of current player [0-3]
     int color;
-    /// LUDO pieces positions on the game-plan
+    /// Vector of all LUDO pieces positions on the game-plan
     std::vector<int> player_positions;
     /// Number of wins of the players. Used in Multi-game scenario (MODE == 1)
     std::vector<int> winStats;
@@ -133,17 +133,45 @@ public:
      */
     void set_active_players(ludo_player *p1, ludo_player *p2, ludo_player *p3, ludo_player *p4);
 
+
+    /**
+     * @brief Introduce player types in the game.
+     */
     void introduce_players();
 
+    /**
+     * @brief Generate random number between 1 and 6.
+     * @note Not sure, why I impletented the function as void without return value back in 2017
+     */
     void rollDice(){
         std::uniform_int_distribution<> dis(1, 6);
         dice_result = dis(gen);
     }
+
+    /**
+     * @brief Getter for dice roll result.
+     * @return dice roll result as int
+     */
     int getDiceRoll() {return dice_result; }
 
+    /**
+     * @brief Sets delay between game turns. For visualization purposes.
+     * @param mili_seconds: delay in miliseconds
+     */
     void setGameDelay(unsigned int mili_seconds){ game_delay = mili_seconds; }
+
+    /**
+     * @brief Reset the game to initial state.
+     */
     void reset();
 
+
+/**
+ * @defgroup GameSignals Game class Qt Signals
+ * @note The signals were used in the initial stage of the project,
+ * when the game project was handed out with the assignment. During the work on the project,
+ * signals and slots were replaced for better scalability.
+ */
 signals:
     void player1_start(positions_and_dice);
     void player2_start(positions_and_dice);
@@ -155,15 +183,57 @@ signals:
     void player3_end(std::vector<int>);
     void player4_end(std::vector<int>);
 
-    void update_graphics(std::vector<int>);
-    void set_color(int);
-    void set_dice_result(int);
+    /**
+     * @ingroup GameSignals
+     * @brief Emit signal for GUI update
+     * @param player_positions: Vector of all piece's positions
+     */
+    void update_graphics(std::vector<int> player_positions);
+
+    /**
+     * @ingroup GameSignals
+     * @brief Set color of active player
+     * @param color: integer representing player
+     */
+    void set_color(int color);
+
+    /**
+     * @ingroup GameSignals
+     * @brief Set dice result
+     * @param dice_result: as integer
+     */
+    void set_dice_result(int dice_result);
+
+    /**
+     * @ingroup GameSignals
+     * @brief Emit signal to show winner in Dialog object
+     */
     void declare_winner(int);
+
+    /**
+     * @ingroup GameSignals
+     * @brief Emit signal to close gameplay GUI
+     */
     void close();
 
+/**
+ *  @defgroup GameSlots Game class Qt Slots
+ */
 public slots:
+    /**
+     * @ingroup GameSlots
+     * @brief A slot to be called after each turn finish
+     * @param win: Boolean indicating whether the game was finished
+     */
     void turnComplete(bool win);
+
+    /**
+     * @ingroup GameSlots
+     * @brief A slot for moving selected piece
+     * @param relative_piece: A piece to be moved
+     */
     void movePiece(int relative_piece); //check game rules
+
 protected:
     void run();
 };

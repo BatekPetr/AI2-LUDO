@@ -1,6 +1,8 @@
 # AI2-LUDO Player
 
 ## Project description
+### LUDO Player inheritance diagram
+![LUDO Player inheritance diagram](./doc/html/classludo__player__inherit__graph.png)
 ## History
 
 ## How to run:

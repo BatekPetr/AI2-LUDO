@@ -1,23 +1,23 @@
 <map id="src/dialog.h" name="src/dialog.h">
-<area shape="rect" id="node1" title=" " alt="" coords="690,5,787,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="105,379,185,405"/>
-<area shape="rect" id="node3" title=" " alt="" coords="462,453,525,480"/>
-<area shape="rect" id="node4" title=" " alt="" coords="663,80,723,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="748,80,823,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="891,155,957,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="847,80,905,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="929,80,1057,107"/>
-<area shape="rect" id="node9" href="$game_8h.html" title="This file defines interface for a LUDO game." alt="" coords="517,80,587,107"/>
-<area shape="rect" id="node20" title=" " alt="" coords="1081,80,1244,107"/>
-<area shape="rect" id="node21" title=" " alt="" coords="1269,80,1350,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="443,304,515,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="640,155,717,181"/>
-<area shape="rect" id="node12" title=" " alt="" coords="742,155,815,181"/>
-<area shape="rect" id="node13" href="$ludo__player_8h.html" title="This file defines interface for a generall LUDO player." alt="" coords="208,304,317,331"/>
-<area shape="rect" id="node16" href="$positions__and__dice_8h.html" title=" " alt="" coords="414,379,573,405"/>
-<area shape="rect" id="node17" href="$ludo__player__genetic_8h.html" title=" " alt="" coords="349,155,515,181"/>
-<area shape="rect" id="node19" title=" " alt="" coords="93,155,171,181"/>
-<area shape="rect" id="node14" title=" " alt="" coords="315,379,389,405"/>
-<area shape="rect" id="node15" title=" " alt="" coords="237,379,288,405"/>
-<area shape="rect" id="node18" href="$ludo__player__random_8h.html" title=" " alt="" coords="297,229,463,256"/>
+<area shape="rect" id="node1" title="This file contains interface for GUI gameplay Dialog." alt="" coords="275,5,373,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="257,379,337,405"/>
+<area shape="rect" id="node3" title=" " alt="" coords="477,453,539,480"/>
+<area shape="rect" id="node4" title=" " alt="" coords="94,80,154,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="179,80,253,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="193,155,260,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="328,80,387,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="411,80,539,107"/>
+<area shape="rect" id="node9" href="$game_8h.html" title="This file contains interface for a LUDO game." alt="" coords="563,80,634,107"/>
+<area shape="rect" id="node20" title=" " alt="" coords="659,80,821,107"/>
+<area shape="rect" id="node21" title=" " alt="" coords="846,80,927,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="844,304,916,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="335,155,412,181"/>
+<area shape="rect" id="node12" title=" " alt="" coords="437,155,510,181"/>
+<area shape="rect" id="node13" href="$ludo__player_8h.html" title="This file contains interface for a generall ludo_player." alt="" coords="561,304,671,331"/>
+<area shape="rect" id="node16" href="$positions__and__dice_8h.html" title="This file contains definition of positions_and_dice struct." alt="" coords="429,379,587,405"/>
+<area shape="rect" id="node17" href="$ludo__player__genetic_8h.html" title="This file contains interface for a ludo_player_genetic." alt="" coords="737,155,903,181"/>
+<area shape="rect" id="node19" title=" " alt="" coords="636,155,713,181"/>
+<area shape="rect" id="node14" title=" " alt="" coords="687,379,761,405"/>
+<area shape="rect" id="node15" title=" " alt="" coords="612,379,663,405"/>
+<area shape="rect" id="node18" href="$ludo__player__random_8h.html" title="This file contains interface for a ludo_player_random." alt="" coords="737,229,903,256"/>
 </map>

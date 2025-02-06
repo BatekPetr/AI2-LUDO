@@ -69,65 +69,70 @@ $(function() {
 <div class="title">dialog.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="dialog_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DIALOG_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DIALOG_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span> <span class="comment">//std::pair</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QDialog&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;QtCore&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;QtGui&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QGraphicsScene&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game_8h.html">game.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;QGraphicsEllipseItem&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QPixmap&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespaceUi.html">   15</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classDialog.html">Dialog</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classDialog.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDialog.html">Dialog</a> : <span class="keyword">public</span> QDialog</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classDialog.html#acfa2063f9f962d394c6a645b6e7e08d8">Dialog</a>(QWidget *parent = 0);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classDialog.html#a2a1fe6ef28513eed13bfcd3a4da83ccb">~Dialog</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    QColor active_color;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> current_dice_roll;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> addHomeField(<span class="keywordtype">int</span> dx, <span class="keywordtype">int</span> dy, QBrush);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> showEvent(QShowEvent *);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> resizeEvent(QResizeEvent *);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    Ui::Dialog *ui;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    QGraphicsScene *scene;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    QGraphicsEllipseItem *ellipse;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    QGraphicsRectItem *rectangle;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> create_graphic_players();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::vector&lt;QGraphicsEllipseItem *&gt; graphic_player;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    QGraphicsSimpleTextItem * diceRoll;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    QGraphicsRectItem * diceBG;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::vector&lt;QPointF&gt; home_fields;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    std::vector&lt;QPointF&gt; fieldPos;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDialog.html#acdd77a5a66dbf3d8bc4753e53a73f0d8">update_graphics</a>(std::vector&lt;int&gt; player_positions);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDialog.html#aa3507a31d6471785550f7d4d5de4584c">get_color</a>(<span class="keywordtype">int</span> color);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDialog.html#acbb76466e3db5f3496e8e1bf6537f8a3">get_dice_result</a>(<span class="keywordtype">int</span> dice);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDialog.html#a75fbf6d868d44fd4b85b1d8a0fb6b541">get_winner</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// void get_winner(int color);</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<a href="dialog_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef DIALOG_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define DIALOG_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span> <span class="comment">//std::pair</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;QDialog&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;QtCore&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;QtGui&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;QGraphicsScene&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game_8h.html">game.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;QGraphicsEllipseItem&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;QPixmap&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespaceUi.html">   22</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="classDialog.html">Dialog</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classDialog.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDialog.html">Dialog</a> : <span class="keyword">public</span> QDialog</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classDialog.html#acfa2063f9f962d394c6a645b6e7e08d8">Dialog</a>(QWidget *parent = 0);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classDialog.html#a2a1fe6ef28513eed13bfcd3a4da83ccb">~Dialog</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    QColor active_color;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> current_dice_roll;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> addHomeField(<span class="keywordtype">int</span> dx, <span class="keywordtype">int</span> dy, QBrush);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> showEvent(QShowEvent *);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> resizeEvent(QResizeEvent *);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Ui::Dialog *ui;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    QGraphicsScene *scene;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    QGraphicsEllipseItem *ellipse;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    QGraphicsRectItem *rectangle;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> create_graphic_players();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::vector&lt;QGraphicsEllipseItem *&gt; graphic_player;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    QGraphicsSimpleTextItem * diceRoll;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    QGraphicsRectItem * diceBG;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::vector&lt;QPointF&gt; home_fields;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::vector&lt;QPointF&gt; fieldPos;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// DIALOG_H</span></div>
-<div class="ttc" id="aclassDialog_html"><div class="ttname"><a href="classDialog.html">Dialog</a></div><div class="ttdef"><b>Definition:</b> dialog.h:20</div></div>
-<div class="ttc" id="aclassDialog_html_a2a1fe6ef28513eed13bfcd3a4da83ccb"><div class="ttname"><a href="classDialog.html#a2a1fe6ef28513eed13bfcd3a4da83ccb">Dialog::~Dialog</a></div><div class="ttdeci">~Dialog()</div><div class="ttdef"><b>Definition:</b> dialog.cpp:190</div></div>
-<div class="ttc" id="aclassDialog_html_a75fbf6d868d44fd4b85b1d8a0fb6b541"><div class="ttname"><a href="classDialog.html#a75fbf6d868d44fd4b85b1d8a0fb6b541">Dialog::get_winner</a></div><div class="ttdeci">void get_winner(void)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:203</div></div>
-<div class="ttc" id="aclassDialog_html_aa3507a31d6471785550f7d4d5de4584c"><div class="ttname"><a href="classDialog.html#aa3507a31d6471785550f7d4d5de4584c">Dialog::get_color</a></div><div class="ttdeci">void get_color(int color)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:209</div></div>
-<div class="ttc" id="aclassDialog_html_acbb76466e3db5f3496e8e1bf6537f8a3"><div class="ttname"><a href="classDialog.html#acbb76466e3db5f3496e8e1bf6537f8a3">Dialog::get_dice_result</a></div><div class="ttdeci">void get_dice_result(int dice)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:227</div></div>
-<div class="ttc" id="aclassDialog_html_acdd77a5a66dbf3d8bc4753e53a73f0d8"><div class="ttname"><a href="classDialog.html#acdd77a5a66dbf3d8bc4753e53a73f0d8">Dialog::update_graphics</a></div><div class="ttdeci">void update_graphics(std::vector&lt; int &gt; player_positions)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:125</div></div>
-<div class="ttc" id="aclassDialog_html_acfa2063f9f962d394c6a645b6e7e08d8"><div class="ttname"><a href="classDialog.html#acfa2063f9f962d394c6a645b6e7e08d8">Dialog::Dialog</a></div><div class="ttdeci">Dialog(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:4</div></div>
-<div class="ttc" id="agame_8h_html"><div class="ttname"><a href="game_8h.html">game.h</a></div><div class="ttdoc">This file defines interface for a LUDO game.</div></div>
-<div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition:</b> dialog.h:15</div></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__DialogSlots.html#gacdd77a5a66dbf3d8bc4753e53a73f0d8">update_graphics</a>(std::vector&lt;int&gt; player_positions);\</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__DialogSlots.html#gaa3507a31d6471785550f7d4d5de4584c">get_color</a>(<span class="keywordtype">int</span> color);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__DialogSlots.html#gacbb76466e3db5f3496e8e1bf6537f8a3">get_dice_result</a>(<span class="keywordtype">int</span> dice);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__DialogSlots.html#ga75fbf6d868d44fd4b85b1d8a0fb6b541">get_winner</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// void get_winner(int color);</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// DIALOG_H</span></div>
+<div class="ttc" id="aclassDialog_html"><div class="ttname"><a href="classDialog.html">Dialog</a></div><div class="ttdef"><b>Definition:</b> dialog.h:27</div></div>
+<div class="ttc" id="aclassDialog_html_a2a1fe6ef28513eed13bfcd3a4da83ccb"><div class="ttname"><a href="classDialog.html#a2a1fe6ef28513eed13bfcd3a4da83ccb">Dialog::~Dialog</a></div><div class="ttdeci">~Dialog()</div><div class="ttdef"><b>Definition:</b> dialog.cpp:197</div></div>
+<div class="ttc" id="aclassDialog_html_acfa2063f9f962d394c6a645b6e7e08d8"><div class="ttname"><a href="classDialog.html#acfa2063f9f962d394c6a645b6e7e08d8">Dialog::Dialog</a></div><div class="ttdeci">Dialog(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:11</div></div>
+<div class="ttc" id="agame_8h_html"><div class="ttname"><a href="game_8h.html">game.h</a></div><div class="ttdoc">This file contains interface for a LUDO game.</div></div>
+<div class="ttc" id="agroup__DialogSlots_html_ga75fbf6d868d44fd4b85b1d8a0fb6b541"><div class="ttname"><a href="group__DialogSlots.html#ga75fbf6d868d44fd4b85b1d8a0fb6b541">Dialog::get_winner</a></div><div class="ttdeci">void get_winner(void)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:210</div></div>
+<div class="ttc" id="agroup__DialogSlots_html_gaa3507a31d6471785550f7d4d5de4584c"><div class="ttname"><a href="group__DialogSlots.html#gaa3507a31d6471785550f7d4d5de4584c">Dialog::get_color</a></div><div class="ttdeci">void get_color(int color)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:216</div></div>
+<div class="ttc" id="agroup__DialogSlots_html_gacbb76466e3db5f3496e8e1bf6537f8a3"><div class="ttname"><a href="group__DialogSlots.html#gacbb76466e3db5f3496e8e1bf6537f8a3">Dialog::get_dice_result</a></div><div class="ttdeci">void get_dice_result(int dice)</div><div class="ttdef"><b>Definition:</b> dialog.cpp:234</div></div>
+<div class="ttc" id="agroup__DialogSlots_html_gacdd77a5a66dbf3d8bc4753e53a73f0d8"><div class="ttname"><a href="group__DialogSlots.html#gacdd77a5a66dbf3d8bc4753e53a73f0d8">Dialog::update_graphics</a></div><div class="ttdeci">void update_graphics(std::vector&lt; int &gt; player_positions)</div><div class="ttdoc">update_graphics</div><div class="ttdef"><b>Definition:</b> dialog.cpp:132</div></div>
+<div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition:</b> dialog.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

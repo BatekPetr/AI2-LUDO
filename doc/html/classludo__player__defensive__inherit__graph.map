@@ -1,6 +1,6 @@
 <map id="ludo_player_defensive" name="ludo_player_defensive">
 <area shape="rect" id="node1" title=" " alt="" coords="5,229,175,256"/>
-<area shape="rect" id="node2" href="$classludo__player__random.html" title=" " alt="" coords="13,155,167,181"/>
+<area shape="rect" id="node2" href="$classludo__player__random.html" title="The ludo_player_random class extends general ludo_player by pick_random_move function." alt="" coords="13,155,167,181"/>
 <area shape="rect" id="node3" href="$classludo__player.html" title="The ludo_player class defines LUDO player interface." alt="" coords="41,80,139,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="53,5,127,32"/>
 </map>

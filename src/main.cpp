@@ -1,7 +1,15 @@
-#include "dialog.h"
+/**
+ * @file main.cpp
+ * @brief This file contains implementation of main() application entry function.
+*/
+
 #include <QApplication>
-#include "game.h"
+#include <stdio.h>
 #include <vector>
+
+#include "dialog.h"
+#include "game.h"
+
 #include "ludo_player.h"
 #include "ludo_player_random.h"
 #include "ludo_player_fast.h"
@@ -10,20 +18,21 @@
 #include "ludo_player_expert.h"
 #include "ludo_player_genetic.h"
 
-
 #include "positions_and_dice.h"
-
-#include <stdio.h>
 
 
 Q_DECLARE_METATYPE( positions_and_dice )
 
+/**
+ * @brief Application Entry function
+ * @param argc
+ * @param argv
+ * @return exit status
+ */
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     qRegisterMetaType<positions_and_dice>();
     qRegisterMetaType<std::vector<int>>();
-
-
 
     //instanciate the players here
 
@@ -37,8 +46,10 @@ int main(int argc, char *argv[]){
     */
     ludo_player_genetic p1({0.744648, 0.117856, 0.487484, 1.40823, -0.632367, 1.03243, -2.21635});
     ludo_player_genetic p2({0.684924, 0.188297, 0.744413, 1.33665, -0.538997, 1.03243, -2.21635 });
-    ludo_player_genetic p3({0.95887, 0.16744, 0.487484, 1.35318, -0.632367, 1.03676, -2.21635});
-    ludo_player_genetic p4({0.684924, 0.117856, 0.487484, 1.25273, -0.584465, 1.03243, -2.21635});
+    //ludo_player_genetic p3({0.95887, 0.16744, 0.487484, 1.35318, -0.632367, 1.03676, -2.21635});
+    //ludo_player_genetic p4({0.684924, 0.117856, 0.487484, 1.25273, -0.584465, 1.03243, -2.21635});
+    ludo_player_expert p3;
+    ludo_player_random p4;
     game g(&p1,&p2,&p3,&p4);
 
 
@@ -51,6 +62,7 @@ int main(int argc, char *argv[]){
 
     QObject::connect(&g,SIGNAL(close()),&a,SLOT(quit()));
 
+// Single game variant
 #if MODE==0
     // Add a GUI <-- remove the '/' to uncomment block
     // ---------------------------------------------------
@@ -68,7 +80,7 @@ int main(int argc, char *argv[]){
     a.exec();
     // ---------------------------------------------------
 
-
+// Multiple games variant for training and evaluation
 #else
     std::ofstream ofs ("RunningStats.txt", std::ofstream::out);
 
